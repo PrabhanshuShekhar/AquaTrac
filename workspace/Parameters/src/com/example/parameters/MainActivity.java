@@ -12,7 +12,7 @@ import android.view.*;
 
 public class MainActivity extends Activity  {
 
-	// ghri44
+	// eueirie
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
