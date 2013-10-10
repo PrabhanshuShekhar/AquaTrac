@@ -1,0 +1,43 @@
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      			android:orientation="vertical"
+      			android:layout_width="fill_parent"
+      			android:layout_height="fill_parent"
+      			android:background="@drawable/water1" >
+   <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_width="fill_parent"
+                 android:layout_height="120dp"
+        >
+      <TextView  android:text="Aqua Trac"
+                 android:textSize="35dp"
+                 android:textColor="#0000FF"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginTop="30dp"
+                 />
+      <ImageView android:id="@+id/logo_fish"
+                 android:layout_width="80dp"
+                 android:layout_height="100dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginTop="0dp"
+                 android:src="@drawable/logo_fish"
+           />
+     
+     </LinearLayout>  
+     		
+    <GridView  
+               android:id="@+id/gridview"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent"
+               android:columnWidth="150dp"
+               android:numColumns="auto_fit"
+               android:verticalSpacing="20dp"
+               android:horizontalSpacing="20dp"
+               android:stretchMode="columnWidth"
+               android:gravity="center"/>
+        
+  </LinearLayout>  
+
+
