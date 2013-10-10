@@ -13,7 +13,8 @@ import android.view.*;
 public class MainActivity extends Activity  {
 
 	// eueirie
-// change without eclipse
+
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
