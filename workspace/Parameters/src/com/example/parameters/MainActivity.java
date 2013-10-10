@@ -12,6 +12,8 @@ import android.view.*;
 
 public class MainActivity extends Activity  {
 
+	// hdiwhdw
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
