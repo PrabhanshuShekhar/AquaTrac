@@ -75,6 +75,7 @@ public class ParameterAdapters extends BaseAdapter {
 		   linear_layout.addView(param_image);
 		   linear_layout.addView(value_view);
 		   linear_layout.addView(name_view);
+		   // didgiwgd
 	   }
 	   else
 	   {
@@ -83,5 +84,7 @@ public class ParameterAdapters extends BaseAdapter {
 		
 		return linear_layout;
 	}
+	
+	// git@github.com:PrabhanshuShekhar/AquaTrac.git
 
 }
