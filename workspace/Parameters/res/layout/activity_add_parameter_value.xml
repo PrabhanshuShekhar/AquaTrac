@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".AddParameterValueActivity" >
+
+    <TextView
+        android:id="@+id/slider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+       android:layout_marginTop="10dp"
+        android:text="@string/hello_world" />
+     <TextView android:id="@+id/slider_value"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="275dp"
+       android:layout_marginTop="200dp"
+       /> 
+   
+    <SeekBar android:id="@+id/seekbar"
+android:layout_width="300dp"
+android:layout_height="wrap_content"
+android:max="50"
+android:layout_gravity="center_horizontal"
+android:layout_marginTop="10dp"
+android:minWidth="250px"  />
+   
+
+<Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="#ffffff"
+        android:background="#1E90FF" 
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginRight="20dp"
+        android:onClick="submit"
+    />
+    
+</LinearLayout>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/ScrollView01" android:layout_width="fill_parent"
+android:layout_height="fill_parent" >
+<RelativeLayout 
+    android:id="@+id/parameter"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+   
+    
+       <RelativeLayout android:id="@+id/water_level"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="25dp"
+          android:onClick="clicker"
+           >
+	      <ImageView android:id="@+id/water_level_image"
+	                 android:layout_width="40dp"
+	                 android:layout_height="75dp"
+	                 android:layout_marginLeft="10dp"
+	                 android:layout_marginTop="5dp"
+	                 android:src="@drawable/image_2"
+	                    />  
+	      <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/water_level_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="34.45"
+	          />
+	      
+	      <TextView android:text="Water Level"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_below="@id/water_level_image"
+	                android:layout_marginLeft="10dp"	          
+	          />
+	      
+      </RelativeLayout>
+       
+    <RelativeLayout android:id="@+id/temperature"
+          android:layout_toRightOf="@id/water_level"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:onClick="clicker"
+          android:layout_marginTop="25dp" >
+         <ImageView android:id="@+id/temperature_image"
+	                 android:layout_width="40dp"
+	                 android:layout_height="75dp"
+	                 android:layout_marginLeft="10dp"
+	                 android:layout_marginTop="5dp"
+	                 android:src="@drawable/image_3"
+	                    /> 
+	    <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/temperature_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Temperature"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/temperature_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          />                
+        
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/alkalinity"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:onClick="clicker"
+          android:layout_below="@id/water_level" >
+         
+        <ImageView android:id="@+id/alkalinity_image"
+	                 android:layout_width="40dp"
+	                 android:layout_height="75dp"
+	                 android:layout_marginLeft="10dp"
+	                 android:layout_marginTop="5dp"
+	                 android:src="@drawable/image_4"
+	                    /> 
+	    <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/alkalinity_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Alkalinity"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/alkalinity_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          />  
+        
+	</RelativeLayout>
+
+    <RelativeLayout android:id="@+id/ammonia"
+          android:layout_toRightOf="@id/alkalinity"
+          android:layout_below="@id/temperature"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF" 
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:onClick="clicker"
+          android:layout_marginTop="10dp" >
+        
+		        <ImageView android:id="@+id/ammonia_image"
+			                 android:layout_width="40dp"
+			                 android:layout_height="75dp"
+			                 android:layout_marginLeft="10dp"
+			                 android:layout_marginTop="5dp"
+			                 android:src="@drawable/image_5"
+			                    />  
+			                    
+		        <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/ammonia_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Ammonia"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/ammonia_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+      </RelativeLayout>
+      
+    
+    <RelativeLayout android:id="@+id/biochemical"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:onClick="clicker"
+          android:layout_below="@id/alkalinity" >
+		        
+		        <ImageView android:id="@+id/biochemical_image"
+			                 android:layout_width="40dp"
+			                 android:layout_height="75dp"
+			                 android:layout_marginLeft="10dp"
+			                 android:layout_marginTop="5dp"
+			                 android:src="@drawable/image_6"
+			                    />  
+                <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/biochemical_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Biochemical"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/biochemical_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+        
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/chloride"
+          android:layout_toRightOf="@id/biochemical"
+          android:layout_below="@id/ammonia"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF" 
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:onClick="clicker"
+          android:layout_marginTop="10dp" >
+				<ImageView android:id="@+id/chloride_image"
+			                 android:layout_width="40dp"
+			                 android:layout_height="75dp"
+			                 android:layout_marginLeft="10dp"
+			                 android:layout_marginTop="5dp"
+			                 android:src="@drawable/image_7"
+			                    />          
+                <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/chloride_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Chloride"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/chloride_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+        
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/dissolved_oxygen"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:onClick="clicker"
+          android:layout_below="@id/biochemical" >
+				<ImageView android:id="@+id/dissolved_oxygen_image"
+	                 android:layout_width="40dp"
+	                 android:layout_height="75dp"
+	                 android:layout_marginLeft="10dp"
+	                 android:layout_marginTop="5dp"
+	                 android:src="@drawable/image_8"
+	                    />  
+	            
+				<TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/dissolved_oxygen_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Dissolved Oxygen"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/dissolved_oxygen_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+				
+    </RelativeLayout>
+    
+    
+    <RelativeLayout android:id="@+id/free_chlorine"
+          android:layout_toRightOf="@id/dissolved_oxygen"
+          android:layout_below="@id/chloride"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF" 
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:onClick="clicker"
+          android:layout_marginTop="10dp" >
+		 		
+		        <ImageView android:id="@+id/free_chlorine_image"
+			                 android:layout_width="40dp"
+			                 android:layout_height="75dp"
+			                 android:layout_marginLeft="10dp"
+			                 android:layout_marginTop="5dp"
+			                 android:src="@drawable/image_9"
+			                    />  
+			                    
+		        <TextView android:id="@+id/water_level_value"
+	                android:layout_toRightOf="@id/free_chlorine_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Free Chlorine"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/free_chlorine_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+     </RelativeLayout>
+    
+    
+    <RelativeLayout android:id="@+id/nitrate"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:onClick="clicker"
+          android:layout_below="@id/dissolved_oxygen" >
+		     
+		           <ImageView android:id="@+id/nitrate_image"
+			                 android:layout_width="40dp"
+			                 android:layout_height="75dp"
+			                 android:layout_marginLeft="10dp"
+			                 android:layout_marginTop="5dp"
+			                 android:src="@drawable/image_10"
+			                    />  
+			                    
+		           <TextView android:id="@+id/nitrate_value"
+	                android:layout_toRightOf="@id/nitrate_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Nitrate"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/nitrate_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+    </RelativeLayout>
+    
+    
+    <RelativeLayout android:id="@+id/ph"
+          android:layout_toRightOf="@id/nitrate"
+          android:layout_below="@id/free_chlorine"
+          android:layout_width="145dp"
+          android:layout_height="100dp"
+          android:background="#1E90FF" 
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:onClick="clicker"
+          android:layout_marginTop="10dp" >
+		          <ImageView android:id="@+id/ph_image"
+			                 android:layout_width="40dp"
+			                 android:layout_height="75dp"
+			                 android:layout_marginLeft="10dp"
+			                 android:layout_marginTop="5dp"
+			                 android:src="@drawable/image_11"
+			                    />  
+			        <TextView android:id="@+id/ph_value"
+	                android:layout_toRightOf="@id/ph_image"
+	                android:layout_marginLeft="50dp"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#ffffff"
+	                android:textSize="15dp"
+	                android:text="44.45"
+	          />
+	      
+	      <TextView android:text="Ph"
+	                android:textSize="12dp"
+	                android:textColor="#ffffff"
+	                android:layout_below="@id/ph_image"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dp"	          
+	          /> 
+     </RelativeLayout>
+    
+    
+   <RelativeLayout 
+       android:id="@+id/blank1"
+       android:layout_below="@id/nitrate" 
+       android:layout_width="145dp"
+       android:layout_height="1dp"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="10dp"
+       />  
+       <RelativeLayout android:layout_below="@id/ph" 
+           android:layout_toRightOf="@id/blank1"
+           android:layout_width="145dp"
+       android:layout_height="1dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginTop="10dp"
+       />   
+</RelativeLayout>
+</ScrollView>

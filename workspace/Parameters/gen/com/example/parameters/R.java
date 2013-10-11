@@ -41,27 +41,60 @@ public final class R {
         public static final int water1=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f080004;
-        public static final int gridview=0x7f080003;
-        public static final int gridview1=0x7f080001;
+        public static final int ScrollView01=0x7f080007;
+        public static final int action_settings=0x7f080021;
+        public static final int alkalinity=0x7f08000e;
+        public static final int alkalinity_image=0x7f08000f;
+        public static final int ammonia=0x7f080010;
+        public static final int ammonia_image=0x7f080011;
+        public static final int biochemical=0x7f080012;
+        public static final int biochemical_image=0x7f080013;
+        public static final int blank1=0x7f080020;
+        public static final int chloride=0x7f080014;
+        public static final int chloride_image=0x7f080015;
+        public static final int dissolved_oxygen=0x7f080016;
+        public static final int dissolved_oxygen_image=0x7f080017;
+        public static final int free_chlorine=0x7f080018;
+        public static final int free_chlorine_image=0x7f080019;
+        public static final int gridview=0x7f080006;
+        public static final int gridview1=0x7f080004;
         public static final int gridview_ponds=0x7f080000;
-        public static final int logo_fish=0x7f080002;
+        public static final int logo_fish=0x7f080005;
+        public static final int nitrate=0x7f08001a;
+        public static final int nitrate_image=0x7f08001b;
+        public static final int nitrate_value=0x7f08001c;
+        public static final int parameter=0x7f080008;
+        public static final int ph=0x7f08001d;
+        public static final int ph_image=0x7f08001e;
+        public static final int ph_value=0x7f08001f;
+        public static final int seekbar=0x7f080003;
+        public static final int slider=0x7f080001;
+        public static final int slider_value=0x7f080002;
+        public static final int temperature=0x7f08000c;
+        public static final int temperature_image=0x7f08000d;
+        public static final int water_level=0x7f080009;
+        public static final int water_level_image=0x7f08000a;
+        public static final int water_level_value=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_add=0x7f030000;
-        public static final int activity_add_record=0x7f030001;
-        public static final int activity_main=0x7f030002;
+        public static final int activity_add_parameter_value=0x7f030001;
+        public static final int activity_add_record=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int record_add=0x7f030004;
     }
     public static final class menu {
         public static final int add=0x7f070000;
-        public static final int add_record=0x7f070001;
-        public static final int main=0x7f070002;
+        public static final int add_parameter_value=0x7f070001;
+        public static final int add_record=0x7f070002;
+        public static final int main=0x7f070003;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
         public static final int title_activity_add=0x7f050003;
+        public static final int title_activity_add_parameter_value=0x7f050005;
         public static final int title_activity_add_record=0x7f050004;
     }
     public static final class style {
