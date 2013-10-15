@@ -27,6 +27,9 @@ android:max="50"
 android:layout_gravity="center_horizontal"
 android:layout_marginTop="10dp"
 android:minWidth="250px"  />
+    
+    
+    
    
 
 <Button android:layout_width="wrap_content"
