@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,20 +20,54 @@ public class AddActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add);
 		GridView ponds_gridview = (GridView) findViewById(R.id.gridview_ponds);
-		ponds_gridview.setAdapter(new  PondsAdapter(this));
+		PondsAdapter adapter = new PondsAdapter(this);
+		ponds_gridview.setAdapter(adapter);
 		// listener for ponds_gridview
 		
 		
 		ponds_gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 			{
-				switch(position)
-				{
-				case 0:
-					    Intent intent = new Intent(AddActivity.this,AddRecordActivity.class);
-					    intent.putExtra("location", "Location1");
-					    startActivity(intent);
-				}
+				Intent intent;
+				intent = new Intent(AddActivity.this,AddRecordActivity.class);
+				intent.putExtra("location", PondsAdapter.location_names.get(position));
+			    startActivity(intent);
+//				switch(position)
+//				{
+//				case 0:
+//					     intent = new Intent(AddActivity.this,AddRecordActivity.class);
+//					    intent.putExtra("location", PondsAdapter.location_names.get(position));
+//					    startActivity(intent);
+//			            break;
+//				case 1:
+//					   intent = new Intent(AddActivity.this,AddRecordActivity.class);
+//				       intent.putExtra("location", "Location2");
+//				       startActivity(intent);
+//					   break;
+//				
+//				case 2:
+//					    intent = new Intent(AddActivity.this,AddRecordActivity.class);
+//				        intent.putExtra("location", "Location3");
+//				        startActivity(intent);
+//					    break;
+//					    
+//				case 3:
+//						intent = new Intent(AddActivity.this,AddRecordActivity.class);
+//					    intent.putExtra("location", "Location4");
+//					    startActivity(intent);
+//					    break;
+//					     
+//				case 4: 
+//						intent = new Intent(AddActivity.this,AddRecordActivity.class);
+//					    intent.putExtra("location", "Location5");
+//					    startActivity(intent);
+//					    break;
+//				case 5: 
+//						intent = new Intent(AddActivity.this,AddRecordActivity.class);
+//					    intent.putExtra("location", "Location6");
+//					    startActivity(intent);
+//					    break;
+//				}
 			}
 		});
 		
@@ -40,7 +75,6 @@ public class AddActivity extends Activity {
 		
 		
 	}
-	
 	
 
 	@Override

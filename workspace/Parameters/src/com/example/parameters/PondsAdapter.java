@@ -1,9 +1,17 @@
 package com.example.parameters;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +19,47 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class PondsAdapter extends BaseAdapter {
 	
 	private Context context;
-	
-	
+	public static ArrayList<String> location_names;
+//	 Parse.initialize(this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 	public PondsAdapter(Context c)
 	{
 		this.context = c;
+		location_names = new ArrayList<String>();
+		// get locations from Location table
+	 try
+	 {
+		 Parse.initialize(context, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
+	  ParseQuery<ParseObject> query = ParseQuery.getQuery("Location");
+	  List<ParseObject> results = query.find();
+	  
+	  for(int i=0;i<results.size();i++)
+	  {
+		  Log.d("Record","========================"+results.get(i).getString("location_name"));
+		  location_names.add(results.get(i).getString("location_name"));
+	  }
+//	  location_names.add("");
+//	  location_names.add("");
+//	  if(results.size()%2!= 0)
+//		  location_names.add("");
+	  Log.d("count", "++++++++++++++++++++++"+location_names.size());
+	 }catch(Exception e)
+	 {
+		
+	 }
+		
+		
 	}
 	
 	public int getCount()
 	{
-		return location.length;
+		return location_names.size();
+		
 	}
 	
 	public Object getItem(int position)
@@ -37,50 +71,39 @@ public class PondsAdapter extends BaseAdapter {
 		return 0;
 	}
 	
-	public View getView(int position, View view , ViewGroup parent)
+
+	
+	
+	public View getView(int position,View view, ViewGroup parent)
 	{
-		LinearLayout linear_layout;
+		RelativeLayout rl;
 		TextView textview;
 		if(view == null)
 		{
-			linear_layout = new LinearLayout(context);
-			linear_layout.setOrientation(LinearLayout.HORIZONTAL);
-			if(getCount()-1 == position || getCount()-2 == position)
-			{
-				
-			}
-			else
-			{
-//				if(getCount()-3 == position && location[position] == "")
-//				{
-//					linear_layout.setLayoutParams(new GridView.LayoutParams(200,200));
-//				}
-//				else
-//				{
-			     linear_layout.setLayoutParams(new GridView.LayoutParams(200,200));
-//			linear_layout.setPadding(10, 50, 40, 10);
-			     linear_layout.setBackgroundColor(Color.parseColor("#2E64FE"));
-			
-			    textview = new TextView(context);
-			    textview.setTextColor(Color.parseColor("#F2F2F2"));
-			    textview.setTextSize(25);
-			    textview.setText("Location"+(position+1));
-			 // Application ID : qqZAyhUs4EAmoDAcfZZrSAvqK5EbCvNvv8Vb90yc
-			// Rest Api key :ADxrJ4Aqx0EZslhw8z3nHteg8BNqPoibVrwdSpGt
-			textview.setPadding(25,75, 10,10);
-			Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Helvetica-Condensed.otf");
-			textview.setTypeface(tf);
-		    linear_layout.addView(textview);
-//				}
-			}
-			
+			rl = new RelativeLayout(context);
+
+					rl.setLayoutParams(new GridView.LayoutParams(200, 200));
+					rl.setBackgroundColor(Color.parseColor("#2E64FE"));
+					textview = new TextView(context);
+					textview.setTextSize(20);
+					textview.setPadding(25,75, 10,10);
+					textview.setTextColor(Color.parseColor("#F2F2F2"));
+					textview.setText(location_names.get(position));
+					rl.addView(textview);
 		}
 		else
 		{
-			linear_layout = (LinearLayout)view;
+			rl = (RelativeLayout) view;
+			rl.removeAllViews();
+			textview = new TextView(context);
+			textview.setTextSize(20);
+			textview.setPadding(25,75, 10,10);
+			textview.setTextColor(Color.parseColor("#F2F2F2"));
+			textview.setText(location_names.get(position));
+			rl.addView(textview);
+			
 		}
-		return linear_layout;
+		
+		return rl;
 	}
-	
-	private String [] location = {"Location1" , "Location2" , "Location3" , "Location4" , "Location5", "Location6","",""};
 }
