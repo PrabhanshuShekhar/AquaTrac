@@ -19,6 +19,7 @@ public class AddActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add);
+		
 		GridView ponds_gridview = (GridView) findViewById(R.id.gridview_ponds);
 		PondsAdapter adapter = new PondsAdapter(this);
 		ponds_gridview.setAdapter(adapter);
@@ -29,8 +30,10 @@ public class AddActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 			{
 				Intent intent;
+				String action_name = getIntent().getStringExtra("action_name");
 				intent = new Intent(AddActivity.this,AddRecordActivity.class);
 				intent.putExtra("location", PondsAdapter.location_names.get(position));
+				intent.putExtra("action_name", action_name);
 			    startActivity(intent);
 //				switch(position)
 //				{

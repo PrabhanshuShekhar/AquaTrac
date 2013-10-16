@@ -86,6 +86,7 @@ public class AddParameterValueActivity extends Activity {
 							      gameScore.saveInBackground();
 							      Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
 							      intent1.putExtra("location", table_name);
+							      intent1.putExtra("action_name", "Record");
 //							      intent1.putExtra("param_name",slider.getText().toString() );
 //							      intent1.putExtra("param_value",slider_value.getText().toString());
 							      startActivity(intent1);
@@ -104,6 +105,7 @@ public class AddParameterValueActivity extends Activity {
 							location.put("create_date", df.format(date));
 							location.saveInBackground();
 							Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
+							intent1.putExtra("action_name", "Record");
 						    startActivity(intent1);
 							finish();  
 					  }

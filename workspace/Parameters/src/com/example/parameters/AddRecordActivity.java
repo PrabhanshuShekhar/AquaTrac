@@ -27,18 +27,28 @@ import android.widget.Toast;
 
 public class AddRecordActivity extends Activity  {
   Intent intent;
-  String param_name,location_name,param_value;
+  String param_name,location_name,param_value,action_name;
   static final int GET_PARAMETER_VALUE = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Date date = new Date();
+    	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    	Parse.initialize(AddRecordActivity.this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
+		action_name = getIntent().getStringExtra("action_name");
+		if(action_name.equals("Record"))
+		{
 		setContentView(R.layout.record_add);
+		}
+		else
+		{
+			setContentView(R.layout.view_record);
+		}
 		RelativeLayout outer_RL = (RelativeLayout) findViewById(R.id.parameter);
     	location_name = getIntent().getStringExtra("location");
-    	Date date = new Date();
-    	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    	
     	try{
-    	Parse.initialize(AddRecordActivity.this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
+    	
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("ParameterValue");
         query.whereEqualTo("location_objectid", location_name);
         query.whereEqualTo("create_date",df.format(date));

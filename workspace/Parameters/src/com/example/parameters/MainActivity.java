@@ -26,14 +26,21 @@ public class MainActivity extends Activity  {
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 //	            Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+	        	Intent intent;
 	        	switch(position)
 	        	{
 	        	case 0:
-	        		   startActivity(new Intent(MainActivity.this,AddActivity.class));
+	        		 intent = new Intent(MainActivity.this , AddActivity.class);
+	        		intent.putExtra("action_name", "Record");
+	        		startActivity(intent);
+//	        		   startActivity(new Intent(MainActivity.this,AddActivity.class));
 //	        		Toast.makeText(MainActivity.this, "Add window" , Toast.LENGTH_SHORT).show();
 	        		 break;
 	        	case 1:
-	        		Toast.makeText(MainActivity.this, "View window" , Toast.LENGTH_SHORT).show();
+	        		 intent = new Intent(MainActivity.this , AddActivity.class);
+	        		intent.putExtra("action_name", "View");
+	        		startActivity(intent);
+//	        		Toast.makeText(MainActivity.this, "View window" , Toast.LENGTH_SHORT).show();
 	        		break;
 	        	case 2:
 	        		Toast.makeText(MainActivity.this, "Settings window" , Toast.LENGTH_SHORT).show();
