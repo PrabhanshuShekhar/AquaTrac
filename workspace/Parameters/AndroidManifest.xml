@@ -37,6 +37,20 @@
             android:name="com.example.parameters.AddParameterValueActivity"
             android:label="@string/title_activity_add_parameter_value" >
         </activity>
+        <activity
+            android:name="com.example.parameters.SettingsActivity">
+        </activity>
+        <activity
+            android:name="com.example.parameters.ManageLocation">
+        </activity>
+        <activity
+            android:name="com.example.parameters.ManageParameter">
+        </activity>
+        <activity
+            android:name="com.example.parameters.AddLocation">
+        </activity>
+        
+        
     </application>
 
 </manifest>

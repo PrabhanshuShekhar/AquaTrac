@@ -7,5 +7,12 @@
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_add_record">AddRecordActivity</string>
     <string name="title_activity_add_parameter_value">AddParameterValueActivity</string>
-
+    <string name="manage_location">Manage Location</string>
+    <string name="manage_paramaters">Manage Paramaters</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="location_name">Location Name</string>
+    <string name="location_description">Notes</string>
+<string name="add_location">Add Location</string>
+    
 </resources>

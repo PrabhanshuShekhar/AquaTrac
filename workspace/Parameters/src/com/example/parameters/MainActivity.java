@@ -43,7 +43,8 @@ public class MainActivity extends Activity  {
 //	        		Toast.makeText(MainActivity.this, "View window" , Toast.LENGTH_SHORT).show();
 	        		break;
 	        	case 2:
-	        		Toast.makeText(MainActivity.this, "Settings window" , Toast.LENGTH_SHORT).show();
+	        		 intent = new Intent(MainActivity.this , SettingsActivity.class);
+	        		 startActivity(intent);
 	        		break;
 	        	case 3:
 	        		Toast.makeText(MainActivity.this, "Report window" , Toast.LENGTH_SHORT).show();
