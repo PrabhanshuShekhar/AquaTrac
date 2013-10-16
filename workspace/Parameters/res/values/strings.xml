@@ -13,6 +13,7 @@
     <string name="save">Save</string>
     <string name="location_name">Location Name</string>
     <string name="location_description">Notes</string>
-<string name="add_location">Add Location</string>
-    
+    <string name="add_location">Add Location</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+
 </resources>

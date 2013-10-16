@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+	 <LinearLayout
+	     android:layout_width="fill_parent"
+	     android:layout_height="35dp"
+	     android:orientation="horizontal"
+	     android:background="@color/lightblue" >
+	     <ImageView 
+	         android:layout_width="wrap_content"
+	         android:layout_height="30dp"
+	         android:layout_marginLeft="250dp"
+	         android:layout_gravity="center"
+	         android:src="@drawable/android_calender"
+	         android:onClick="calendar"
+	         />
+	     
+	 </LinearLayout>
+<ScrollView 
 android:id="@+id/ScrollView01" android:layout_width="fill_parent"
 android:layout_height="fill_parent" >
 <RelativeLayout 
@@ -11,7 +30,7 @@ android:layout_height="fill_parent" >
        <RelativeLayout android:id="@+id/ammonia"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF"
+          android:background="@color/lightblue"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="25dp"
           android:onClick="clicker"
@@ -48,7 +67,7 @@ android:layout_height="fill_parent" >
           android:layout_toRightOf="@id/ammonia"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF"
+          android:background="@color/lightblue"
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
@@ -84,7 +103,7 @@ android:layout_height="fill_parent" >
  <RelativeLayout android:id="@+id/chloride"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF"
+          android:background="@color/lightblue"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="10dp"
           android:onClick="clicker"
@@ -123,7 +142,7 @@ android:layout_height="fill_parent" >
           android:layout_below="@id/biochemical"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF" 
+          android:background="@color/lightblue" 
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
@@ -161,7 +180,7 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/conductivity"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF"
+          android:background="@color/lightblue"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="10dp"
           android:onClick="clicker"
@@ -200,7 +219,7 @@ android:layout_height="fill_parent" >
           android:layout_below="@id/colorimeter"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF" 
+          android:background="@color/lightblue" 
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
@@ -235,7 +254,7 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/free_chlorine"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF"
+          android:background="@color/lightblue"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="10dp"
           android:onClick="clicker"
@@ -275,7 +294,7 @@ android:layout_height="fill_parent" >
           android:layout_below="@id/dissolved_oxygen"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF" 
+          android:background="@color/lightblue" 
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
@@ -313,7 +332,7 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/orp"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF"
+          android:background="@color/lightblue"
           android:layout_marginLeft="10dp"
           android:layout_marginTop="10dp"
           android:onClick="clicker"
@@ -353,7 +372,7 @@ android:layout_height="fill_parent" >
           android:layout_below="@id/nitrate"
           android:layout_width="145dp"
           android:layout_height="100dp"
-          android:background="#1E90FF" 
+          android:background="@color/lightblue" 
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
@@ -403,3 +422,4 @@ android:layout_height="fill_parent" >
        />   
 </RelativeLayout>
 </ScrollView>
+</LinearLayout>

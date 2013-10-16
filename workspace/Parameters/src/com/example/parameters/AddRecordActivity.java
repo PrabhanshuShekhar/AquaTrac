@@ -136,6 +136,11 @@ public class AddRecordActivity extends Activity  {
 		return true;
 	}
 	
+	public void calendar(View v)
+	{
+		startActivity(new Intent(this,CalendarActivity.class));
+	}
+	
 	public void clicker(View v)
 	{
 		switch(v.getId())
