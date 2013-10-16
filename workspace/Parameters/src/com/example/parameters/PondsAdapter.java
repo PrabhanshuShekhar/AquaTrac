@@ -26,6 +26,7 @@ public class PondsAdapter extends BaseAdapter {
 	
 	private Context context;
 	public static ArrayList<String> location_names;
+	
 //	 Parse.initialize(this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 	public PondsAdapter(Context c)
 	{

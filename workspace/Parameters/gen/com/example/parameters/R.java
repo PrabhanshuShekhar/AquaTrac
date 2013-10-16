@@ -58,26 +58,27 @@ public final class R {
         public static final int calendar_tile_small=0x7f02000e;
         public static final int calendar_top_header=0x7f02000f;
         public static final int calendar_view=0x7f020010;
-        public static final int ic_launcher=0x7f020011;
-        public static final int image_10=0x7f020012;
-        public static final int image_11=0x7f020013;
-        public static final int image_2=0x7f020014;
-        public static final int image_3=0x7f020015;
-        public static final int image_4=0x7f020016;
-        public static final int image_5=0x7f020017;
-        public static final int image_6=0x7f020018;
-        public static final int image_7=0x7f020019;
-        public static final int image_8=0x7f02001a;
-        public static final int image_9=0x7f02001b;
-        public static final int logo_fish=0x7f02001c;
-        public static final int meenu=0x7f02001d;
-        public static final int minus_button_green=0x7f02001e;
-        public static final int plus=0x7f02001f;
-        public static final int report=0x7f020020;
-        public static final int settings_blue=0x7f020021;
-        public static final int topbar=0x7f020022;
-        public static final int view_blue=0x7f020023;
-        public static final int water1=0x7f020024;
+        public static final int edit_button_blue=0x7f020011;
+        public static final int ic_launcher=0x7f020012;
+        public static final int image_10=0x7f020013;
+        public static final int image_11=0x7f020014;
+        public static final int image_2=0x7f020015;
+        public static final int image_3=0x7f020016;
+        public static final int image_4=0x7f020017;
+        public static final int image_5=0x7f020018;
+        public static final int image_6=0x7f020019;
+        public static final int image_7=0x7f02001a;
+        public static final int image_8=0x7f02001b;
+        public static final int image_9=0x7f02001c;
+        public static final int logo_fish=0x7f02001d;
+        public static final int meenu=0x7f02001e;
+        public static final int minus_button_green=0x7f02001f;
+        public static final int plus=0x7f020020;
+        public static final int report=0x7f020021;
+        public static final int settings_blue=0x7f020022;
+        public static final int topbar=0x7f020023;
+        public static final int view_blue=0x7f020024;
+        public static final int water1=0x7f020025;
     }
     public static final class id {
         public static final int ScrollView01=0x7f09001b;
@@ -89,7 +90,6 @@ public final class R {
         public static final int biochemical_image=0x7f090021;
         public static final int biochemical_value=0x7f090022;
         public static final int blank1=0x7f09003b;
-        public static final int button1=0x7f09001a;
         public static final int buttonlayout=0x7f090005;
         public static final int calendar=0x7f09000a;
         public static final int calendar_day_gridcell=0x7f09003c;
@@ -121,6 +121,7 @@ public final class R {
         public static final int location_name_textView=0x7f09000f;
         public static final int location_save=0x7f090013;
         public static final int location_textView=0x7f090016;
+        public static final int locations_list=0x7f090015;
         public static final int logo_fish=0x7f09000b;
         public static final int manage_location_button=0x7f09000d;
         public static final int manage_parameters_button=0x7f09000e;
@@ -133,6 +134,8 @@ public final class R {
         public static final int orp_image=0x7f090036;
         public static final int orp_value=0x7f090037;
         public static final int parameter=0x7f09001c;
+        public static final int parameter_imageButton=0x7f09001a;
+        public static final int parameter_textView=0x7f090019;
         public static final int parameters_list=0x7f090018;
         public static final int ph=0x7f090038;
         public static final int ph_image=0x7f090039;
@@ -141,8 +144,6 @@ public final class R {
         public static final int seekbar=0x7f090003;
         public static final int slider=0x7f090001;
         public static final int slider_value=0x7f090002;
-        public static final int textView1=0x7f090019;
-        public static final int unique=0x7f090015;
     }
     public static final class layout {
         public static final int activity_add=0x7f030000;
@@ -176,7 +177,7 @@ public final class R {
         public static final int location_description=0x7f06000b;
         public static final int location_name=0x7f06000a;
         public static final int manage_location=0x7f060006;
-        public static final int manage_paramaters=0x7f060007;
+        public static final int manage_parameters=0x7f060007;
         public static final int save=0x7f060009;
         public static final int title_activity_add=0x7f060003;
         public static final int title_activity_add_parameter_value=0x7f060005;

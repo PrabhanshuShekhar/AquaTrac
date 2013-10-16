@@ -1,38 +1,36 @@
 package com.example.parameters;
 
+import java.util.List;
+
 import android.app.Activity;
-import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.mw.aquatrack.DAO.LocationsDAO;
 import com.mw.aquatrack.adapters.LocationAdapter;
+import com.parse.ParseObject;
 
 public class ManageLocation extends Activity {
 	// LocationAdapter locationAdapter;
 	public static final int ADD_LOCATION = 1;
 	public static final int UPDATE_LOCATION = 10;
 	LocationsDAO dao;
-	// String[] mainlocation;
-	String[] location = { "loc1", "loc2", "sa", "asd", "loc1", "loc2", "sa",
-			"asd", "loc1", "loc2", "sa", "asd", "loc1", "loc2", "sa", "asd" };
-	ListView listView;
 	LocationAdapter locationAdapter;
+	ListView listView;
+	List<ParseObject> locationList ; 
+//	String[] location = { "loc1", "loc2", "sa", "asd", "loc1", "loc2", "sa" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manage_location);
-//		dao = new LocationsDAO(this);
-//		dao.getAllLocations();
+		dao = new LocationsDAO(this);
+		locationList = dao.getAllLocations();
 		
-		listView = (ListView) findViewById(R.id.unique);
-		locationAdapter = new LocationAdapter(this, location);
+		listView = (ListView) findViewById(R.id.locations_list);
+		locationAdapter = new LocationAdapter(this, locationList);
 		listView.setAdapter(locationAdapter);
 	}
 

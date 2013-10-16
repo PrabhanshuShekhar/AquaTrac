@@ -8,7 +8,7 @@
     <string name="title_activity_add_record">AddRecordActivity</string>
     <string name="title_activity_add_parameter_value">AddParameterValueActivity</string>
     <string name="manage_location">Manage Location</string>
-    <string name="manage_paramaters">Manage Paramaters</string>
+    <string name="manage_parameters">Manage Parameters</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="location_name">Location Name</string>
