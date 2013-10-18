@@ -142,7 +142,7 @@ public class AddParameterValueActivity extends Activity {
 							      // Now let's update it with some new data. In this case, only cheatMode and score
 							      // will get sent to the Parse Cloud. playerName hasn't changed.
 							    	
-							      gameScore.put(slider.getText().toString(),Float.parseFloat(slider_value.getText().toString()));
+							      gameScore.put(getIntent().getStringExtra("param_name"),Float.parseFloat(slider_value.getText().toString()));
 							      //gameScore.put("create_date", df.format(date));
 							      gameScore.saveInBackground();
 							      Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
@@ -162,7 +162,7 @@ public class AddParameterValueActivity extends Activity {
 					    	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 						    ParseObject location = new ParseObject("ParameterValue");
 							location.put("location_objectid", table_id);
-							location.put(slider.getText().toString(),Float.parseFloat(slider_value.getText().toString()));
+							location.put(getIntent().getStringExtra("param_name"),Float.parseFloat(slider_value.getText().toString()));
 							if(create_date != null)
 							{ location.put("create_date", create_date);}
 							else

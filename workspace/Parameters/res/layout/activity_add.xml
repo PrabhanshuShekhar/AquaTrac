@@ -42,6 +42,7 @@
                android:horizontalSpacing="20dp"
                android:stretchMode="none"
                android:layout_marginTop="15dp"
+               android:layout_marginLeft="30dp"
                android:gravity="center"/>
 
 </LinearLayout>

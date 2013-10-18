@@ -86,11 +86,11 @@ public class PondsAdapter extends BaseAdapter {
 		{
 			rl = new RelativeLayout(context);
 
-					rl.setLayoutParams(new GridView.LayoutParams(200, 200));
+					rl.setLayoutParams(new GridView.LayoutParams(250, 250));
 					rl.setBackgroundColor(Color.parseColor("#00BFFF"));
 					textview = new TextView(context);
 					textview.setTextSize(20);
-					textview.setPadding(25,75, 10,10);
+					textview.setPadding(20,75, 10,10);
 					textview.setTextColor(Color.parseColor("#F2F2F2"));
 					textview.setText(location_names.get(position));
 					rl.addView(textview);
@@ -101,7 +101,7 @@ public class PondsAdapter extends BaseAdapter {
 			rl.removeAllViews();
 			textview = new TextView(context);
 			textview.setTextSize(20);
-			textview.setPadding(25,75, 10,10);
+			textview.setPadding(20,75, 10,10);
 			textview.setTextColor(Color.parseColor("#F2F2F2"));
 			textview.setText(location_names.get(position)); 
 			rl.addView(textview);

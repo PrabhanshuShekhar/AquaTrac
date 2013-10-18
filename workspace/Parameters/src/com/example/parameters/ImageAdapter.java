@@ -48,7 +48,10 @@ public class ImageAdapter extends BaseAdapter {
 			imageview = new ImageView(context);
 			imageview.setLayoutParams(new GridView.LayoutParams(200,200));
 			imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-			imageview.setPadding(30, 30, 10, 10);
+//			imageview.setPadding(30, 30, 10, 10);
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(imageview.getLayoutParams());
+			lp.setMargins(75, 100,0, 0);
+			imageview.setLayoutParams(lp);
 			imageview.setImageResource(thumbIds[position]);
 			textview = new  TextView(context);
 			textview.setText(text[position]);
