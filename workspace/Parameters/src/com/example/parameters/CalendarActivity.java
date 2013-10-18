@@ -14,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -33,7 +34,7 @@ public class CalendarActivity extends Activity implements OnClickListener {
 	private static final String tag = "MyCalendarActivity";
 
 	private TextView currentMonth;
-	private Button selectedDayMonthYearButton;
+//	private Button selectedDayMonthYearButton;
 	private ImageView prevMonth;
 	private ImageView nextMonth;
 	private GridView calendarView;
@@ -54,8 +55,8 @@ public class CalendarActivity extends Activity implements OnClickListener {
 		_calendar = Calendar.getInstance(Locale.getDefault());
 		month = _calendar.get(Calendar.MONTH) + 1;
 		year = _calendar.get(Calendar.YEAR);
-		Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: "
-				+ year);
+//		Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: "
+//				+ year);
 
 //		selectedDayMonthYearButton = (Button) this
 //				.findViewById(R.id.selectedDayMonthYear);
@@ -104,8 +105,8 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			} else {
 				month--;
 			}
-			Log.d(tag, "Setting Prev Month in GridCellAdapter: " + "Month: "
-					+ month + " Year: " + year);
+//			Log.d(tag, "Setting Prev Month in GridCellAdapter: " + "Month: "
+//					+ month + " Year: " + year);
 			setGridCellAdapterToDate(month, year);
 		}
 		if (v == nextMonth) {
@@ -115,8 +116,8 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			} else {
 				month++;
 			}
-			Log.d(tag, "Setting Next Month in GridCellAdapter: " + "Month: "
-					+ month + " Year: " + year);
+//			Log.d(tag, "Setting Next Month in GridCellAdapter: " + "Month: "
+//					+ month + " Year: " + year);
 			setGridCellAdapterToDate(month, year);
 		}
 
@@ -157,14 +158,14 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			super();
 			this._context = context;
 			this.list = new ArrayList<String>();
-			Log.d(tag, "==> Passed in Date FOR Month: " + month + " "
-					+ "Year: " + year);
+//			Log.d(tag, "==> Passed in Date FOR Month: " + month + " "
+//					+ "Year: " + year);
 			Calendar calendar = Calendar.getInstance();
 			setCurrentDayOfMonth(calendar.get(Calendar.DAY_OF_MONTH));
 			setCurrentWeekDay(calendar.get(Calendar.DAY_OF_WEEK));
-			Log.d(tag, "New Calendar:= " + calendar.getTime().toString());
-			Log.d(tag, "CurrentDayOfWeek :" + getCurrentWeekDay());
-			Log.d(tag, "CurrentDayOfMonth :" + getCurrentDayOfMonth());
+//			Log.d(tag, "New Calendar:= " + calendar.getTime().toString());
+//			Log.d(tag, "CurrentDayOfWeek :" + getCurrentWeekDay());
+//			Log.d(tag, "CurrentDayOfMonth :" + getCurrentDayOfMonth());
 
 			// Print Month
 			printMonth(month, year);
@@ -201,7 +202,7 @@ public class CalendarActivity extends Activity implements OnClickListener {
 		 * @param yy
 		 */
 		private void printMonth(int mm, int yy) {
-			Log.d(tag, "==> printMonth: mm: " + mm + " " + "yy: " + yy);
+//			Log.d(tag, "==> printMonth: mm: " + mm + " " + "yy: " + yy);
 			int trailingSpaces = 0;
 			int daysInPrevMonth = 0;
 			int prevMonth = 0;
@@ -213,11 +214,11 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			String currentMonthName = getMonthAsString(currentMonth);
 			daysInMonth = getNumberOfDaysOfMonth(currentMonth);
 
-			Log.d(tag, "Current Month: " + " " + currentMonthName + " having "
-					+ daysInMonth + " days.");
+//			Log.d(tag, "Current Month: " + " " + currentMonthName + " having "
+//					+ daysInMonth + " days.");
 
 			GregorianCalendar cal = new GregorianCalendar(yy, currentMonth, 1);
-			Log.d(tag, "Gregorian Calendar:= " + cal.getTime().toString());
+//			Log.d(tag, "Gregorian Calendar:= " + cal.getTime().toString());
 
 			if (currentMonth == 11) {
 				prevMonth = currentMonth - 1;
@@ -225,36 +226,36 @@ public class CalendarActivity extends Activity implements OnClickListener {
 				nextMonth = 0;
 				prevYear = yy;
 				nextYear = yy + 1;
-				Log.d(tag, "*->PrevYear: " + prevYear + " PrevMonth:"
-						+ prevMonth + " NextMonth: " + nextMonth
-						+ " NextYear: " + nextYear);
+//				Log.d(tag, "*->PrevYear: " + prevYear + " PrevMonth:"
+//						+ prevMonth + " NextMonth: " + nextMonth
+//						+ " NextYear: " + nextYear);
 			} else if (currentMonth == 0) {
 				prevMonth = 11;
 				prevYear = yy - 1;
 				nextYear = yy;
 				daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
 				nextMonth = 1;
-				Log.d(tag, "**--> PrevYear: " + prevYear + " PrevMonth:"
-						+ prevMonth + " NextMonth: " + nextMonth
-						+ " NextYear: " + nextYear);
+//				Log.d(tag, "**--> PrevYear: " + prevYear + " PrevMonth:"
+//						+ prevMonth + " NextMonth: " + nextMonth
+//						+ " NextYear: " + nextYear);
 			} else {
 				prevMonth = currentMonth - 1;
 				nextMonth = currentMonth + 1;
 				nextYear = yy;
 				prevYear = yy;
 				daysInPrevMonth = getNumberOfDaysOfMonth(prevMonth);
-				Log.d(tag, "***---> PrevYear: " + prevYear + " PrevMonth:"
-						+ prevMonth + " NextMonth: " + nextMonth
-						+ " NextYear: " + nextYear);
+//				Log.d(tag, "***---> PrevYear: " + prevYear + " PrevMonth:"
+//						+ prevMonth + " NextMonth: " + nextMonth
+//						+ " NextYear: " + nextYear);
 			}
 
 			int currentWeekDay = cal.get(Calendar.DAY_OF_WEEK) - 1;
 			trailingSpaces = currentWeekDay;
 
-			Log.d(tag, "Week Day:" + currentWeekDay + " is "
-					+ getWeekDayAsString(currentWeekDay));
-			Log.d(tag, "No. Trailing space to Add: " + trailingSpaces);
-			Log.d(tag, "No. of Days in Previous Month: " + daysInPrevMonth);
+//			Log.d(tag, "Week Day:" + currentWeekDay + " is "
+//					+ getWeekDayAsString(currentWeekDay));
+//			Log.d(tag, "No. Trailing space to Add: " + trailingSpaces);
+//			Log.d(tag, "No. of Days in Previous Month: " + daysInPrevMonth);
 
 			if (cal.isLeapYear(cal.get(Calendar.YEAR)))
 				if (mm == 2)
@@ -264,15 +265,15 @@ public class CalendarActivity extends Activity implements OnClickListener {
 
 			// Trailing Month days
 			for (int i = 0; i < trailingSpaces; i++) {
-				Log.d(tag,
-						"PREV MONTH:= "
-								+ prevMonth
-								+ " => "
-								+ getMonthAsString(prevMonth)
-								+ " "
-								+ String.valueOf((daysInPrevMonth
-										- trailingSpaces + DAY_OFFSET)
-										+ i));
+//				Log.d(tag,
+//						"PREV MONTH:= "
+//								+ prevMonth
+//								+ " => "
+//								+ getMonthAsString(prevMonth)
+//								+ " "
+//								+ String.valueOf((daysInPrevMonth
+//										- trailingSpaces + DAY_OFFSET)
+//										+ i));
 				list.add(String
 						.valueOf((daysInPrevMonth - trailingSpaces + DAY_OFFSET)
 								+ i)
@@ -285,8 +286,8 @@ public class CalendarActivity extends Activity implements OnClickListener {
 
 			// Current Month Days
 			for (int i = 1; i <= daysInMonth; i++) {
-				Log.d(currentMonthName, String.valueOf(i) + " "
-						+ getMonthAsString(currentMonth) + " " + yy);
+//				Log.d(currentMonthName, String.valueOf(i) + " "
+//						+ getMonthAsString(currentMonth) + " " + yy);
 				if (i == getCurrentDayOfMonth()) {
 					list.add(String.valueOf(i) + "-BLUE" + "-"
 							+ getMonthAsString(currentMonth) + "-" + yy);
@@ -298,7 +299,7 @@ public class CalendarActivity extends Activity implements OnClickListener {
 
 			// Leading Month days
 			for (int i = 0; i < list.size() % 7; i++) {
-				Log.d(tag, "NEXT MONTH:= " + getMonthAsString(nextMonth));
+//				Log.d(tag, "NEXT MONTH:= " + getMonthAsString(nextMonth));
 				list.add(String.valueOf(i + 1) + "-GREY" + "-"
 						+ getMonthAsString(nextMonth) + "-" + nextYear);
 			}
@@ -341,7 +342,7 @@ public class CalendarActivity extends Activity implements OnClickListener {
 
 			// ACCOUNT FOR SPACING
 
-			Log.d(tag, "Current Day: " + getCurrentDayOfMonth());
+//			Log.d(tag, "Current Day: " + getCurrentDayOfMonth());
 			String[] day_color = list.get(position).split("-");
 			String theday = day_color[0];
 			String themonth = day_color[2];
@@ -358,8 +359,8 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			// Set the Day GridCell
 			gridcell.setText(theday);
 			gridcell.setTag(theday + "-" + themonth + "-" + theyear);
-			Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
-					+ theyear);
+//			Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
+//					+ theyear);
 
 			if (day_color[1].equals("GREY")) {
 				gridcell.setTextColor(getResources()
@@ -380,17 +381,66 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			String date_month_year = (String) view.getTag();
 //			selectedDayMonthYearButton.setText("Selected: " + date_month_year);
 			
-			// convert date to date to format of dd/mm/yyyy and send to parse
-			Log.e("Selected date", date_month_year);
-			try {
-				Date parsedDate = dateFormatter.parse(date_month_year);
-				Log.d(tag, "Parsed Date: " + parsedDate.toString());
-				Toast.makeText(getBaseContext(), "Clicked:"+parsedDate.toString(), Toast.LENGTH_SHORT).show();
-				finish();
-
-			} catch (ParseException e) {
-				e.printStackTrace();
+			// convert date  to format of dd/mm/yyyy and send to parse
+//			Log.e("Selected date", date_month_year);
+			String []date = date_month_year.split("-");
+			int month=0;
+			if(date[1].equalsIgnoreCase("January"))
+			{
+				month=1;
 			}
+			if(date[1].equalsIgnoreCase("February"))
+			{
+				month=2;
+			}
+			if(date[1].equalsIgnoreCase("March"))
+			{
+				month=3;
+			}
+			if(date[1].equalsIgnoreCase("April"))
+			{
+				month=4;
+			}
+			if(date[1].equalsIgnoreCase("May"))
+			{
+				month=5;
+			}
+			if(date[1].equalsIgnoreCase("June"))
+			{
+				month=6;
+			}
+			if(date[1].equalsIgnoreCase("July"))
+			{
+				month=7;
+			}
+			if(date[1].equalsIgnoreCase("August"))
+			{
+				month=8;
+			}
+			if(date[1].equalsIgnoreCase("September"))
+			{
+				month=9;
+			}
+			if(date[1].equalsIgnoreCase("October"))
+			{
+				month=10;
+			}
+			if(date[1].equalsIgnoreCase("November"))
+			{
+				month=11;
+			}
+			if(date[1].equalsIgnoreCase("December"))
+			{
+				month=12;
+			}
+			
+			String location_name = getIntent().getStringExtra("location");
+			String action_name = getIntent().getStringExtra("action_name");
+			Intent intent = new Intent(CalendarActivity.this,AddRecordActivity.class);
+			intent.putExtra("action_name", action_name);
+			intent.putExtra("location", location_name);
+			intent.putExtra("create_date", date[0]+"/"+month+"/"+date[2]);
+			startActivity(intent);
 		}
 
 		public int getCurrentDayOfMonth() {

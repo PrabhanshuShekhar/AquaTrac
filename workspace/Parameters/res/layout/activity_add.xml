@@ -10,7 +10,7 @@
                   android:orientation="horizontal"
                   android:layout_width="fill_parent" 
                   android:layout_height="50dp" 
-                  android:background="#0040FF"
+                  android:background="#00BFFF"
                   >
         <TextView 
              android:text="AquaTrac"
@@ -26,7 +26,7 @@
     </LinearLayout>
     <TextView  android:text="Ponds"
                android:textSize="22dp"
-               android:textColor="#0040FF"
+               android:textColor="#00BFFF"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_marginLeft="10dp"

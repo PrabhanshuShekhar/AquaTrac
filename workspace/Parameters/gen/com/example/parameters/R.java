@@ -114,6 +114,7 @@ public final class R {
         public static final int gridview1=0x7f090004;
         public static final int gridview_ponds=0x7f090000;
         public static final int imageView1=0x7f090017;
+        public static final int instruction=0x7f090001;
         public static final int location_cancel=0x7f090014;
         public static final int location_description_editText=0x7f090012;
         public static final int location_description_textView=0x7f090011;
@@ -142,7 +143,6 @@ public final class R {
         public static final int ph_value=0x7f09003a;
         public static final int prevMonth=0x7f090006;
         public static final int seekbar=0x7f090003;
-        public static final int slider=0x7f090001;
         public static final int slider_value=0x7f090002;
     }
     public static final class layout {

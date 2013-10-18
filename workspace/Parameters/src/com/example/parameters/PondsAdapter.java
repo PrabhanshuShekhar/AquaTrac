@@ -25,13 +25,15 @@ import android.widget.TextView;
 public class PondsAdapter extends BaseAdapter {
 	
 	private Context context;
-	public static ArrayList<String> location_names;
+	public static ArrayList<String> location_ids;
+	private ArrayList<String> location_names;
 	
 //	 Parse.initialize(this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 	public PondsAdapter(Context c)
 	{
 		this.context = c;
 		location_names = new ArrayList<String>();
+		location_ids = new ArrayList<String>();
 		// get locations from Location table
 	 try
 	 {
@@ -43,6 +45,7 @@ public class PondsAdapter extends BaseAdapter {
 	  {
 		  Log.d("Record","========================"+results.get(i).getString("location_name"));
 		  location_names.add(results.get(i).getString("location_name"));
+		  location_ids.add(results.get(i).getObjectId());
 	  }
 //	  location_names.add("");
 //	  location_names.add("");
@@ -59,7 +62,7 @@ public class PondsAdapter extends BaseAdapter {
 	
 	public int getCount()
 	{
-		return location_names.size();
+		return location_ids.size();
 		
 	}
 	
@@ -84,7 +87,7 @@ public class PondsAdapter extends BaseAdapter {
 			rl = new RelativeLayout(context);
 
 					rl.setLayoutParams(new GridView.LayoutParams(200, 200));
-					rl.setBackgroundColor(Color.parseColor("#2E64FE"));
+					rl.setBackgroundColor(Color.parseColor("#00BFFF"));
 					textview = new TextView(context);
 					textview.setTextSize(20);
 					textview.setPadding(25,75, 10,10);
@@ -100,7 +103,7 @@ public class PondsAdapter extends BaseAdapter {
 			textview.setTextSize(20);
 			textview.setPadding(25,75, 10,10);
 			textview.setTextColor(Color.parseColor("#F2F2F2"));
-			textview.setText(location_names.get(position));
+			textview.setText(location_names.get(position)); 
 			rl.addView(textview);
 			
 		}

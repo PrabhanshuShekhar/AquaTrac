@@ -24,9 +24,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseException;
 
 public class AddParameterValueActivity extends Activity {
-	TextView slider,slider_value;
+	TextView slider,slider_value,instruction;
 	SeekBar seekbar;
-	String table_name;
+	String table_id,create_date;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +34,74 @@ public class AddParameterValueActivity extends Activity {
 		
 		setContentView(R.layout.activity_add_parameter_value);
 		slider_value = (TextView) findViewById(R.id.slider_value);
-		 slider = (TextView) findViewById(R.id.slider);
-		slider.setText(getIntent().getStringExtra("param_name"));
-		table_name = getIntent().getStringExtra("location");
+//		 slider = (TextView) findViewById(R.id.slider);
+		 instruction = (TextView)findViewById(R.id.instruction);
+		 instruction.setText("Set Value for "+getIntent().getStringExtra("param_name"));
+//		slider.setText(getIntent().getStringExtra("param_name"));
+		table_id = getIntent().getStringExtra("location");
+		create_date = getIntent().getStringExtra("create_date");
 		 seekbar = (SeekBar) findViewById(R.id.seekbar);
 		seekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
 			
 			public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser)
 			{
-			
-				slider_value.setText(""+progress);
+			    int id = getIntent().getIntExtra("id", 0);
+			    switch(id)
+			    {
+			    case 1:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(2000);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	break;
+			    case 2:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(800);
+			    	slider_value.setText(""+Float.toString((float)(progress-250)/10));
+			    	 break;
+			    case 3:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(6000);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	  break;
+			    case 5:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(1070);
+			    	slider_value.setText(""+Float.toString((float)(progress-70)/10));			    	
+			    	 break;
+			    case 4:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(200);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	 break;
+			    case 6:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(200);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	 break;
+			    case 7:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(200);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	 break;
+			    case 8:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(200);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	  break;
+			    case 9:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(200);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	  break;
+			    case 10:
+			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+			    	seekbar.setMax(140);
+			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	 break;
+			    case 0:
+			    	 break;
+			    }
+				
 			}
 			
 			public void onStartTrackingTouch(SeekBar seekbar)
@@ -66,8 +124,11 @@ public class AddParameterValueActivity extends Activity {
     	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		Parse.initialize(AddParameterValueActivity.this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("ParameterValue");
-		query.whereEqualTo("location_objectid", table_name);
-		query.whereEqualTo("create_date", df.format(date));
+		query.whereEqualTo("location_objectid", table_id);
+		if(create_date !=null)
+		{query.whereEqualTo("create_date", create_date);}
+		else
+		{ query.whereEqualTo("create_date", df.format(date));}
 		query.findInBackground(new FindCallback<ParseObject>() {
 			  public void done(List<ParseObject> locationList, ParseException e) {
 			    // locationList has record 
@@ -85,7 +146,7 @@ public class AddParameterValueActivity extends Activity {
 							      //gameScore.put("create_date", df.format(date));
 							      gameScore.saveInBackground();
 							      Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
-							      intent1.putExtra("location", table_name);
+							      intent1.putExtra("location", table_id);
 							      intent1.putExtra("action_name", "Record");
 //							      intent1.putExtra("param_name",slider.getText().toString() );
 //							      intent1.putExtra("param_value",slider_value.getText().toString());
@@ -100,9 +161,12 @@ public class AddParameterValueActivity extends Activity {
 						  Date date = new Date();
 					    	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 						    ParseObject location = new ParseObject("ParameterValue");
-							location.put("location_objectid", table_name);
+							location.put("location_objectid", table_id);
 							location.put(slider.getText().toString(),Float.parseFloat(slider_value.getText().toString()));
-							location.put("create_date", df.format(date));
+							if(create_date != null)
+							{ location.put("create_date", create_date);}
+							else
+							 { location.put("create_date", df.format(date)); }
 							location.saveInBackground();
 							Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
 							intent1.putExtra("action_name", "Record");
