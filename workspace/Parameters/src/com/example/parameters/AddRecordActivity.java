@@ -17,6 +17,7 @@ import com.parse.ParseQuery;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -113,78 +114,129 @@ public class AddRecordActivity extends Activity  {
         	query.whereEqualTo("create_date",df.format(date));
         }
         
-      query.findInBackground(new FindCallback<ParseObject>() {
+        query.findInBackground(new FindCallback<ParseObject>() {
 			  public void done(List<ParseObject> objects, ParseException e) {
-      		if (e == null && objects.size()>0)
-      		{
-      			TextView ammonia = (TextView) findViewById(R.id.ammonia_value);
-      			if(objects.get(0).getNumber("NH4")!= null)
-      			{
-      			ammonia.setText(objects.get(0).getNumber("NH4").toString());
-      			}
-      			Log.d("record","===="+objects.get(0).getNumber("NH4"));
-      			TextView biochemical = (TextView) findViewById(R.id.biochemical_value);
-      			if(objects.get(0).getNumber("BOD")!= null)
-      			{
-      			biochemical.setText(objects.get(0).getNumber("BOD").toString());
-      			}
-      			
-      			
-      			TextView chloride = (TextView) findViewById(R.id.chloride_value);
-      			if(objects.get(0).getNumber("CL")!= null)
-      			{
-      			chloride.setText(objects.get(0).getNumber("CL").toString());
-      			}
-      			
-      			TextView colorimeter = (TextView)findViewById(R.id.colorimeter_value);
-      			if(objects.get(0).getNumber("CP")!= null)
-      			{
-      			colorimeter.setText(objects.get(0).getNumber("CP").toString());
-      			}
-      			
-      			TextView conductivity = (TextView) findViewById(R.id.conductivity_value);
-      			if(objects.get(0).getNumber("CTVT")!= null)
-      			{
-      			conductivity.setText(objects.get(0).getNumber("CTVT").toString());
-      			}
-      			
-      			TextView dissolved_oxygen = (TextView) findViewById(R.id.dissolved_oxygen_value);
-      			if(objects.get(0).getNumber("DO")!= null)
-      			{
-      			dissolved_oxygen.setText(objects.get(0).getNumber("DO").toString());
-      			}
-      			
-      			TextView  free_chlorine = (TextView)findViewById(R.id.free_chlorine_value);
-      			if(objects.get(0).getNumber("FCL")!= null)
-      			{
-      			free_chlorine.setText(objects.get(0).getNumber("FCL").toString());
-      			}
-      			
-      			TextView nitrate = (TextView) findViewById(R.id.nitrate_value);
-      			if(objects.get(0).getNumber("NO3")!= null)
-      			{
-      			nitrate.setText(objects.get(0).getNumber("NO3").toString());
-      			}
-      			
-      			TextView orp = (TextView) findViewById(R.id.orp_value);
-      			if(objects.get(0).getNumber("ORP")!= null)
-      			{
-      			orp.setText(objects.get(0).getNumber("ORP").toString());
-      			}
-      			
-      			TextView ph = (TextView) findViewById(R.id.ph_value);
-      			if(objects.get(0).getNumber("PH")!= null)
-      			{
-      			ph.setText(objects.get(0).getNumber("PH").toString());
-      			}
-      		}
-      	}
-		});
-    }
-    	catch(Exception e)
-    	{
-    		
+    		if (e == null && objects.size()>0)
+    		{
+    			TextView ammonia = (TextView) findViewById(R.id.ammonia_value);
+    			if(objects.get(0).getNumber("NH4")!= null)
+    			{
+    			ammonia.setText(objects.get(0).getNumber("NH4").toString());
+    			   if(objects.get(0).getNumber("NH4").floatValue()<=50.0||objects.get(0).getNumber("NH4").floatValue()>150.0)
+    			   {
+    				   RelativeLayout ammonia_layout = (RelativeLayout) findViewById(R.id.ammonia);
+    				   ammonia_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+    			   }
+    			}
+    			Log.d("record","===="+objects.get(0).getNumber("NH4"));
+    			TextView biochemical = (TextView) findViewById(R.id.biochemical_value);
+    			if(objects.get(0).getNumber("BOD")!= null)
+    			{
+    			biochemical.setText(objects.get(0).getNumber("BOD").toString());
+	    			if(objects.get(0).getNumber("BOD").floatValue()<=-5.0||objects.get(0).getNumber("BOD").floatValue()>35.0)
+	 			   {
+	    				RelativeLayout biochemical_layout = (RelativeLayout) findViewById(R.id.biochemical);
+	    				biochemical_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	 			   }
+    			  
+    			}
+    			
+    			
+    			TextView chloride = (TextView) findViewById(R.id.chloride_value);
+    			if(objects.get(0).getNumber("CL")!= null)
+    			{
+    			chloride.setText(objects.get(0).getNumber("CL").toString());
+	    			if(objects.get(0).getNumber("CL").floatValue()<=150.0||objects.get(0).getNumber("CL").floatValue()>450.0)
+	 			     {
+	    				RelativeLayout chloride_layout = (RelativeLayout) findViewById(R.id.chloride);
+	    				chloride_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	 			     }
+    			}
+    			
+    			TextView colorimeter = (TextView)findViewById(R.id.colorimeter_value);
+    			if(objects.get(0).getNumber("CP")!= null)
+    			{
+    			colorimeter.setText(objects.get(0).getNumber("CP").toString());
+	    			if(objects.get(0).getNumber("CP").floatValue()<=5.0||objects.get(0).getNumber("CP").floatValue()>15.0)
+				     {
+	    				RelativeLayout colorimeter_layout = (RelativeLayout) findViewById(R.id.colorimeter);
+	    				colorimeter_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    			
+    			TextView conductivity = (TextView) findViewById(R.id.conductivity_value);
+    			if(objects.get(0).getNumber("CTVT")!= null)
+    			{
+    			conductivity.setText(objects.get(0).getNumber("CTVT").toString());
+	    			if(objects.get(0).getNumber("CTVT").floatValue()<=23.0||objects.get(0).getNumber("CTVT").floatValue()>70.0)
+				     {
+	    				RelativeLayout conductivity_layout = (RelativeLayout) findViewById(R.id.conductivity);
+	    				conductivity_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    			
+    			TextView dissolved_oxygen = (TextView) findViewById(R.id.dissolved_oxygen_value);
+    			if(objects.get(0).getNumber("DO")!= null)
+    			{
+    			dissolved_oxygen.setText(objects.get(0).getNumber("DO").toString());
+	    			if(objects.get(0).getNumber("DO").floatValue()<=5.0||objects.get(0).getNumber("DO").floatValue()>15.0)
+				     {
+	    				RelativeLayout dissolved_layout = (RelativeLayout) findViewById(R.id.dissolved_oxygen);
+	    				dissolved_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    			
+    			TextView  free_chlorine = (TextView)findViewById(R.id.free_chlorine_value);
+    			if(objects.get(0).getNumber("FCL")!= null)
+    			{
+    			free_chlorine.setText(objects.get(0).getNumber("FCL").toString());
+	    			if(objects.get(0).getNumber("FCL").floatValue()<=5.0||objects.get(0).getNumber("FCL").floatValue()>15.0)
+				     {
+	    				RelativeLayout free_chlorine_layout = (RelativeLayout) findViewById(R.id.free_chlorine);
+	    				free_chlorine_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    			
+    			TextView nitrate = (TextView) findViewById(R.id.nitrate_value);
+    			if(objects.get(0).getNumber("NO3")!= null)
+    			{
+    			nitrate.setText(objects.get(0).getNumber("NO3").toString());
+	    			if(objects.get(0).getNumber("NO3").floatValue()<=5.0||objects.get(0).getNumber("NO3").floatValue()>15.0)
+				     {
+	    				RelativeLayout nitrate_layout = (RelativeLayout) findViewById(R.id.nitrate);
+	    				nitrate_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    			
+    			TextView orp = (TextView) findViewById(R.id.orp_value);
+    			if(objects.get(0).getNumber("ORP")!= null)
+    			{
+    			orp.setText(objects.get(0).getNumber("ORP").toString());
+	    			if(objects.get(0).getNumber("ORP").floatValue()<=5.0||objects.get(0).getNumber("ORP").floatValue()>15.0)
+				     {
+	    				RelativeLayout orp_layout = (RelativeLayout) findViewById(R.id.orp);
+	    				orp_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    			
+    			TextView ph = (TextView) findViewById(R.id.ph_value);
+    			if(objects.get(0).getNumber("PH")!= null)
+    			{
+    			ph.setText(objects.get(0).getNumber("PH").toString());
+	    			if(objects.get(0).getNumber("PH").floatValue()<=3.5||objects.get(0).getNumber("PH").floatValue()>10.5)
+				     {
+	    				RelativeLayout ph_layout = (RelativeLayout) findViewById(R.id.ph);
+	    				ph_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+				     }
+    			}
+    		}
     	}
+		});
+  }
+  	catch(Exception e)
+  	{
+  		
+  	}
 
 	}
 	
