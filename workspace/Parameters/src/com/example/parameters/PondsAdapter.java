@@ -47,8 +47,8 @@ public class PondsAdapter extends BaseAdapter {
 		  location_names.add(results.get(i).getString("location_name"));
 		  location_ids.add(results.get(i).getObjectId());
 	  }
-//	  location_names.add("");
-//	  location_names.add("");
+//	  location_ids.add("");
+//	  location_ids.add("");
 //	  if(results.size()%2!= 0)
 //		  location_names.add("");
 	  Log.d("count", "++++++++++++++++++++++"+location_names.size());

@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,9 +116,23 @@ public class AddRecordActivity extends Activity  {
         }
         
         query.findInBackground(new FindCallback<ParseObject>() {
+        	
 			  public void done(List<ParseObject> objects, ParseException e) {
+				  
     		if (e == null && objects.size()>0)
     		{
+    			
+    			try{
+    				ParseQuery<ParseObject> query1 = ParseQuery.getQuery("ParameterValue");
+    		        query1.whereEqualTo("location_objectid", location_id);
+    		        
+  				  int previous_day = Integer.parseInt(create_date.split("/")[0])-1;
+  				  String previous_date = previous_day + "/"+ create_date.split("/")[1] +"/" +create_date.split("/")[2];
+  				  query1.whereEqualTo("create_date",previous_date);// check for previous date
+  				 List<ParseObject> results = query1.find();
+  				  
+    			
+    			
     			TextView ammonia = (TextView) findViewById(R.id.ammonia_value);
     			if(objects.get(0).getNumber("NH4")!= null)
     			{
@@ -126,6 +141,16 @@ public class AddRecordActivity extends Activity  {
     			   {
     				   RelativeLayout ammonia_layout = (RelativeLayout) findViewById(R.id.ammonia);
     				   ammonia_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+    			   }
+    			   if(results.size()>0&&objects.get(0).getNumber("NH4").floatValue()>results.get(0).getNumber("NH4").floatValue())
+    			   {
+    				   ImageView ammonia_arrow = (ImageView)findViewById(R.id.ammonia_arrow);
+    				   ammonia_arrow.setImageResource(R.drawable.arrow_top);
+    			   }
+    			   else if(results.size()>0 && objects.get(0).getNumber("NH4").floatValue()<results.get(0).getNumber("NH4").floatValue())
+    			   {
+    				   ImageView ammonia_arrow = (ImageView)findViewById(R.id.ammonia_arrow);
+    				   ammonia_arrow.setImageResource(R.drawable.arrow_bottom);
     			   }
     			}
     			Log.d("record","===="+objects.get(0).getNumber("NH4"));
@@ -139,6 +164,17 @@ public class AddRecordActivity extends Activity  {
 	    				biochemical_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 	 			   }
     			  
+	    			if(results.size()>0 && objects.get(0).getNumber("BOD").floatValue()>results.get(0).getNumber("BOD").floatValue())
+	    			   {
+	    				  ImageView biochemical_arrow = (ImageView)findViewById(R.id.biochemical_arrow);
+	    				  biochemical_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("BOD").floatValue()<results.get(0).getNumber("BOD").floatValue())
+	    			{
+	    				ImageView biochemical_arrow = (ImageView)findViewById(R.id.biochemical_arrow);
+	    				  biochemical_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
+	    			
     			}
     			
     			
@@ -151,6 +187,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout chloride_layout = (RelativeLayout) findViewById(R.id.chloride);
 	    				chloride_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 	 			     }
+	    			if(results.size()>0 && objects.get(0).getNumber("CL").floatValue()>results.get(0).getNumber("CL").floatValue())
+	    			   {
+	    				   ImageView chloride_arrow = (ImageView)findViewById(R.id.chloride_arrow);
+	    				   chloride_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("CL").floatValue()<results.get(0).getNumber("CL").floatValue())
+	    			{
+	    				ImageView chloride_arrow = (ImageView)findViewById(R.id.chloride_arrow);
+	    				   chloride_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
     			
     			TextView colorimeter = (TextView)findViewById(R.id.colorimeter_value);
@@ -162,6 +208,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout colorimeter_layout = (RelativeLayout) findViewById(R.id.colorimeter);
 	    				colorimeter_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("CP").floatValue()>results.get(0).getNumber("CP").floatValue())
+	    			   {
+	    				  ImageView colorimeter_arrow = (ImageView)findViewById(R.id.colorimeter_arrow);
+	    				  colorimeter_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("CP").floatValue()<results.get(0).getNumber("CP").floatValue())
+	    			{
+	    				ImageView colorimeter_arrow = (ImageView)findViewById(R.id.colorimeter_arrow);
+	    				colorimeter_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
     			
     			TextView conductivity = (TextView) findViewById(R.id.conductivity_value);
@@ -173,6 +229,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout conductivity_layout = (RelativeLayout) findViewById(R.id.conductivity);
 	    				conductivity_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("CTVT").floatValue()>results.get(0).getNumber("CTVT").floatValue())
+	    			   {
+	    				   ImageView conductivity_arrow = (ImageView)findViewById(R.id.conductivity_arrow);
+	    				   conductivity_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("CTVT").floatValue()<results.get(0).getNumber("CTVT").floatValue())
+	    			{
+	    				ImageView conductivity_arrow = (ImageView)findViewById(R.id.conductivity_arrow);
+	    				   conductivity_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
     			
     			TextView dissolved_oxygen = (TextView) findViewById(R.id.dissolved_oxygen_value);
@@ -184,6 +250,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout dissolved_layout = (RelativeLayout) findViewById(R.id.dissolved_oxygen);
 	    				dissolved_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("DO").floatValue()>results.get(0).getNumber("DO").floatValue())
+	    			   {
+	    				   ImageView dissolved_oxygen_arrow = (ImageView)findViewById(R.id.dissolved_oxygen_arrow);
+	    				   dissolved_oxygen_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("DO").floatValue()<results.get(0).getNumber("DO").floatValue())
+	    			{
+	    				ImageView dissolved_oxygen_arrow = (ImageView)findViewById(R.id.dissolved_oxygen_arrow);
+	    				dissolved_oxygen_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
     			
     			TextView  free_chlorine = (TextView)findViewById(R.id.free_chlorine_value);
@@ -195,6 +271,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout free_chlorine_layout = (RelativeLayout) findViewById(R.id.free_chlorine);
 	    				free_chlorine_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("FCL").floatValue()>results.get(0).getNumber("FCL").floatValue())
+	    			   {
+	    				   ImageView free_chlorine_arrow = (ImageView)findViewById(R.id.free_chlorine_arrow);
+	    				   free_chlorine_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("FCL").floatValue()<results.get(0).getNumber("FCL").floatValue())
+	    			{
+	    				ImageView free_chlorine_arrow = (ImageView)findViewById(R.id.free_chlorine_arrow);
+	    				   free_chlorine_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
     			
     			TextView nitrate = (TextView) findViewById(R.id.nitrate_value);
@@ -206,6 +292,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout nitrate_layout = (RelativeLayout) findViewById(R.id.nitrate);
 	    				nitrate_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("NO3").floatValue()>results.get(0).getNumber("NO3").floatValue())
+	    			   {
+	    				   ImageView nitrate_arrow = (ImageView)findViewById(R.id.nitrate_arrow);
+	    				   nitrate_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("NO3").floatValue()<results.get(0).getNumber("NO3").floatValue())
+	    			{
+	    				ImageView nitrate_arrow = (ImageView)findViewById(R.id.nitrate_arrow);
+	    				   nitrate_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
     			
     			TextView orp = (TextView) findViewById(R.id.orp_value);
@@ -217,6 +313,16 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout orp_layout = (RelativeLayout) findViewById(R.id.orp);
 	    				orp_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("ORP").floatValue()>results.get(0).getNumber("ORP").floatValue())
+	    			   {
+	    				   ImageView orp_arrow = (ImageView)findViewById(R.id.orp_arrow);
+	    				   orp_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("ORP").floatValue()<results.get(0).getNumber("ORP").floatValue())
+	    			{
+	    				ImageView orp_arrow = (ImageView)findViewById(R.id.orp_arrow);
+	    				   orp_arrow.setImageResource(R.drawable.arrow_bottom);	
+	    			}
     			}
     			
     			TextView ph = (TextView) findViewById(R.id.ph_value);
@@ -228,9 +334,22 @@ public class AddRecordActivity extends Activity  {
 	    				RelativeLayout ph_layout = (RelativeLayout) findViewById(R.id.ph);
 	    				ph_layout.setBackgroundColor(Color.parseColor("#FD5484"));
 				     }
+	    			if(results.size()>0 && objects.get(0).getNumber("PH").floatValue()>results.get(0).getNumber("PH").floatValue())
+	    			   {
+	    				   ImageView ph_arrow = (ImageView)findViewById(R.id.ph_arrow);
+	    				   ph_arrow.setImageResource(R.drawable.arrow_top);
+	    			   }
+	    			else if(results.size()>0 && objects.get(0).getNumber("PH").floatValue()<results.get(0).getNumber("PH").floatValue())
+	    			{
+	    				ImageView ph_arrow = (ImageView)findViewById(R.id.ph_arrow);
+	    				   ph_arrow.setImageResource(R.drawable.arrow_bottom);
+	    			}
     			}
+    			}catch(Exception ex){}
     		}
+				 
     	}
+        	 
 		});
   }
   	catch(Exception e)

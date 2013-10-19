@@ -50,6 +50,14 @@ android:layout_height="fill_parent" >
 	                android:textSize="25dp"
 	                
 	          />
+	      <ImageView 
+	          android:id="@+id/ammonia_arrow"
+	          android:layout_toRightOf="@id/ammonia_image"
+	          android:layout_below="@id/ammonia_value"
+	          android:layout_width="25dp"
+	          android:layout_height="25dp"
+	          android:layout_marginLeft="40dp"
+	          />
 	      
 	      <TextView android:text="Ammonia"
 	                android:textSize="20dp"
@@ -87,6 +95,15 @@ android:layout_height="fill_parent" >
 	                android:text=""
 	          />
 	      
+	    <ImageView 
+	        android:id="@+id/biochemical_arrow"
+	        android:layout_toRightOf="@id/biochemical_image"
+	        android:layout_below="@id/biochemical_value"
+	        android:layout_marginLeft="40dp"
+	        android:layout_width="25dp"
+	        android:layout_height="25dp"
+	        />
+	    
 	      <TextView android:text="Biochemical"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -123,6 +140,15 @@ android:layout_height="fill_parent" >
 	                android:text=""
 	          />
 	      
+	    <ImageView 
+	        android:id="@+id/chloride_arrow"
+	        android:layout_toRightOf="@id/chloride_image"
+	        android:layout_below="@id/chloride_value"
+	        android:layout_marginLeft="40dp"
+	        android:layout_width="25dp"
+	        android:layout_height="25dp"
+	        />
+	    
 	      <TextView android:text="Chloride"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -161,7 +187,16 @@ android:layout_height="fill_parent" >
 	                android:textSize="25dp"
 	                android:text=""
 	          />
-	      
+
+		        <ImageView 
+		            android:id="@+id/colorimeter_arrow"
+		            android:layout_toRightOf="@id/colorimeter_image"
+		            android:layout_below="@id/colorimeter_value"
+		            android:layout_marginLeft="40dp"
+		            android:layout_width="25dp"
+		            android:layout_height="25dp"
+		            />
+		        	      
 	      <TextView android:text="colorimeter"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -197,7 +232,17 @@ android:layout_height="fill_parent" >
 	                android:textSize="25dp"
 	                android:text=""
 	          />
-	      
+
+                <ImageView 
+                    android:id="@+id/conductivity_arrow"
+                    android:layout_toRightOf="@id/conductivity_image"
+                    android:layout_below="@id/conductivity_value"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    />
+                
+                	      
 	      <TextView android:text="Conductivity"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -235,6 +280,15 @@ android:layout_height="fill_parent" >
 	                android:text=""
 	          />
 	      
+                <ImageView 
+                    android:id="@+id/dissolved_oxygen_arrow"
+                    android:layout_toRightOf="@id/dissolved_oxygen_image"
+                    android:layout_below="@id/dissolved_oxygen_value"
+                    android:layout_marginLeft="40dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    />
+                
 	      <TextView android:text="Dissolved Oxygen"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -270,6 +324,14 @@ android:layout_height="fill_parent" >
 	                android:text=""
 	          />
 	      
+				<ImageView  
+				    android:id="@+id/free_chlorine_arrow"
+				    android:layout_toRightOf="@id/free_chlorine_image"
+				    android:layout_below="@id/free_chlorine_value"
+				    android:layout_margin="40dp"
+				    android:layout_width="25dp"
+				    android:layout_height="25dp"
+				    />
 	      <TextView android:text="Free Chlorine"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -309,6 +371,15 @@ android:layout_height="fill_parent" >
 	                android:textSize="25dp"
 	                android:text=""
 	          />
+		        
+		        <ImageView 
+		            android:id="@+id/nitrate_arrow"
+		            android:layout_toRightOf="@id/nitrate_image"
+		            android:layout_below="@id/nitrate_value"
+		            android:layout_marginLeft="40dp"
+		            android:layout_width="25dp"
+		            android:layout_height="25dp"
+		            />
 	      
 	      <TextView android:text="Nitrate"
 	                android:textSize="20dp"
@@ -346,7 +417,14 @@ android:layout_height="fill_parent" >
 	                android:textSize="25dp"
 	                android:text=""
 	          />
-	      
+	      <ImageView 
+	          android:id="@+id/orp_arrow"
+	          android:layout_toRightOf="@id/orp_image"
+	          android:layout_below="@id/orp_value"
+	          android:layout_margin="40dp"
+	          android:layout_width="25dp"
+	          android:layout_height="25dp"
+	          />
 	      <TextView android:text="Orp Redox"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
@@ -383,7 +461,16 @@ android:layout_height="fill_parent" >
 	                android:textSize="25dp"
 	                android:text=""
 	          />
-	      
+
+			        <ImageView 
+			            android:id="@+id/ph_arrow"
+			            android:layout_toRightOf="@id/ph_image"
+			            android:layout_below="@id/ph_value"
+			            android:layout_marginLeft="40dp"
+			            android:layout_width="25dp"
+			            android:layout_height="25dp"
+			            />
+			        	      
 	      <TextView android:text="Ph"
 	                android:textSize="20dp"
 	                android:textColor="#ffffff"
