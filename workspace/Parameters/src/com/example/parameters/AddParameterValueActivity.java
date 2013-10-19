@@ -148,6 +148,7 @@ public class AddParameterValueActivity extends Activity {
 							      Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
 							      intent1.putExtra("location", table_id);
 							      intent1.putExtra("action_name", "Record");
+							      intent1.putExtra("create_date", create_date);
 //							      intent1.putExtra("param_name",slider.getText().toString() );
 //							      intent1.putExtra("param_value",slider_value.getText().toString());
 							      startActivity(intent1);
