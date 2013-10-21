@@ -80,6 +80,6 @@ public class ImageAdapter extends BaseAdapter {
 			R.drawable.settings_blue,
 			R.drawable.report
 	};
-	private String [] text = {"Record" , "View" , "Setting", "Report"};
+	private String [] text = {"Record" , "View" , "Settings", "Report"};
 
 }

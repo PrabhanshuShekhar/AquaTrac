@@ -1,7 +1,9 @@
 package com.example.parameters;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -14,15 +16,52 @@ public class AddActivity extends Activity {
 
 // Testing for first commit
 	//// Testing for third commit
-
+	
+	ProgressDialog dialog;
+	PondsAdapter adapter;
+	GridView ponds_gridview;
+	final Handler mhandler = new Handler();
+	final Runnable runnable = new Runnable(){
+		public void run()
+		{
+			print();
+		}
+	};
+ 
+	public void print()
+	{
+		if(dialog != null)
+		{
+			dialog.dismiss();
+		}
+		ponds_gridview.setAdapter(adapter);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add);
 		
-		GridView ponds_gridview = (GridView) findViewById(R.id.gridview_ponds);
-		PondsAdapter adapter = new PondsAdapter(this);
-		ponds_gridview.setAdapter(adapter);
+		 ponds_gridview = (GridView) findViewById(R.id.gridview_ponds);
+		 Thread th = new Thread(){
+			 public void run()
+			 {
+				 try{
+					 adapter = new PondsAdapter(AddActivity.this);
+					mhandler.post(runnable); 
+				 }catch(Exception ex)
+				 {
+					 
+				 }
+			 }
+		 };
+		 th.start();
+		 dialog = new ProgressDialog(AddActivity.this);
+		 dialog.setTitle("Loading...");
+		 dialog.setMessage("Please wait for a while");
+		 dialog.setCancelable(false);
+		 dialog.setIndeterminate(true);
+		 dialog.show();
+//		ponds_gridview.setAdapter(adapter);
 		// listener for ponds_gridview
 		
 		
