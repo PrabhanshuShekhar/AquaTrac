@@ -1,31 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:orientation="vertical">
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
     <LinearLayout
-         android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="52dp" >
 
-        <Button
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@+string/add_location" 
-            android:onClick="onAddLocation"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.52"
+            android:text="Existing Ponds"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/location_add"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="0.1"
+            android:background="#FFFFFF"
+            android:onClick="onAddLocation"
+            android:src="@drawable/plus_button_blue" />
     </LinearLayout>
 
     <LinearLayout
-         android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
         <ListView
             android:id="@+id/locations_list"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="364dp"
             android:gravity="center"
             android:numColumns="auto_fit" >
         </ListView>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/location_done"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:background="@drawable/custom_button_transparent"
+        android:onClick="onDone"
+        android:text="@+string/done" />
 
 </LinearLayout>

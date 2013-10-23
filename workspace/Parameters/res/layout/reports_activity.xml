@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/water1">
+
+    <Button
+        android:id="@+id/location_save"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp"
+        android:onClick="onSelectParameter"
+        android:background="@drawable/custom_button_transparent"
+        android:text="@+string/select_parameter" />
+
+    <Button
+        android:id="@+id/location_cancel"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/location_save"
+        android:layout_alignRight="@+id/location_save"
+        android:layout_below="@+id/location_save"
+        android:layout_marginTop="45dp"
+        android:onClick="onSelectPond"
+        android:background="@drawable/custom_button_transparent"
+        android:text="@+string/select_pond" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radioButton_weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:checked="true"
+            android:text="@+string/weekly_report" />
+
+        <RadioButton
+            android:id="@+id/radioButton_monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/monthly_report" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/location_cancel"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="66dp"
+        android:background="@drawable/custom_button_transparent"
+        android:onClick="onGenerateReports"
+        android:text="@+string/generate_report" />
+
+</RelativeLayout>

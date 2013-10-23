@@ -7,23 +7,32 @@ import android.view.View;
 import android.widget.EditText;
 
 public class AddLocation extends Activity {
+	EditText editText1;
+	EditText editText2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_location);
-		Intent intent = getIntent();
-		if(intent.hasExtra("current_name"))
-			((EditText)findViewById(R.id.location_name_editText)).setText(intent.getStringExtra("current_time"));
-		if(intent.hasExtra("current_description"))
-			((EditText)findViewById(R.id.location_description_editText)).setText(intent.getStringExtra("current_note"));
+		editText1 = (EditText) findViewById(R.id.location_name_editText);
+		editText2 = (EditText) findViewById(R.id.location_description_editText);
+	}
 
+	public boolean validate() {
+		if (editText1.getText().toString().trim().length() == 0) {
+			editText1.requestFocus();
+			editText1.setError("You must enter location name.");
+			return false;
+		}
+		return true;
 	}
 
 	public void onSave(View view) {
+		if (!validate())
+			return;
 		Intent intent = getIntent();
-		intent.putExtra("name", ( (EditText)findViewById(R.id.location_name_editText) ).getText().toString());
-		intent.putExtra("description", ( (EditText)findViewById(R.id.location_description_editText) ).getText().toString());
+		intent.putExtra("name", editText1.getText().toString());
+		intent.putExtra("description", editText2.getText().toString());
 		this.setResult(RESULT_OK, intent);
 		finish();
 	}

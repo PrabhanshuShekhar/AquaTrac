@@ -7,19 +7,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.parameters.R;
 import com.parse.ParseObject;
 
 public class ParameterAdapter extends BaseAdapter {
-
-	private final List<ParseObject> values;
 	private final Context context;
+	private final List<ParseObject> parameterValues;
+	private static int radioButtonDecider;
 
-	public ParameterAdapter(Context context, List<ParseObject> values) {
+	// private static int imageDecider;
+
+	public ParameterAdapter(Context context, List<ParseObject> values,
+			int radioButtonDecider, int imageDecider) {
 		this.context = context;
-		this.values = values;
+		this.parameterValues = values;
+		ParameterAdapter.radioButtonDecider = radioButtonDecider;
+		// ParameterAdapter.imageDecider = imageDecider;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,7 +37,24 @@ public class ParameterAdapter extends BaseAdapter {
 				parent, false);
 		TextView textView = (TextView) rowView
 				.findViewById(R.id.parameter_textView);
-		textView.setText(values.get(position).getString("parameterName"));
+		textView.setText(parameterValues.get(position).getString(
+				"parameterName"));
+
+		TextView textView2 = (TextView) rowView
+				.findViewById(R.id.parameter_range_textView);
+		textView2.setText("Critical Range ("
+				+ (parameterValues.get(position)
+						.getNumber("criticalStartRange")) + " - "
+				+ (parameterValues.get(position).getNumber("criticalEndRange"))
+				+ ")");
+//		if (position == 0)
+//			((RadioButton) rowView.findViewById(R.id.parameter_radioButton))
+//					.setChecked(true);
+		if (radioButtonDecider == 0) {
+			((RadioButton) rowView.findViewById(R.id.parameter_radioButton))
+					.setVisibility(View.INVISIBLE);
+		
+		}
 
 		return rowView;
 	}
@@ -39,7 +62,7 @@ public class ParameterAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		System.out.println("getCount");
-		return values.size();
+		return parameterValues.size();
 	}
 
 	@Override

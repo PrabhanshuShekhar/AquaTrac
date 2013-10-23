@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/water1"
+    android:orientation="vertical" >
 
-    >
-    
     <Button
         android:id="@+id/manage_location_button"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:text="@string/manage_location" 
-        android:onClick="onManageLocation"/>
+        android:layout_alignBaseline="@+id/manage_parameters_button"
+        android:layout_alignBottom="@+id/manage_parameters_button"
+        android:layout_toLeftOf="@+id/manage_parameters_button"
+        android:background="@drawable/custom_button_transparent"
+        android:layout_marginRight="50dp"
+        android:height="70dp"
+        android:onClick="onManageLocation"
+        android:text="@string/manage_location"
+        android:width="125dp" />
 
     <Button
         android:id="@+id/manage_parameters_button"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:text="@string/manage_parameters" 
-        android:onClick="onManageParameter"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/custom_button_transparent"
+        android:height="70dp"
+        android:onClick="onManageParameter"
+        android:text="@string/manage_parameters"
+        android:width="125dp" />
 
-</LinearLayout>
-
-
- <!--     android:		 -->
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/water1"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/parameter_name_textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#6666FF"
+        android:paddingLeft="10dp"
+        android:text="dsa"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" >
+
+        <TextView
+            android:id="@+id/parameter_critical_start_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginLeft="30dp"
+            android:text="@+string/critical_start_range" />
+
+        <EditText
+            android:id="@+id/parameter_critical_start_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/custom_background_bluebox"
+            android:ems="10"
+            android:paddingLeft="5dp"
+            android:width="100dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/parameter_critical_end_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginLeft="30dp"
+            android:text="@+string/critical_end_range" />
+
+        <EditText
+            android:id="@+id/parameter_critical_end_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/custom_background_bluebox"
+            android:ems="10"
+            android:paddingLeft="5dp"
+            android:width="100dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_marginTop="200dp"
+        android:layout_weight="0.1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/location_save"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/custom_button"
+            android:onClick="onUpdate"
+            android:text="@+string/update" />
+
+        <Button
+            android:id="@+id/location_cancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:onClick="onCancel"
+            android:text="@+string/cancel" />
+    </LinearLayout>
+
+</LinearLayout>

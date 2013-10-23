@@ -4,66 +4,100 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:id="@+id/location_name_textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/location_heading_textView"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="14dp"
-        android:text="@+string/location_name" />
-
-    <EditText
-        android:id="@+id/location_name_editText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/location_name_textView"
-        android:layout_below="@+id/location_name_textView"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/location_description_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/location_name_textView"
-        android:layout_below="@+id/location_name_editText"
-        android:layout_marginTop="20dp"
-        android:text="@+string/location_description" />
-
-    <EditText
-        android:id="@+id/location_description_editText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/location_description_textView"
-        android:layout_below="@+id/location_description_textView"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10" 
-        android:height="170dp"/>
+        android:background="#6666FF"
+        android:paddingLeft="10dp"
+        android:text="ADD LOCATION"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/location_description_editText"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/location_heading_textView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="21dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/location_name_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/location_name"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/location_name_editText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_background_bluebox"
+            android:ems="10"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="29dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/location_description_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/location_description"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/location_description_editText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_background_bluebox"
+            android:ems="10"
+            android:gravity="top"
+            android:height="120dp"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout2"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="73dp" >
+        android:layout_marginBottom="38dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="5dp" >
 
         <Button
             android:id="@+id/location_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:text="@+string/save" 
-            android:onClick="onSave"/>
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/custom_button"
+            android:onClick="onSave"
+            android:text="@+string/save" />
 
         <Button
             android:id="@+id/location_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:text="@+string/cancel"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
             android:onClick="onCancel"
-            />
+            android:text="@+string/cancel" />
     </LinearLayout>
 
 </RelativeLayout>

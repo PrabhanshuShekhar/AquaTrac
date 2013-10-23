@@ -7,13 +7,24 @@
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_add_record">AddRecordActivity</string>
     <string name="title_activity_add_parameter_value">AddParameterValueActivity</string>
-    <string name="manage_location">Manage Location</string>
-    <string name="manage_parameters">Manage Parameters</string>
+    <string name="manage_location">Manage\nLocation</string>
+    <string name="manage_parameters">Manage\nParameters</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="location_name">Location Name</string>
-    <string name="location_description">Notes</string>
+     <string name="location_name">Name     :\t\t\t</string>
+    <string name="location_description">Notes     :\t\t\t</string>
     <string name="add_location">Add Location</string>
     <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="critical_start_range">Critical Start Range</string>
+    <string name="critical_end_range">Critical End Range</string>
+    <string name="update">Update</string>
+    <string name="weekly_report">Weekly Report</string>
+    <string name="monthly_report">Monthly Report</string>
+    <string name="done">Done</string>
+    <string name="select_parameter">Select Parameter</string>
+    <string name="select_pond">Select Pond</string>
+    <string name="generate_report">Generate Report</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 
 </resources>
