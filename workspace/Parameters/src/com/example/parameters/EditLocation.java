@@ -81,7 +81,7 @@ public class EditLocation extends Activity {
 		case R.id.action_delete:
 
 			AlertDialog.Builder ab = new AlertDialog.Builder(this);
-			ab.setMessage("Are you sure to delete?")
+			ab.setMessage("Are you sure you want to delete?")
 					.setPositiveButton("Yes", dialogClickListener)
 					.setNegativeButton("No", dialogClickListener).show();
 

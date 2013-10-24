@@ -31,7 +31,7 @@ public class SelectLocationActivity extends Activity {
 		locationList = dao.getAllLocations();
 
 		listView = (ListView) findViewById(R.id.locations_list);
-		locationAdapter = new LocationAdapter(this, locationList, 1, 0);
+		locationAdapter = new LocationAdapter(this, locationList, 1);
 		listView.setAdapter(locationAdapter);
 		((ImageButton) findViewById(R.id.location_add))
 				.setVisibility(View.GONE);

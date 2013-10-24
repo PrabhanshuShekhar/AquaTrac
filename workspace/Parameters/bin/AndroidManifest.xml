@@ -49,6 +49,20 @@
             android:name="com.example.parameters.CalendarActivity"
             android:label="@string/title_activity_calendar" >
         </activity>
+        <activity android:name="com.example.parameters.EditParameterActivity" >
+        </activity>
+        <activity android:name="com.example.parameters.ReportsActivity" >
+        </activity>
+        <activity android:name="com.example.parameters.SelectParameterActivity" >
+        </activity>
+        <activity android:name="com.example.parameters.SelectLocationActivity" >
+        </activity>
+
+                <activity android:name="com.example.parameters.GraphActivity" 
+                    android:screenOrientation="landscape">
+        </activity>
+        <activity android:name="com.example.parameters.EditLocation" >
+        </activity>
     </application>
 
 </manifest>

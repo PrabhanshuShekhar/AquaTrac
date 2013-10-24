@@ -19,18 +19,19 @@ public class LocationAdapter extends BaseAdapter {
 	
 	public static boolean[] asdf;
 	private static int checkBoxDecider;
-	private static int imageDecider;
+//	private int checkBoxDecider;
+//	private static int imageDecider;
 	private final Context context;
 	private final List<ParseObject> values;
 	CheckBox box;
 	
 
 	public LocationAdapter(Context context, List<ParseObject> values,
-			int checkBoxDecider, int imageDecider) {
+			int checkBoxDecider) {
 		this.context = context;
 		this.values = values;
 		LocationAdapter.checkBoxDecider = checkBoxDecider;
-		LocationAdapter.imageDecider = imageDecider;
+//		LocationAdapter.imageDecider = imageDecider;
 		LocationAdapter.asdf=new boolean[values.size()];
 	}
 
@@ -51,9 +52,7 @@ public class LocationAdapter extends BaseAdapter {
 				.findViewById(R.id.location_checkBox);
 //		box.setTag(0);
 
-		if (checkBoxDecider == 0) {
-			box.setVisibility(View.GONE);
-		}
+		
 
 		OnCheckedChangeListener myCheckBoxChange = new OnCheckedChangeListener() {
 			@Override
@@ -70,12 +69,16 @@ public class LocationAdapter extends BaseAdapter {
 				{System.out.println("tag0");	box.setTag(0); asdf[i]=false;}
 			}
 		};
-
-		if (imageDecider == 0) {
-			
-			// new thing
+		if (checkBoxDecider == 0) {
+			box.setVisibility(View.GONE);
+		}else{
 			box.setOnCheckedChangeListener(myCheckBoxChange);
 		}
+//		if (imageDecider == 0) {
+//			
+//			// new thing
+//			box.setOnCheckedChangeListener(myCheckBoxChange);
+//		}
 		
 		return rowView;
 	
@@ -83,7 +86,7 @@ public class LocationAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		System.out.println("getCount");
+//		System.out.println("getCount");
 		return values.size();
 	}
 

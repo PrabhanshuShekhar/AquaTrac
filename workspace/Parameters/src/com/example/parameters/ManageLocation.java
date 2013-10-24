@@ -3,6 +3,7 @@ package com.example.parameters;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,22 +25,50 @@ public class ManageLocation extends Activity {
 	LocationAdapter locationAdapter;
 	ListView listView;
 	List<ParseObject> locationList;
-	Handler handler;
-
+	final Handler handler = new Handler();;
+	ProgressDialog dialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manage_location);
-		handler = new Handler();
+//		handler = new Handler();
 		dao = new LocationsDAO(this);
-		locationList = dao.getAllLocations();
-
-		locationAdapter = new LocationAdapter(this, locationList, 0, 1);
+//		 locationList = dao.getAllLocations();
 		listView = (ListView) findViewById(R.id.locations_list);
-		listView.setAdapter(locationAdapter);
 
+
+		dialog = ProgressDialog.show(this, "Loading",
+				"Please wait for a while.");
+		Thread thread = new Thread() {
+			public void run() {
+				System.out.println("thread");
+				locationList = dao.getAllLocations();
+				locationAdapter = new LocationAdapter(ManageLocation.this,
+						locationList, 0);
+
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						listView.setAdapter(locationAdapter);
+						System.out.println("handler");
+						dialog.dismiss();
+
+					}
+				});//post
+			}
+		};//thread
+		thread.start();
 		((Button) findViewById(R.id.location_done))
-				.setVisibility(View.INVISIBLE);
+		.setVisibility(View.INVISIBLE);
+//		
+System.out.println("post thread");
+//		 locationAdapter = new LocationAdapter(this, locationList, 0, 1);
+//		 listView = (ListView) findViewById(R.id.locations_list);
+//		 listView.setAdapter(locationAdapter);
+//		
+//		 ((Button) findViewById(R.id.location_done))
+//		 .setVisibility(View.INVISIBLE);
+
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -92,7 +121,7 @@ public class ManageLocation extends Activity {
 				super.onActivityResult(requestCode, resultCode, intent);
 			}
 		}
-		
+
 		if (requestCode == MODIFY_LOCATION) { // for update location
 			if (resultCode == RESULT_OK) {
 
@@ -124,8 +153,8 @@ public class ManageLocation extends Activity {
 				}; // end of thread
 				thread.start();
 				super.onActivityResult(requestCode, resultCode, intent);
-			}		// end of if (resultCode == RESULT_OK)
-			// for delete location
+			} // end of if (resultCode == RESULT_OK)
+				// for delete location
 			if (resultCode == 10) {
 				ParseObject object = dao.deleteLocation(intent
 						.getStringExtra("objectId"));
