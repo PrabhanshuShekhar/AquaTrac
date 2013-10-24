@@ -171,6 +171,7 @@ public class AddParameterValueActivity extends Activity {
 							location.saveInBackground();
 							Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
 							intent1.putExtra("action_name", "Record");
+							intent1.putExtra("location", table_id);
 						    startActivity(intent1);
 							finish();  
 					  }
