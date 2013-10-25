@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PondsAdapter extends BaseAdapter {
 	
@@ -84,28 +85,63 @@ public class PondsAdapter extends BaseAdapter {
 		TextView textview;
 		if(view == null)
 		{
+//			rl = new RelativeLayout(context);
+//
+//					rl.setLayoutParams(new GridView.LayoutParams(250, 250));
+//					rl.setBackgroundColor(Color.parseColor("#00BFFF"));
+//					textview = new TextView(context);
+//					textview.setTextSize(20);
+//					textview.setPadding(25,90, 10,10);
+//					textview.setTextColor(Color.parseColor("#F2F2F2"));
+//					textview.setText(location_names.get(position));
+//					rl.addView(textview);
 			rl = new RelativeLayout(context);
-
-					rl.setLayoutParams(new GridView.LayoutParams(250, 250));
-					rl.setBackgroundColor(Color.parseColor("#00BFFF"));
-					textview = new TextView(context);
-					textview.setTextSize(20);
-					textview.setPadding(25,90, 10,10);
-					textview.setTextColor(Color.parseColor("#F2F2F2"));
-					textview.setText(location_names.get(position));
-					rl.addView(textview);
+			RelativeLayout rl1 = new RelativeLayout(context);
+			rl1.setLayoutParams(new GridView.LayoutParams(250,250));
+			if(location_ids.size()%2!=0 && position == location_ids.size() - 1){
+						rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+			}else if(location_ids.size()%2 == 0&& position == location_ids.size() -2 || position == location_ids.size() - 1)
+			{
+				rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+			}
+			else
+			{
+				rl.setLayoutParams(new GridView.LayoutParams(250, 250));
+			}
+			
+			
+			
+			rl1.setBackgroundColor(Color.parseColor("#00BFFF"));
+			textview = new TextView(context);
+			textview.setTextSize(20);
+			textview.setPadding(25,90, 10,10);
+			textview.setTextColor(Color.parseColor("#F2F2F2"));
+			textview.setText(location_names.get(position));
+			rl1.addView(textview);
+			rl.addView(rl1);
 		}
 		else
 		{
+//			rl = (RelativeLayout) view;
+//			rl.removeAllViews();
+//			textview = new TextView(context);
+//			textview.setTextSize(20);
+//			textview.setPadding(25,90, 10,10);
+//			textview.setTextColor(Color.parseColor("#F2F2F2"));
+//			textview.setText(location_names.get(position)); 
+//			rl.addView(textview);
 			rl = (RelativeLayout) view;
 			rl.removeAllViews();
+			RelativeLayout rl1 = new RelativeLayout(context);
+			rl1.setLayoutParams(new GridView.LayoutParams(250,250));
+			rl1.setBackgroundColor(Color.parseColor("#00BFFF"));
 			textview = new TextView(context);
 			textview.setTextSize(20);
 			textview.setPadding(25,90, 10,10);
 			textview.setTextColor(Color.parseColor("#F2F2F2"));
 			textview.setText(location_names.get(position)); 
-			rl.addView(textview);
-			
+			rl1.addView(textview);
+			rl.addView(rl1);
 		}
 		
 		return rl;
