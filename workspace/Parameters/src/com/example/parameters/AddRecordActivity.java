@@ -3,6 +3,7 @@ package com.example.parameters;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.security.auth.callback.Callback;
@@ -55,8 +56,11 @@ public class AddRecordActivity extends Activity  {
     	
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("ParameterValue");
         query.whereEqualTo("location_objectid", location_id);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         if(create_date!=null)
         {
+        	TextView date_text = (TextView) findViewById(R.id.date_text);
+        	date_text.setText(create_date);
         	int dd =Integer.parseInt(create_date.split("/")[0]) ;
         	int mm =Integer.parseInt(create_date.split("/")[1]);
         	int yy = Integer.parseInt(create_date.split("/")[2]);
@@ -64,24 +68,32 @@ public class AddRecordActivity extends Activity  {
         	int current_dd = current_date.getDate();
         	int current_mm = current_date.getMonth()+1;
         	int current_yy = Calendar.getInstance().get(Calendar.YEAR);
+        	int tomorrow_date = dd+2;
         	if(yy<=current_yy)
         	{
         	 if(mm <= current_mm)
         	 {  
         		 if(dd<=current_dd){
-        			 query.whereEqualTo("create_date",create_date); 
+//        			 query.whereEqualTo("create_date",create_date); 
+        			 query.whereGreaterThanOrEqualTo("date", formatter.parse(create_date));
+        			 Toast.makeText(AddRecordActivity.this, "hi", Toast.LENGTH_SHORT).show();
+        			 query.whereLessThanOrEqualTo("date", formatter.parse(tomorrow_date+"/"+mm+"/"+yy));
         		 }
         		 else
         		 {
         			 if(yy<current_yy)
         			 {
-        				 query.whereEqualTo("create_date",create_date);
+//        				 query.whereEqualTo("create_date",create_date);
+        				 query.whereGreaterThanOrEqualTo("date", formatter.parse(create_date));
+            			 query.whereLessThanOrEqualTo("date", formatter.parse(tomorrow_date+"/"+mm+"/"+yy));
         			 }
         			 else
         			 {
         				 if(mm<current_mm)
         				 {
-        					 query.whereEqualTo("create_date",create_date);
+//        					 query.whereEqualTo("create_date",create_date);
+        					 query.whereGreaterThanOrEqualTo("date", formatter.parse(create_date));
+                			 query.whereLessThanOrEqualTo("date", formatter.parse(tomorrow_date+"/"+mm+"/"+yy));
         				 }
         				 else
         				 {
@@ -95,7 +107,9 @@ public class AddRecordActivity extends Activity  {
         	 {
         		 if(yy < current_yy)
         		 {
-        			 query.whereEqualTo("create_date",create_date);
+//        			 query.whereEqualTo("create_date",create_date);
+        			 query.whereGreaterThanOrEqualTo("date", formatter.parse(create_date));
+        			 query.whereLessThanOrEqualTo("date", formatter.parse(tomorrow_date+"/"+mm+"/"+yy));
         		 }
         		 else
         		 {
@@ -110,10 +124,13 @@ public class AddRecordActivity extends Activity  {
         	}
         	
         }
-        else
+        else // if create_date==null
         {
         	Date date1 = new Date();
-        	query.whereEqualTo("create_date",df.format(date1));
+//        	query.whereEqualTo("create_date",df.format(date1));
+        	TextView date_text = (TextView) findViewById(R.id.date_text);
+        	date_text.setText(""+formatter.format(date1));
+        	query.whereGreaterThanOrEqualTo("date", formatter.parse(formatter.format(date1)));
         }
         
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -124,14 +141,25 @@ public class AddRecordActivity extends Activity  {
     		{
     			
     			try{
-    				Date d = new Date();
     				ParseQuery<ParseObject> query1 = ParseQuery.getQuery("ParameterValue");
     		        query1.whereEqualTo("location_objectid", location_id);
-//    		        Toast.makeText(AddRecordActivity.this,""+(d.getDate()-1)+"/"+(d.getMonth()+1)+"/"+(d.getYear()+1900), Toast.LENGTH_LONG).show();
-//  				  int previous_day = Integer.parseInt(create_date.split("/")[0])-1;
-  				  String previous_date = ""+(d.getDate()-1)+"/"+(d.getMonth()+1)+"/"+(d.getYear()+1900);
-  				  query1.whereEqualTo("create_date",previous_date);// check for previous date
-  				Toast.makeText(AddRecordActivity.this, "no date selected"+objects.size(), Toast.LENGTH_SHORT).show();
+    		        String previous_date1;
+    		        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    				if(getIntent().getStringExtra("create_date")!= null)
+    				{
+    					previous_date1= Integer.parseInt(getIntent().getStringExtra("create_date").split("/")[0]) - 1 +"/"+getIntent().getStringExtra("create_date").split("/")[1]+"/"+getIntent().getStringExtra("create_date").split("/")[2];
+    					query1.whereGreaterThanOrEqualTo("date", formatter.parse(previous_date1));
+    					query1.whereLessThanOrEqualTo("date", formatter.parseObject(getIntent().getStringExtra("create_date")));
+    					//Toast.makeText(AddRecordActivity.this,"previous_date"+previous_date1, Toast.LENGTH_SHORT).show();
+    				}
+    				else
+    				{
+    					Date d1 = new  Date();
+    					SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    					previous_date1= (d1.getDate() -1)+"/"+(d1.getMonth()+1)+"/"+(1900+d1.getYear());
+    					query1.whereGreaterThanOrEqualTo("date", formatter.parse(previous_date1));
+    					//Toast.makeText(AddRecordActivity.this,""+previous_date1, Toast.LENGTH_SHORT).show();
+    				}
   				 List<ParseObject> results = query1.find();
     			
   				 
@@ -142,7 +170,7 @@ public class AddRecordActivity extends Activity  {
   				TextView ammonia = (TextView) findViewById(R.id.ammonia_value);
     			if(objects.get(0).getNumber("NH4")!= null)
     			{
-    				Toast.makeText(AddRecordActivity.this, "BOD:"+objects.get(0).getNumber("BOD").toString(), Toast.LENGTH_SHORT).show();
+//    				Toast.makeText(AddRecordActivity.this, "BOD:"+objects.get(0).getNumber("BOD").toString(), Toast.LENGTH_SHORT).show();
     			   ammonia.setText(objects.get(0).getNumber("NH4").toString());
     			   if(objects.get(0).getNumber("NH4").floatValue()<=50.0||objects.get(0).getNumber("NH4").floatValue()>150.0)
     			   {
@@ -222,7 +250,7 @@ public class AddRecordActivity extends Activity  {
     			// CP
     			TextView colorimeter = (TextView)findViewById(R.id.colorimeter_value);
     			if(objects.get(0).getNumber("CP")!= null)
-    			{Toast.makeText(AddRecordActivity.this, "CP:"+objects.get(0).getNumber("CP").toString(), Toast.LENGTH_SHORT).show();
+    			{
     			colorimeter.setText(objects.get(0).getNumber("CP").toString());
 	    			if(objects.get(0).getNumber("CP").floatValue()<=5.0||objects.get(0).getNumber("CP").floatValue()>15.0)
 				     {
@@ -404,13 +432,9 @@ public class AddRecordActivity extends Activity  {
     	}
         	 
 		});
-  }
-  	catch(Exception e)
-  	{
-  		
-  	}
+  }catch(Exception e){}
 
-	}
+}
 	
 
 
