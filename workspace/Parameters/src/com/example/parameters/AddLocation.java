@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 
 public class AddLocation extends Activity {
@@ -13,6 +14,7 @@ public class AddLocation extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.add_location);
 		editText1 = (EditText) findViewById(R.id.location_name_editText);
 		editText2 = (EditText) findViewById(R.id.location_description_editText);

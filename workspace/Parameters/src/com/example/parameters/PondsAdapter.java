@@ -83,6 +83,7 @@ public class PondsAdapter extends BaseAdapter {
 	{
 		RelativeLayout rl;
 		TextView textview;
+		Log.d("odd_number", "==========position:" +position);
 		if(view == null)
 		{
 //			rl = new RelativeLayout(context);
@@ -98,9 +99,10 @@ public class PondsAdapter extends BaseAdapter {
 			rl = new RelativeLayout(context);
 			RelativeLayout rl1 = new RelativeLayout(context);
 			rl1.setLayoutParams(new GridView.LayoutParams(250,250));
-			if(location_ids.size()%2!=0 && position == location_ids.size() - 1){
+			if(location_ids.size()%2!= 0 && position == location_ids.size() - 1){
+				
 						rl.setLayoutParams(new GridView.LayoutParams(250, 280));
-			}else if(location_ids.size()%2 == 0&& position == location_ids.size() -2 || position == location_ids.size() - 1)
+			}else if(location_ids.size()%2 == 0 && position == location_ids.size() -2 || position == location_ids.size() - 1)
 			{
 				rl.setLayoutParams(new GridView.LayoutParams(250, 280));
 			}
@@ -132,6 +134,17 @@ public class PondsAdapter extends BaseAdapter {
 //			rl.addView(textview);
 			rl = (RelativeLayout) view;
 			rl.removeAllViews();
+			if(location_ids.size()%2!= 0 && position == location_ids.size() - 1){
+				
+				rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+	}else if(location_ids.size()%2 == 0 && position == location_ids.size() -2 || position == location_ids.size() - 1)
+	{
+		rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+	}
+	else
+	{
+		rl.setLayoutParams(new GridView.LayoutParams(250, 250));
+	}
 			RelativeLayout rl1 = new RelativeLayout(context);
 			rl1.setLayoutParams(new GridView.LayoutParams(250,250));
 			rl1.setBackgroundColor(Color.parseColor("#00BFFF"));
