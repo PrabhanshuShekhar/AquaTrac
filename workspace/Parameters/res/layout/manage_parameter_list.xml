@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/parameter_done_button"
-        android:choiceMode="multipleChoice" />
+        />
 
     <Button
         android:id="@+id/parameter_done_button"

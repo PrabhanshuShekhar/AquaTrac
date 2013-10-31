@@ -1,13 +1,17 @@
 package com.example.parameters;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
 import android.widget.LinearLayout;
 
@@ -23,22 +27,24 @@ import com.parse.ParseObject;
 public class GraphActivity extends Activity {
 
 	static int DAYS;
-	String param;
-	String[] horizontalLabel;
+	String[] locationIdArray;
+	String[] locationNameArray;
+	String parameterDescription;
 	ParseProxyObject selectedParameter;
 	Date date;
-
+	Handler handler;
 	Intent intent;
-
+	ProgressDialog dialog;
 	GraphView graphView;
 	GraphViewSeriesStyle[] graphViewSeriesStyles = new GraphViewSeriesStyle[] {
-			new GraphViewSeriesStyle(Color.rgb(139, 71, 38), 3),
-			new GraphViewSeriesStyle(Color.rgb(142, 56, 142), 3),
-			new GraphViewSeriesStyle(Color.rgb(0, 100, 0), 3),
-			new GraphViewSeriesStyle(Color.rgb(205, 173, 0), 3),
-			new GraphViewSeriesStyle(Color.rgb(0, 205, 205), 3),
-			new GraphViewSeriesStyle(Color.rgb(25, 25, 112), 3),
-			new GraphViewSeriesStyle(Color.rgb(128, 0, 0), 5) };
+			new GraphViewSeriesStyle(Color.rgb(127, 255, 0), 4),
+			new GraphViewSeriesStyle(Color.rgb(0, 191, 255), 4),
+			new GraphViewSeriesStyle(Color.rgb(41, 36, 33), 4),
+			new GraphViewSeriesStyle(Color.rgb(255, 255, 0), 4),
+			new GraphViewSeriesStyle(Color.rgb(238, 0, 238), 4),
+			new GraphViewSeriesStyle(Color.rgb(255, 153, 18), 4),
+			new GraphViewSeriesStyle(Color.rgb(255, 0, 0), 6),// critical
+			new GraphViewSeriesStyle(Color.rgb(145, 145, 145), 1) };
 
 	Date getDate(int days) {
 		Calendar cal = Calendar.getInstance();
@@ -50,49 +56,76 @@ public class GraphActivity extends Activity {
 	public void setCriticalValuesOnGraph() {
 		int start = selectedParameter.getInt("criticalStartRange");
 		int end = selectedParameter.getInt("criticalEndRange");
-		GraphViewData[] dataBox = new GraphViewData[DAYS+1];
-		GraphViewData[] dataBox2 = new GraphViewData[DAYS+1];
+		System.out.println("Critical Values are" + start + "      " + end);
+		GraphViewData[] dataBox = new GraphViewData[DAYS + 1];
+		GraphViewData[] dataBox2 = new GraphViewData[DAYS + 1];
 
 		for (int j = 0; j < dataBox.length; j++) {
 			dataBox[j] = new GraphViewData(j, start);
 			dataBox2[j] = new GraphViewData(j, end);
 		}
 		GraphViewSeries exampleSeries = new GraphViewSeries(
-				"Crtical Start Range", graphViewSeriesStyles[6], dataBox);
+				"Critical Start Range", graphViewSeriesStyles[6], dataBox);
 		graphView.addSeries(exampleSeries);
-		exampleSeries = new GraphViewSeries("Crtical End Range",
+		exampleSeries = new GraphViewSeries("Critical End Range",
 				graphViewSeriesStyles[6], dataBox2);
 		graphView.addSeries(exampleSeries);
 	}
 
-	public void setEndRangeValuesOnGraph() {
-		int start = selectedParameter.getInt("startingRange");
-		int end = selectedParameter.getInt("endRange");
-		graphView.addSeries( new GraphViewSeries(
-				new GraphViewData[] { new GraphViewData(0, start) }) );
-		
-		graphView.addSeries( new GraphViewSeries(
-				new GraphViewData[] { new GraphViewData(0, end) }) );
+	public void setEndRangeValuesOnGraph(int i) {
+		if (i == 1) {
+			int start = selectedParameter.getInt("startingRange");
+
+			graphView.addSeries(new GraphViewSeries("",
+					graphViewSeriesStyles[7],
+					new GraphViewData[] { new GraphViewData(0, start) }));
+		}
+		if (i == 2) {
+			int end = selectedParameter.getInt("endRange");
+
+			graphView.addSeries(new GraphViewSeries("",
+					graphViewSeriesStyles[7],
+					new GraphViewData[] { new GraphViewData(0, end) }));
+		}
 	}
 
 	public String[] setVerticalAxisLabel() {
-		String[] asdf = new String[7];
+		String[] verticalLabels = new String[7];
 		int start = selectedParameter.getInt("startingRange");
 		int end = selectedParameter.getInt("endRange");
-		float jump = (end-start)/6;
+		float jump = (end - start) / 6;
 		System.out.println("jump is :  " + jump);
 		for (int i = 0; i < 7; i++) {
-			asdf[6-i] = Float.valueOf(start + (jump * i)).toString();
+			verticalLabels[6 - i] = Float.valueOf(start + (jump * i))
+					.toString();
 		}
-		return asdf;
+		return verticalLabels;
+	}
+
+	@SuppressLint("SimpleDateFormat")
+	public String[] setHorizontalAxisLabel(int days) {
+		SimpleDateFormat ft = new SimpleDateFormat("dd/MM");
+		String[] horizontalLabels = new String[days + 1];
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		for (int i = 0; i < horizontalLabels.length; i++) {
+			cal.add(Calendar.DAY_OF_MONTH, 1);
+			horizontalLabels[i] = ft.format(cal.getTime());
+			// System.out.println("date is :  " + ft.format(cal.getTime()));
+		}
+		horizontalLabels[days] = " ";
+		System.out.println("horizontalLabels   : " + horizontalLabels.length);
+		return horizontalLabels;
 	}
 
 	public void setGraphViewStyle(int days) {
-		graphView.getGraphViewStyle().setNumHorizontalLabels(days + 2);
+		System.out.println("setNumHorizontalLabels   :  " + (days + 1));
+		graphView.getGraphViewStyle().setNumHorizontalLabels(days + 1);
 		graphView.getGraphViewStyle().setNumVerticalLabels(7);
 		graphView.setVerticalLabels(setVerticalAxisLabel());
-		graphView.getGraphViewStyle().setVerticalLabelsColor(Color.RED);
-		graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.RED);
+		graphView.setHorizontalLabels(setHorizontalAxisLabel(days));
+		graphView.getGraphViewStyle().setVerticalLabelsColor(Color.BLUE);
+		graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLUE);
 		graphView.setShowLegend(true);
 		graphView.setLegendAlign(LegendAlign.TOP);
 		graphView.setLegendWidth(290);
@@ -101,48 +134,64 @@ public class GraphActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		System.out.println("starting");
-		// setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.graph);
-		intent = getIntent();
-		String[] locationIdArray = intent.getStringArrayExtra("locationId");
-		String[] locationNameArray = intent.getStringArrayExtra("locationName");
-		System.out.println(locationIdArray[0] + "    " + locationNameArray[0]);
-		selectedParameter = (ParseProxyObject) intent
-				.getSerializableExtra("selected_parameter");
-		String parameterDescription = selectedParameter
-				.getString("parameterDescription");
-		graphView = new LineGraphView(this,
-				selectedParameter.getString("parameterName"));
+		handler = new Handler();
 
-		if (intent.getIntExtra("minus_days", 0) == 1)
-			DAYS = 7;
-		else
-			DAYS = 30;
+		dialog = ProgressDialog.show(this, "Loading",
+				"Please wait for a while.");
+		Thread thread = new Thread() {
+			public void run() {
+				intent = getIntent();
+				locationIdArray = intent.getStringArrayExtra("locationId");
+				locationNameArray = intent.getStringArrayExtra("locationName");
+				selectedParameter = (ParseProxyObject) intent
+						.getSerializableExtra("selected_parameter");
+				parameterDescription = selectedParameter
+						.getString("parameterDescription");
+				graphView = new LineGraphView(GraphActivity.this,
+						selectedParameter.getString("parameterName"));
 
-		date = getDate(DAYS);
-		System.out.println("date is : " + date);
-		setGraphViewStyle(DAYS);
+				if (intent.getIntExtra("minus_days", 0) == 1)
+					DAYS = 7;
+				else
+					DAYS = 30;
 
-		for (int i = 0; i < locationIdArray.length; i++) {
-			List<ParseObject> values = new ValuesDAO(this).getDataForReports(
-					locationIdArray[i], date);
-			System.out.println("number  :  " + values.size());
-			GraphViewData[] dataBox = new GraphViewData[values.size()];
-			for (int j = 0; j < dataBox.length; j++) {
-				dataBox[j] = new GraphViewData(j + 1, values.get(j).getInt(
-						parameterDescription));
-			} // innner for
+				date = getDate(DAYS);
+				System.out.println("date is : " + date);
+				setGraphViewStyle(DAYS);
+				setEndRangeValuesOnGraph(1);
+				for (int i = 0; i < locationIdArray.length; i++) {
+					List<ParseObject> values = new ValuesDAO(GraphActivity.this)
+							.getDataForReports(locationIdArray[i], date);
+					System.out.println("number  :  " + values.size());
+					GraphViewData[] dataBox = new GraphViewData[values.size()];
+					for (int j = 0; j < dataBox.length; j++) {
+						dataBox[j] = new GraphViewData(j, values.get(j).getInt(
+								parameterDescription));
+					} // inner for
 
-			GraphViewSeries exampleSeries = new GraphViewSeries(
-					locationNameArray[i], graphViewSeriesStyles[i], dataBox);
-			graphView.addSeries(exampleSeries);
-		} // outer for
-		setCriticalValuesOnGraph();
-		setEndRangeValuesOnGraph();
-		((LinearLayout) findViewById(R.id.graphLinearLayout))
-				.addView(graphView);
+					GraphViewSeries exampleSeries = new GraphViewSeries(
+							locationNameArray[i], graphViewSeriesStyles[i],
+							dataBox);
+					graphView.addSeries(exampleSeries);
+				} // outer for
+				setCriticalValuesOnGraph();
+				setEndRangeValuesOnGraph(2);
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						((LinearLayout) findViewById(R.id.graphLinearLayout))
+								.addView(graphView);
+						dialog.dismiss();
+
+					}
+				});// post
+			}
+		};// thread
+		thread.start();
+
 	}
 
 }

@@ -11,52 +11,70 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.parameters.R;
+import com.example.parameters.SelectParameterActivity;
 import com.parse.ParseObject;
 
 public class ParameterAdapter extends BaseAdapter {
 	private final Context context;
 	private final List<ParseObject> parameterValues;
-	private static int radioButtonDecider;
-
-	// private static int imageDecider;
+	private int radioButtonDecider;
 
 	public ParameterAdapter(Context context, List<ParseObject> values,
-			int radioButtonDecider, int imageDecider) {
+			int radioButtonDecider) {
 		this.context = context;
 		this.parameterValues = values;
-		ParameterAdapter.radioButtonDecider = radioButtonDecider;
-		// ParameterAdapter.imageDecider = imageDecider;
+		this.radioButtonDecider = radioButtonDecider;
 	}
+
+	static class ViewHolder {
+		protected TextView textView;
+		protected TextView textView2;
+		protected RadioButton radioButton;
+	}
+
+	LayoutInflater inflater;
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		System.out.println("getView");
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		ViewHolder viewHolder;
+		if (convertView == null) {
+			inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View rowView = inflater.inflate(R.layout.manage_parameter_list_element,
-				parent, false);
-		TextView textView = (TextView) rowView
-				.findViewById(R.id.parameter_textView);
-		textView.setText(parameterValues.get(position).getString(
+			convertView = inflater.inflate(
+					R.layout.manage_parameter_list_element, parent, false);
+			viewHolder = new ViewHolder();
+			viewHolder.textView = (TextView) convertView
+					.findViewById(R.id.parameter_textView);
+
+			viewHolder.textView2 = (TextView) convertView
+					.findViewById(R.id.parameter_range_textView);
+			
+			viewHolder.radioButton = (RadioButton)convertView
+					.findViewById(R.id.parameter_radioButton);
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		viewHolder.textView.setText(parameterValues.get(position).getString(
 				"parameterName"));
-
-		TextView textView2 = (TextView) rowView
-				.findViewById(R.id.parameter_range_textView);
-		textView2.setText("Critical Range ("
+		viewHolder.textView2.setText("Critical Range ("
 				+ (parameterValues.get(position)
 						.getNumber("criticalStartRange")) + " - "
 				+ (parameterValues.get(position).getNumber("criticalEndRange"))
 				+ ")");
-//		if (position == 0)
-//			((RadioButton) rowView.findViewById(R.id.parameter_radioButton))
-//					.setChecked(true);
+		viewHolder.radioButton.setChecked(false);
 		if (radioButtonDecider == 0) {
-			((RadioButton) rowView.findViewById(R.id.parameter_radioButton))
+			((RadioButton) convertView.findViewById(R.id.parameter_radioButton))
 					.setVisibility(View.INVISIBLE);
-		
+
+		}
+		if (position == SelectParameterActivity.temp) {
+			((RadioButton) convertView.findViewById(R.id.parameter_radioButton))
+					.setChecked(true);
 		}
 
-		return rowView;
+		return convertView;
 	}
 
 	@Override

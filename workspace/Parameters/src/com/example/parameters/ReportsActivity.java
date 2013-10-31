@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -16,12 +17,18 @@ public class ReportsActivity extends Activity {
 	ParseProxyObject selectedParameter;
 	String[] locationIdArray;
 	String[] locationNameArray;
+	ImageView imageView1;
+	ImageView imageView2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.reports_activity);
+		imageView1 = (ImageView) findViewById(R.id.tick_parameter_imageView1);
+		imageView1.setVisibility(View.INVISIBLE);
+		imageView2 = (ImageView) findViewById(R.id.tick_parameter_imageView2);
+		imageView2.setVisibility(View.INVISIBLE);
 	}
 
 	public void onSelectParameter(View view) {
@@ -59,7 +66,7 @@ public class ReportsActivity extends Activity {
 					public void onClick(DialogInterface dialog, int id) {
 					}
 				});
-		
+
 		if (selectedParameter == null) {
 			alertDialogBuilder.setMessage("Choose a parameter.");
 			alertDialog = alertDialogBuilder.create();
@@ -82,18 +89,26 @@ public class ReportsActivity extends Activity {
 			if (resultCode == RESULT_OK) {
 				selectedParameter = (ParseProxyObject) intent
 						.getSerializableExtra("selected_parameter");
+				if (selectedParameter != null)
+					imageView1.setVisibility(View.VISIBLE);
+				else {
+					// handle error condition later
+				}
 				super.onActivityResult(requestCode, resultCode, intent);
 			}
 		if (requestCode == SELECT_POND)
 			if (resultCode == RESULT_OK) {
-				// if (locationIdArray == null)
-				// System.out.println("right now null");
 				locationIdArray = intent
 						.getStringArrayExtra("location_id_array");
 				locationNameArray = intent
 						.getStringArrayExtra("location_name_array");
+				if ((locationIdArray != null) && (locationNameArray != null))
+					imageView2.setVisibility(View.VISIBLE);
+				else {
+					// handle error condition later
+				}
 				super.onActivityResult(requestCode, resultCode, intent);
 			}
-	}
+	} // end of function
 
 }

@@ -26,18 +26,17 @@ public class ManageLocation extends Activity {
 	LocationAdapter locationAdapter;
 	ListView listView;
 	List<ParseObject> locationList;
-	final Handler handler = new Handler();;
+	Handler handler;
 	ProgressDialog dialog;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.manage_location);
-//		handler = new Handler();
+		handler = new Handler();
 		dao = new LocationsDAO(this);
-//		 locationList = dao.getAllLocations();
 		listView = (ListView) findViewById(R.id.locations_list);
-
 
 		dialog = ProgressDialog.show(this, "Loading",
 				"Please wait for a while.");
@@ -55,22 +54,14 @@ public class ManageLocation extends Activity {
 						System.out.println("handler");
 						dialog.dismiss();
 
+						((Button) findViewById(R.id.location_done))
+								.setVisibility(View.GONE);
 					}
-				});//post
+				});// post
 			}
-		};//thread
+		};// thread
 		thread.start();
-		((Button) findViewById(R.id.location_done))
-		.setVisibility(View.INVISIBLE);
-//		
-System.out.println("post thread");
-//		 locationAdapter = new LocationAdapter(this, locationList, 0, 1);
-//		 listView = (ListView) findViewById(R.id.locations_list);
-//		 listView.setAdapter(locationAdapter);
-//		
-//		 ((Button) findViewById(R.id.location_done))
-//		 .setVisibility(View.INVISIBLE);
-
+		System.out.println("post thread");
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -103,23 +94,40 @@ System.out.println("post thread");
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
-			Intent intent) {
+			final Intent intent) {
 
-		// String locationName = intent.getStringExtra("name");
-		// String locationDescription = intent.getStringExtra("description");
 		dao = new LocationsDAO(this);
 
 		if (requestCode == ADD_LOCATION) {
 			if (resultCode == RESULT_OK) {
-				String locationName = intent.getStringExtra("name");
-				String locationDescription = intent
+
+				final String locationName = intent.getStringExtra("name");
+				final String locationDescription = intent
 						.getStringExtra("description");
+				dialog = ProgressDialog.show(this, "Adding Location",
+						"Please wait for a while.");
+				Thread thread = new Thread() {
+					public void run() {
+						System.out.println("thread");
 
-				ParseObject object = dao.addLocation(locationName,
-						locationDescription);
-				locationList.add(object);
+						final ParseObject object = dao.addLocation(
+								locationName, locationDescription);
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								locationList.add(object);
 
-				locationAdapter.notifyDataSetChanged();
+								locationAdapter.notifyDataSetChanged();
+								System.out.println("handler");
+								dialog.dismiss();
+								Toast.makeText(ManageLocation.this,
+										"Location Added", Toast.LENGTH_SHORT)
+										.show();
+							}
+						});// post
+					}
+				};// thread
+				thread.start();
 				super.onActivityResult(requestCode, resultCode, intent);
 			}
 		}
@@ -127,25 +135,28 @@ System.out.println("post thread");
 		if (requestCode == MODIFY_LOCATION) { // for update location
 			if (resultCode == RESULT_OK) {
 
-				String locationName = intent.getStringExtra("name");
-				String locationDescription = intent
-						.getStringExtra("description");
-
-				ParseObject object = dao.updateLocation(
-						intent.getStringExtra("objectId"), locationName,
-						locationDescription);
-
-				locationList.set(intent.getIntExtra("position", -1), object);
-				locationAdapter.notifyDataSetChanged();
+				dialog = ProgressDialog.show(this, "Updating",
+						"Please wait for a while.");
 				Thread thread = new Thread() {
 					public void run() {
-						// new Toaster(ManageLocation.this,
-						// "Location Deleted").raiseToast();
+
+						String locationName = intent.getStringExtra("name");
+						String locationDescription = intent
+								.getStringExtra("description");
+
+						final ParseObject object = dao.updateLocation(
+								intent.getStringExtra("objectId"),
+								locationName, locationDescription);
 
 						handler.post(new Runnable() {
 
 							@Override
 							public void run() {
+								locationAdapter.notifyDataSetChanged();
+								locationList.set(
+										intent.getIntExtra("position", -1),
+										object);
+								dialog.dismiss();
 								Toast.makeText(ManageLocation.this,
 										"Location Updated", Toast.LENGTH_SHORT)
 										.show();
@@ -156,36 +167,42 @@ System.out.println("post thread");
 				thread.start();
 				super.onActivityResult(requestCode, resultCode, intent);
 			} // end of if (resultCode == RESULT_OK)
-				// for delete location
+
+			// for delete location
 			if (resultCode == 10) {
-				ParseObject object = dao.deleteLocation(intent
-						.getStringExtra("objectId"));
-				if (object != null) {
-					locationList.remove(intent.getIntExtra("position", -1));
-					locationAdapter.notifyDataSetChanged();
-					Thread thread = new Thread() {
-						public void run() {
-							// new Toaster(ManageLocation.this,
-							// "Location Deleted").raiseToast();
 
-							handler.post(new Runnable() {
+				dialog = ProgressDialog.show(this, "Deleting",
+						"Please wait for a while.");
+				Thread thread = new Thread() {
+					public void run() {
 
-								@Override
-								public void run() {
+						final ParseObject object = dao.deleteLocation(intent
+								.getStringExtra("objectId"));
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								if (object != null) {
+									locationList.remove(intent.getIntExtra(
+											"position", -1));
+									locationAdapter.notifyDataSetChanged();
+									dialog.dismiss();
 									Toast.makeText(ManageLocation.this,
 											"Location Deleted",
 											Toast.LENGTH_SHORT).show();
-								}
-							}); // end of post
-						}
-					}; // end of thread
-					thread.start();
-				} // end of if (object != null)
-				else {
 
-				}
+								} else {
+
+								}// end of if (object != null)
+							}
+						}); // end of post
+
+					}// end of run()
+				}; // end of thread
+				thread.start();
 			} // end of if (resultCode == 10)
+
 		} // end of if (requestCode == UPDATE_LOCATION)
 	} // end of function
 
+	
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_parameter_main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/water1"
@@ -26,14 +27,16 @@
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_marginLeft="30dp"
+            android:textSize="23sp"
             android:text="@+string/critical_start_range" />
 
         <EditText
             android:id="@+id/parameter_critical_start_editText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginRight="30dp"
+            android:inputType="numberSigned|numberDecimal"
             android:background="@drawable/custom_background_bluebox"
             android:ems="10"
             android:paddingLeft="5dp"
@@ -50,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginLeft="30dp"
+            android:textSize="23sp"
             android:text="@+string/critical_end_range" />
 
         <EditText
@@ -58,6 +62,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="30dp"
+            android:inputType="numberSigned|numberDecimal"
             android:background="@drawable/custom_background_bluebox"
             android:ems="10"
             android:paddingLeft="5dp"
@@ -67,7 +72,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:layout_weight="0.1"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >

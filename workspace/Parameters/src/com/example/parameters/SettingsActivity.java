@@ -25,4 +25,8 @@ public class SettingsActivity extends Activity{
 		startActivity(new Intent(SettingsActivity.this, ManageParameter.class));
 	}
 
+	public void onEmail(View view)
+	{
+//		startActivity(new Intent(SettingsActivity.this, TempActivity.class));
+	}
 }

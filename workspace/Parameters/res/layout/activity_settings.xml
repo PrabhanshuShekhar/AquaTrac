@@ -5,32 +5,57 @@
     android:background="@drawable/water1"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/manage_location_button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/manage_parameters_button"
-        android:layout_alignBottom="@+id/manage_parameters_button"
-        android:layout_toLeftOf="@+id/manage_parameters_button"
-        android:background="@drawable/custom_button_transparent"
-        android:layout_marginRight="50dp"
-        android:height="70dp"
-        android:onClick="onManageLocation"
-        android:text="@string/manage_location"
-        android:width="125dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        
+        android:layout_marginTop="143dp" >
+
+        <TextView
+            android:id="@+id/location_heading_textView"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:paddingLeft="13dp"
+            android:textColor="#F2F2F2"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/manage_location" 
+            android:background="@drawable/custom_background_bluebox3" 
+            android:onClick="onManageLocation"
+            android:clickable="true"
+            />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:paddingLeft="7dp"
+            android:textColor="#F2F2F2"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/manage_parameters"
+            android:background="@drawable/custom_background_bluebox3" 
+            android:onClick="onManageParameter"
+            android:clickable="true" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/manage_parameters_button"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="130dp"
-        android:background="@drawable/custom_button_transparent"
-        android:height="70dp"
-        android:onClick="onManageParameter"
-        android:text="@string/manage_parameters"
-        android:width="125dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="55dp"
+        android:text="Button" />
 
 </RelativeLayout>

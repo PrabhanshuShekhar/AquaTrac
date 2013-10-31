@@ -40,8 +40,8 @@ public class ParameterDAO {
 		return null;
 	}
 
-	public ParseObject updateParameter(String objectId, int criticalStartRange,
-			int criticalEndRange) {
+	public ParseObject updateParameter(String objectId, double criticalStartRange,
+			double criticalEndRange) {
 		System.out.println("updating parameter");
 		ParseObject object = getParameterById(objectId);
 		object.put("criticalStartRange", criticalStartRange);

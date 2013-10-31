@@ -1,47 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_location_main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/location_heading_textView"
+    <RelativeLayout
+        android:id="@+id/location_heading_relative_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="#6666FF"
-        android:paddingLeft="10dp"
-        android:text="ADD LOCATION"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+    android:background="#6666FF">
+
+        <ImageButton
+            android:id="@+id/edit_location"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/location_heading_textView"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/delete_location"
+            android:background="@null"
+            android:src="@drawable/edit_button_yellow" 
+            android:onClick="onEdit"
+            />
+
+        <TextView
+            android:id="@+id/location_heading_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="10dp"
+            android:text="ADD LOCATION"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/delete_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="onDelete"
+            android:layout_marginTop="8dp"
+            android:background="#6666FF"
+            android:src="@drawable/trash" />
+        
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/location_heading_textView"
+        android:layout_below="@+id/location_heading_relative_layout"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="21dp"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/location_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+string/location_name"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/location_name_editText"
+            android:textSize="23sp" />
+<!-- @+string/location_name -->
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="@drawable/custom_background_bluebox"
-            android:ems="10"
-            android:paddingLeft="5dp" />
-    </LinearLayout>
+            android:orientation="horizontal" >
 
+            <EditText
+                android:id="@+id/location_name_editText"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/clear_location_name_imageButton"
+                android:background="@drawable/custom_background_bluebox2"
+                android:ems="10"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp" />
+
+            <ImageButton
+                android:id="@+id/clear_location_name_imageButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/cross_button" 
+                android:onClick="onClearScreen"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
@@ -50,27 +110,51 @@
         android:layout_below="@+id/linearLayout1"
         android:layout_marginRight="20dp"
         android:layout_marginTop="29dp"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/location_description_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+string/location_description"
-            android:textSize="15sp" />
+            android:textSize="23sp" />
+<!-- @+string/location_description -->
 
-        <EditText
-            android:id="@+id/location_description_editText"
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/custom_background_bluebox"
-            android:ems="10"
-            android:gravity="top"
-            android:height="120dp"
-            android:paddingLeft="5dp" />
-    </LinearLayout>
+            android:orientation="horizontal" >
 
+            <EditText
+                android:id="@+id/location_description_editText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_toLeftOf="@+id/clear_location_description_imageButton"
+                android:background="@drawable/custom_background_bluebox2"
+                android:height="100dp"
+                android:gravity="top|left"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp" />
+
+            <ImageButton
+                android:id="@+id/clear_location_description_imageButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@null"
+                android:src="@drawable/cross_button"
+                 android:onClick="onClearScreen"/>
+
+        </RelativeLayout>
+        
+    </LinearLayout>
+    
     <LinearLayout
         android:id="@+id/linearLayoutButtons"
         android:layout_width="fill_parent"
@@ -99,5 +183,5 @@
             android:onClick="onCancel"
             android:text="@+string/cancel" />
     </LinearLayout>
-
+    
 </RelativeLayout>
