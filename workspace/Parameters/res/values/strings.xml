@@ -7,7 +7,7 @@
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_add_record">AddRecordActivity</string>
     <string name="title_activity_add_parameter_value">AddParameterValueActivity</string>
-    <string name="manage_location">Manage\nLocation</string>
+    <string name="manage_location">Manage\nLocations</string>
     <string name="manage_parameters">Manage\nParameters</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
@@ -21,8 +21,8 @@
     <string name="weekly_report">Weekly Report</string>
     <string name="monthly_report">Monthly Report</string>
     <string name="done">Done</string>
-    <string name="select_parameter">Select Parameter</string>
-    <string name="select_pond">Select Pond</string>
+    <string name="select_parameter">Select\nParameter</string>
+    <string name="select_location">Select\nLocation</string>
     <string name="generate_report">Generate Report</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>

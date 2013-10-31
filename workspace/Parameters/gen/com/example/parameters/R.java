@@ -241,9 +241,8 @@ public final class R {
         public static final int manage_parameters=0x7f060007;
         public static final int monthly_report=0x7f060012;
         public static final int save=0x7f060009;
-        public static final int select_location=0x7f060019;
+        public static final int select_location=0x7f060015;
         public static final int select_parameter=0x7f060014;
-        public static final int select_pond=0x7f060015;
         public static final int title_activity_add=0x7f060003;
         public static final int title_activity_add_parameter_value=0x7f060005;
         public static final int title_activity_add_record=0x7f060004;
