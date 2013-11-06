@@ -51,7 +51,6 @@ public class ManageParameter extends Activity {
 					@Override
 					public void run() {
 						listView.setAdapter(parameterAdapter);
-						System.out.println("handler");
 						dialog.dismiss();
 
 					}
@@ -63,13 +62,9 @@ public class ManageParameter extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				System.out.println("item being clicked");
 				final int position = listView.getPositionForView(arg1);
-				// listView.setItemChecked(position, true);
-				// System.out.println("postion selected is : " + position);
 				System.out.println("postion selected is : " + position);
 
-				// listView.setItemChecked(position, true);
 				ParseObject selectedParameter = parameterList.get(position);
 
 				Intent intent = new Intent(ManageParameter.this,

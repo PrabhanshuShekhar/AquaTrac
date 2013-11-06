@@ -63,14 +63,14 @@ public class LocationAdapter extends BaseAdapter {
 			rowView = convertView;
 			holder = (ViewHolder) convertView.getTag();
 			if(holder==null)
-				System.out.println("retrieved null");
+				System.out.println("holder null");
 		}
 		holder.textView.setText(values.get(position).getString("location_name"));
 
 		if (holder.b)
 			holder.box.setChecked(true);
 		else
-			System.out.println("falsifying");
+			System.out.println("2222");
 		
 
 		OnCheckedChangeListener myCheckBoxChange = new OnCheckedChangeListener() {

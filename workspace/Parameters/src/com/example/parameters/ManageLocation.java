@@ -51,7 +51,6 @@ public class ManageLocation extends Activity {
 					@Override
 					public void run() {
 						listView.setAdapter(locationAdapter);
-						System.out.println("handler");
 						dialog.dismiss();
 
 						((Button) findViewById(R.id.location_done))
@@ -61,12 +60,10 @@ public class ManageLocation extends Activity {
 			}
 		};// thread
 		thread.start();
-		System.out.println("post thread");
-
+		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// System.out.println("item being clicked");
 				final int position = listView.getPositionForView(arg1);
 				System.out.println("postion selected is : " + position);
 				ParseObject selectedLocation = locationList.get(position);
@@ -87,7 +84,6 @@ public class ManageLocation extends Activity {
 	}
 
 	public void onAddLocation(View view) {
-		System.out.println("add");
 		Intent intent = new Intent(this, AddLocation.class);
 		startActivityForResult(intent, ADD_LOCATION);
 	}
@@ -116,9 +112,7 @@ public class ManageLocation extends Activity {
 							@Override
 							public void run() {
 								locationList.add(object);
-
 								locationAdapter.notifyDataSetChanged();
-								System.out.println("handler");
 								dialog.dismiss();
 								Toast.makeText(ManageLocation.this,
 										"Location Added", Toast.LENGTH_SHORT)

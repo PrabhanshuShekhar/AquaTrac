@@ -37,13 +37,14 @@ public class SelectLocationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+	
 		final Dialog mainDialog = new Dialog(this);
 		mainDialog.setContentView(R.layout.manage_location);
 		mainDialog.setTitle("Select Locations");
-//		mainDialog.setCancelable(false);
+		mainDialog.setCancelable(false);
 		handler = new Handler();
 		dao = new LocationsDAO(this);
-
+ 
 		dialog = ProgressDialog.show(this, "Loading",
 				"Please wait for a while.");
 		Thread thread = new Thread() {

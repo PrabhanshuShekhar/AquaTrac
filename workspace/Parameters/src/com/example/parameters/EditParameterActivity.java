@@ -5,12 +5,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +25,8 @@ public class EditParameterActivity extends Activity {
 	double endValue;
 	Double currentCriticalStartValue;
 	Double currentCriticalEndValue;
+	ImageButton clearStartCriticValueButton;
+	ImageButton clearEndCriticValueButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class EditParameterActivity extends Activity {
 				editText.setText("");
 			// editText.setSelection(Float.toString(x).length());
 		}
-
+//		editText.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
 		if (intent.hasExtra("current_critical_end_value")) {
 			currentCriticalEndValue = intent.getDoubleExtra(
 					"current_critical_end_value", 0);
@@ -72,24 +77,72 @@ public class EditParameterActivity extends Activity {
 
 		startValue = intent.getDoubleExtra("start_value", 0);
 		endValue = intent.getDoubleExtra("end_value", 0);
+		
+		clearStartCriticValueButton = (ImageButton) findViewById(R.id.clear_start_critic_value);
+		clearEndCriticValueButton = (ImageButton) findViewById(R.id.clear_end_critic_value);
+		
+		editText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (editText.getText().toString().length() > 0)
+					clearStartCriticValueButton.setVisibility(View.VISIBLE);
+				else
+					clearStartCriticValueButton.setVisibility(View.INVISIBLE);
+			}
+		});
+
+		editText2.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				System.out.println(editText2.getId());
+				if (editText2.getText().toString().length() > 0)
+					clearEndCriticValueButton.setVisibility(View.VISIBLE);
+				else
+					clearEndCriticValueButton.setVisibility(View.INVISIBLE);
+			}
+		});
+		
+//		clearStartCriticValue.setVisibility(View.INVISIBLE);
+//		clearEndCriticValue.setVisibility(View.INVISIBLE);
 
 	}
 
 	public boolean validate() {
-		String flag = editText.getText().toString();
-		String flag2 = editText2.getText().toString();
-		if (flag.length() == 0) {
+		String startRangeString = editText.getText().toString();
+		String endRangeString = editText2.getText().toString();
+		if (startRangeString.length() == 0) {
 			editText.setError("Please enter start critical value.");
 			editText.requestFocus();
 			return false;
 		}
-		if (flag2.length() == 0) {
+		if (endRangeString.length() == 0) {
 			editText2.setError("Please enter end critical value.");
 			editText2.requestFocus();
 			return false;
 		}
-		double temp1 = Double.parseDouble(flag);
-		double temp2 = Double.parseDouble(flag2);
+		double temp1 = Double.parseDouble(startRangeString);
+		double temp2 = Double.parseDouble(endRangeString);
 
 		if (temp1 >= temp2) {
 			editText.setError("Starting Critical Value should be less than End Critical Value.");
@@ -150,8 +203,11 @@ public class EditParameterActivity extends Activity {
 		String temp = editText.getText().toString();
 		String temp2 = editText2.getText().toString();
 		if (temp.length() == 0 || temp2.length() == 0)
+		{
+			System.out.println("one of em is zero");
 			super.onBackPressed();
-		if (currentCriticalStartValue.equals(Double.parseDouble(editText
+		}
+		else if (currentCriticalStartValue.equals(Double.parseDouble(editText
 				.getText().toString()))
 				&& currentCriticalEndValue.equals(Double.parseDouble(editText2
 						.getText().toString()))) {
@@ -162,6 +218,17 @@ public class EditParameterActivity extends Activity {
 					.setPositiveButton("Discard", backDialogClickListener)
 					.setNegativeButton("Save", backDialogClickListener).show();
 		}
-
+	}
+	
+	public void onClear(View view)
+	{
+		int temp1 = ((ImageButton) view).getId();
+		int clearStartCriticValueId = clearStartCriticValueButton.getId();
+		if (temp1 == clearStartCriticValueId) {
+			editText.setText("");
+		} else {
+			editText2.setText("");
+		}
+		view.setVisibility(View.INVISIBLE);
 	}
 }

@@ -26,6 +26,7 @@ public class ValuesDAO {
 		System.out.println(locationObjectId);
 		query.whereEqualTo("location_objectid", locationObjectId);
 		query.whereGreaterThan("createdAt", date);
+		query.orderByAscending("date");
 		try {
 			System.out.println("try");
 			return query.find();

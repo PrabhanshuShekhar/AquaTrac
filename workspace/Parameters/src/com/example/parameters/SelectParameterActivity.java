@@ -41,6 +41,7 @@ public class SelectParameterActivity extends Activity {
 		final Dialog mainDialog = new Dialog(this);
 		mainDialog.setContentView(R.layout.manage_parameter_list);
 		mainDialog.setTitle("Select a Parameter");
+		mainDialog.setCancelable(false);
 		handler = new Handler();
 
 		dialog = ProgressDialog.show(this, "Loading",
@@ -67,8 +68,8 @@ public class SelectParameterActivity extends Activity {
 			}
 		};// thread
 		thread.start();
-		Button asd = (Button)mainDialog.findViewById(R.id.parameter_done_button);
-		asd.setOnClickListener(new OnClickListener() {
+		Button done = (Button)mainDialog.findViewById(R.id.parameter_done_button);
+		done.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -78,6 +79,8 @@ public class SelectParameterActivity extends Activity {
 						parameterList.get(listIndex));
 				intent = getIntent();
 				intent.putExtra("selected_parameter", selectedParameter);
+				intent.putExtra("critical_start_value", parameterList.get(listIndex).getDouble("criticalStartRange"));
+				intent.putExtra("critical_end_value", parameterList.get(listIndex).getDouble("criticalEndRange"));
 				setResult(RESULT_OK, intent);
 				mainDialog.dismiss();
 				finish();
@@ -142,17 +145,6 @@ public class SelectParameterActivity extends Activity {
 			return false;
 		}
 		return true;
-	}
-
-	public void onDone(View view) {
-//		if (!validate())
-//			return;
-//		ParseProxyObject selectedParameter = new ParseProxyObject(
-//				parameterList.get(listIndex));
-//		intent = getIntent();
-//		intent.putExtra("selected_parameter", selectedParameter);
-//		setResult(RESULT_OK, intent);
-//		finish();
 	}
 
 }

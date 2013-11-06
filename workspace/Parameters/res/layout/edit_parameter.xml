@@ -27,20 +27,39 @@
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_marginLeft="30dp"
-            android:textSize="23sp"
-            android:text="@+string/critical_start_range" />
+            android:text="@+string/critical_start_range"
+            android:textSize="23sp" />
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+           android:layout_marginRight="10dp"
+             android:background="@drawable/custom_background_bluebox" >
         <EditText
             android:id="@+id/parameter_critical_start_editText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="30dp"
-            android:inputType="numberSigned|numberDecimal"
-            android:background="@drawable/custom_background_bluebox"
+            android:background="@drawable/custom_background_bluebox2"
             android:ems="10"
+            android:inputType="numberSigned|numberDecimal"
             android:paddingLeft="5dp"
             android:width="100dp" />
+         <ImageButton
+                android:id="@+id/clear_start_critic_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/parameter_critical_start_editText"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/cross_button" 
+                android:onClick="onClear"
+                />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -53,20 +72,42 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginLeft="30dp"
-            android:textSize="23sp"
-            android:text="@+string/critical_end_range" />
+            android:text="@+string/critical_end_range"
+            android:textSize="23sp" />
+        <!-- @+string/critical_end_range -->
 
-        <EditText
-            android:id="@+id/parameter_critical_end_editText"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp"
-            android:inputType="numberSigned|numberDecimal"
-            android:background="@drawable/custom_background_bluebox"
-            android:ems="10"
-            android:paddingLeft="5dp"
-            android:width="100dp" />
+            android:layout_marginRight="10dp"
+            android:background="@drawable/custom_background_bluebox" >
+
+            <EditText
+                android:id="@+id/parameter_critical_end_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_background_bluebox2"
+                android:ems="10"
+                android:inputType="numberSigned|numberDecimal"
+                android:paddingLeft="5dp"
+                android:width="100dp" />
+
+            <ImageButton
+                android:id="@+id/clear_end_critic_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignRight="@+id/parameter_critical_end_editText"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/cross_button" 
+                android:onClick="onClear"
+                />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout

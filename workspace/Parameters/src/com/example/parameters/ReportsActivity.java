@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.mw.aquatrack.services.MyApplication;
+
 public class ReportsActivity extends Activity {
 	private static int SELECT_PARAMETER = 1;
 	private static int SELECT_POND = 10;
@@ -19,12 +21,17 @@ public class ReportsActivity extends Activity {
 	String[] locationNameArray;
 	ImageView imageView1;
 	ImageView imageView2;
-
+	double criticalStartRange;
+	double criticalEndRange;
+	MyApplication application;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.reports_activity);
+	application = (MyApplication)getApplication();
+		SelectParameterActivity.temp = -1;
 		imageView1 = (ImageView) findViewById(R.id.tick_parameter_imageView1);
 		imageView1.setVisibility(View.INVISIBLE);
 		imageView2 = (ImageView) findViewById(R.id.tick_parameter_imageView2);
@@ -32,13 +39,59 @@ public class ReportsActivity extends Activity {
 	}
 
 	public void onSelectParameter(View view) {
-		Intent intent = new Intent(this, SelectParameterActivity.class);
-		startActivityForResult(intent, SELECT_PARAMETER);
+			if (!application.haveNetworkConnection()) {
+			System.out.println("no network");
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					this);
+			alertDialogBuilder.setTitle("CONNECTION ERROR");
+
+			alertDialogBuilder
+					.setMessage("Internet services required.")
+					.setCancelable(false)
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.dismiss();
+								}
+							});
+			AlertDialog dialog = alertDialogBuilder.create();
+
+			dialog.show();
+		} else {
+			Intent intent = new Intent(this, SelectParameterActivity.class);
+			startActivityForResult(intent, SELECT_PARAMETER);
+		}
 	}
 
 	public void onSelectPond(View view) {
-		Intent intent = new Intent(this, SelectLocationActivity.class);
-		startActivityForResult(intent, SELECT_POND);
+		if (!application.haveNetworkConnection()) {
+			System.out.println("no network");
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					this);
+			alertDialogBuilder.setTitle("CONNECTION ERROR");
+
+			// set dialog message
+			alertDialogBuilder
+					.setMessage("Internet services required.")
+					.setCancelable(false)
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.dismiss();
+								}
+							});
+			AlertDialog dialog = alertDialogBuilder.create();
+
+			// show it
+			dialog.show();
+
+			// finish();
+		} else {
+			Intent intent = new Intent(this, SelectLocationActivity.class);
+			startActivityForResult(intent, SELECT_POND);
+		}
 	}
 
 	public void onGenerateReports(View view) {
@@ -52,7 +105,8 @@ public class ReportsActivity extends Activity {
 		intent.putExtra("selected_parameter", selectedParameter);
 		intent.putExtra("locationId", locationIdArray);
 		intent.putExtra("locationName", locationNameArray);
-
+		intent.putExtra("critical_start_value", criticalStartRange);
+		intent.putExtra("critical_end_value", criticalEndRange);
 		if (button.getText().equals("Weekly Report"))
 			intent.putExtra("minus_days", 1);
 		startActivity(intent);
@@ -89,6 +143,10 @@ public class ReportsActivity extends Activity {
 			if (resultCode == RESULT_OK) {
 				selectedParameter = (ParseProxyObject) intent
 						.getSerializableExtra("selected_parameter");
+				criticalStartRange = intent.getDoubleExtra(
+						"critical_start_value", 0);
+				criticalEndRange = intent.getDoubleExtra("critical_end_value",
+						0);
 				if (selectedParameter != null)
 					imageView1.setVisibility(View.VISIBLE);
 				else {

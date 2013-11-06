@@ -35,7 +35,6 @@ public class EditLocation extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.add_location);
-		// Object[] asda = new Object[4];
 		((RelativeLayout) findViewById(R.id.add_location_main_layout))
 				.setOnTouchListener(new OnTouchListener() {
 					@Override
@@ -72,8 +71,6 @@ public class EditLocation extends Activity {
 			editText2.setText(currentDescription);
 			if (currentDescription != null)
 				editText2.setSelection(currentDescription.length());
-//			EditText editText3 = editText2;
-//			editText3.setText("dsfgdfrgdf");
 		}
 		editText2.setEnabled(false);
 
@@ -90,7 +87,6 @@ public class EditLocation extends Activity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				System.out.println(editText1.getId());
 				if (editText1.getText().toString().length() > 0)
 					clearLocNameButton.setVisibility(View.VISIBLE);
 				else
@@ -112,7 +108,6 @@ public class EditLocation extends Activity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				System.out.println(editText2.getId());
 				if (editText2.getText().toString().length() > 0)
 					clearLocDescButton.setVisibility(View.VISIBLE);
 				else
@@ -146,8 +141,6 @@ public class EditLocation extends Activity {
 				break;
 			case DialogInterface.BUTTON_NEGATIVE:
 				actuallySave();
-				System.out.println("something something");
-//				finish();
 				break;
 			}
 		}
@@ -175,12 +168,6 @@ public class EditLocation extends Activity {
 	
 	public void onSave(View view) {
 		actuallySave();
-//		if (!validate())
-//			return;
-//		intent.putExtra("name", editText1.getText().toString().trim());
-//		intent.putExtra("description", editText2.getText().toString().trim());
-//		this.setResult(RESULT_OK, intent);
-//		finish();
 	}
 
 	public void onClearScreen(View view) {
@@ -218,12 +205,6 @@ public class EditLocation extends Activity {
 		finish();
 	}
 
-	public void onExperiment(View view) {
-		System.out.println("experiment");
-	}
-
-	
-
 	@Override
 	public void onBackPressed() {
 		if (editText1.getText().toString().trim().equals(currentLocation)
@@ -238,4 +219,7 @@ public class EditLocation extends Activity {
 		}
 	}
 
+	public void onExperiment(View view) {
+		System.out.println("experiment");
+	}
 }
