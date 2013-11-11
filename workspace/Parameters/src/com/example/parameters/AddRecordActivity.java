@@ -16,7 +16,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -32,14 +34,16 @@ import android.widget.Toast;
 
 public class AddRecordActivity extends Activity  {
   Intent intent;
-  String param_name,location_id,param_value,action_name,create_date;
+  String param_name,location_id,param_value,action_name,create_date,location_name;
   static final int GET_PARAMETER_VALUE = 0;
+  ProgressDialog dialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		Date date = new Date();
 		create_date = getIntent().getStringExtra("create_date");
+		location_name = getIntent().getStringExtra("location_name");
     	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     	Parse.initialize(AddRecordActivity.this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 		action_name = getIntent().getStringExtra("action_name");
@@ -51,6 +55,8 @@ public class AddRecordActivity extends Activity  {
 		{
 			setContentView(R.layout.view_record);
 		}
+		TextView pond_text = (TextView)findViewById(R.id.pond_text);
+		pond_text.setText(location_name);
 		RelativeLayout outer_RL = (RelativeLayout) findViewById(R.id.parameter);
     	location_id = getIntent().getStringExtra("location");
     	
@@ -78,7 +84,7 @@ public class AddRecordActivity extends Activity  {
         		 if(dd<=current_dd){
 //        			 query.whereEqualTo("create_date",create_date); 
         			 query.whereGreaterThanOrEqualTo("date", formatter.parse(create_date));
-        			 Toast.makeText(AddRecordActivity.this, "hi", Toast.LENGTH_SHORT).show();
+//        			 Toast.makeText(AddRecordActivity.this, "hi", Toast.LENGTH_SHORT).show();
         			 query.whereLessThanOrEqualTo("date", formatter.parse(tomorrow_date+"/"+mm+"/"+yy));
         		 }
         		 else
@@ -135,6 +141,15 @@ public class AddRecordActivity extends Activity  {
         	query.whereGreaterThanOrEqualTo("date", formatter.parse(formatter.format(date1)));
         }
         
+		 dialog = new ProgressDialog(AddRecordActivity.this);
+		 dialog.setTitle("Loading...");
+		 dialog.setMessage("Please wait for a while");
+		 dialog.setCancelable(false);
+		 dialog.setIndeterminate(true);
+		 dialog.show();
+        
+        
+        // thread end
         query.findInBackground(new FindCallback<ParseObject>() {
         	
 			  public void done(List<ParseObject> objects, ParseException e) {
@@ -142,6 +157,10 @@ public class AddRecordActivity extends Activity  {
     		if (e == null && objects.size()>0)
     		{
     			
+    			if(dialog!= null)
+    			{
+    				dialog.dismiss();
+    			}
     			try{
     				ParseQuery<ParseObject> query1 = ParseQuery.getQuery("ParameterValue");
     		        query1.whereEqualTo("location_objectid", location_id);
@@ -177,7 +196,8 @@ public class AddRecordActivity extends Activity  {
     			   if(objects.get(0).getNumber("NH4").floatValue()<=50.0||objects.get(0).getNumber("NH4").floatValue()>150.0)
     			   {
     				   RelativeLayout ammonia_layout = (RelativeLayout) findViewById(R.id.ammonia);
-    				   ammonia_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//    				   ammonia_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+    				   ammonia_layout.setBackgroundResource(R.drawable.critical_rounded);
     			   }
     			   try{
     			   if(results.size()>0&&objects.get(0).getNumber("NH4").floatValue()>results.get(0).getNumber("NH4").floatValue())
@@ -203,7 +223,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("BOD").floatValue()<=-5.0||objects.get(0).getNumber("BOD").floatValue()>35.0)
 	 			   {
 	    				RelativeLayout biochemical_layout = (RelativeLayout) findViewById(R.id.biochemical);
-	    				biochemical_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				biochemical_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				biochemical_layout.setBackgroundResource(R.drawable.critical_rounded);
 	 			   }
     			  try{
 	    			if(results.size()>0 && objects.get(0).getNumber("BOD").floatValue()>results.get(0).getNumber("BOD").floatValue())
@@ -230,7 +251,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("CL").floatValue()<=150.0||objects.get(0).getNumber("CL").floatValue()>450.0)
 	 			     {
 	    				RelativeLayout chloride_layout = (RelativeLayout) findViewById(R.id.chloride);
-	    				chloride_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				chloride_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				chloride_layout.setBackgroundResource(R.drawable.critical_rounded);
 	 			     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("CL").floatValue()>results.get(0).getNumber("CL").floatValue())
@@ -257,7 +279,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("CP").floatValue()<=5.0||objects.get(0).getNumber("CP").floatValue()>15.0)
 				     {
 	    				RelativeLayout colorimeter_layout = (RelativeLayout) findViewById(R.id.colorimeter);
-	    				colorimeter_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				colorimeter_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				colorimeter_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("CP").floatValue()>results.get(0).getNumber("CP").floatValue())
@@ -282,7 +305,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("CTVT").floatValue()<=23.0||objects.get(0).getNumber("CTVT").floatValue()>70.0)
 				     {
 	    				RelativeLayout conductivity_layout = (RelativeLayout) findViewById(R.id.conductivity);
-	    				conductivity_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				conductivity_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				conductivity_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("CTVT").floatValue()>results.get(0).getNumber("CTVT").floatValue())
@@ -308,7 +332,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("DO").floatValue()<=5.0||objects.get(0).getNumber("DO").floatValue()>15.0)
 				     {
 	    				RelativeLayout dissolved_layout = (RelativeLayout) findViewById(R.id.dissolved_oxygen);
-	    				dissolved_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				dissolved_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				dissolved_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("DO").floatValue()>results.get(0).getNumber("DO").floatValue())
@@ -334,7 +359,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("FCL").floatValue()<=5.0||objects.get(0).getNumber("FCL").floatValue()>15.0)
 				     {
 	    				RelativeLayout free_chlorine_layout = (RelativeLayout) findViewById(R.id.free_chlorine);
-	    				free_chlorine_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				free_chlorine_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				free_chlorine_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("FCL").floatValue()>results.get(0).getNumber("FCL").floatValue())
@@ -359,7 +385,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("NO3").floatValue()<=5.0||objects.get(0).getNumber("NO3").floatValue()>15.0)
 				     {
 	    				RelativeLayout nitrate_layout = (RelativeLayout) findViewById(R.id.nitrate);
-	    				nitrate_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				nitrate_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				nitrate_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("NO3").floatValue()>results.get(0).getNumber("NO3").floatValue())
@@ -384,7 +411,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("ORP").floatValue()<=5.0||objects.get(0).getNumber("ORP").floatValue()>15.0)
 				     {
 	    				RelativeLayout orp_layout = (RelativeLayout) findViewById(R.id.orp);
-	    				orp_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				orp_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				orp_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("ORP").floatValue()>results.get(0).getNumber("ORP").floatValue())
@@ -409,7 +437,8 @@ public class AddRecordActivity extends Activity  {
 	    			if(objects.get(0).getNumber("PH").floatValue()<=3.5||objects.get(0).getNumber("PH").floatValue()>10.5)
 				     {
 	    				RelativeLayout ph_layout = (RelativeLayout) findViewById(R.id.ph);
-	    				ph_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+//	    				ph_layout.setBackgroundColor(Color.parseColor("#FD5484"));
+	    				ph_layout.setBackgroundResource(R.drawable.critical_rounded);
 				     }
 	    			try{
 	    			if(results.size()>0 && objects.get(0).getNumber("PH").floatValue()>results.get(0).getNumber("PH").floatValue())
@@ -428,7 +457,7 @@ public class AddRecordActivity extends Activity  {
     		}
     		else
     		{
-    			Toast.makeText(AddRecordActivity.this, "Not found today Record", Toast.LENGTH_SHORT).show();
+    			Toast.makeText(AddRecordActivity.this, "Record Not found", Toast.LENGTH_SHORT).show();
     		}
 				 
     	}
@@ -457,6 +486,7 @@ public class AddRecordActivity extends Activity  {
 	
 	public void clicker(View v)
 	{
+		float value;
 		switch(v.getId())
 		{
 		case R.id.ammonia:
@@ -467,6 +497,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 1);
+			TextView ammonia_value = (TextView)findViewById(R.id.ammonia_value);
+			if(ammonia_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(ammonia_value.getText().toString());
+			    intent.putExtra("ammonia_value", value);
+			}
 			startActivity(intent);
 			break;
 			
@@ -477,6 +513,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 2);
+			TextView biochemical_value = (TextView)findViewById(R.id.biochemical_value);
+			if(biochemical_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(biochemical_value.getText().toString());
+			    intent.putExtra("biochemical_value", value);
+			}
 			startActivity(intent);
 			 	break;
 		case R.id.chloride:
@@ -486,6 +528,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 3);
+			TextView chloride_value = (TextView)findViewById(R.id.chloride_value);
+			if(chloride_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(chloride_value.getText().toString());
+			    intent.putExtra("chloride_value", value);
+			}
 			startActivity(intent);
 		 	break;	
 		case R.id.colorimeter:
@@ -495,6 +543,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id",4);
+			TextView colorimeter_value = (TextView)findViewById(R.id.colorimeter_value);
+			if(colorimeter_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(colorimeter_value.getText().toString());
+			    intent.putExtra("colorimeter_value", value);
+			}
 			startActivity(intent);
 		 	break;
 		case R.id.conductivity:
@@ -504,6 +558,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 5);
+			TextView conductivity_value = (TextView)findViewById(R.id.conductivity_value);
+			if(conductivity_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(conductivity_value.getText().toString());
+			    intent.putExtra("conductivity_value", value);
+			}
 			startActivity(intent);
 		 	break;
 		case R.id.dissolved_oxygen:
@@ -513,6 +573,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 6);
+			TextView dissolved_oxygen_value = (TextView)findViewById(R.id.dissolved_oxygen_value);
+			if(dissolved_oxygen_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(dissolved_oxygen_value.getText().toString());
+			    intent.putExtra("disolved_oxygen_value", value);
+			}
 			startActivity(intent);
 		 	break;
 		case R.id.free_chlorine:
@@ -522,6 +588,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 7);
+			TextView free_chlorine_value = (TextView)findViewById(R.id.free_chlorine_value);
+			if(free_chlorine_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(free_chlorine_value.getText().toString());
+			    intent.putExtra("free_chlorine_value", value);
+			}
 			startActivity(intent);
 		 	break;
 		case R.id.nitrate:
@@ -531,6 +603,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 8);
+			TextView nitrate_value = (TextView)findViewById(R.id.nitrate_value);
+			if(nitrate_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(nitrate_value.getText().toString());
+			    intent.putExtra("nitrate_value", value);
+			}
 			startActivity(intent);
 		 	break;
 		case R.id.orp:
@@ -540,6 +618,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 		    intent.putExtra("location", location_id);
 		    intent.putExtra("id", 9);
+		    TextView orp_value = (TextView)findViewById(R.id.orp_value);
+			if(orp_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(orp_value.getText().toString());
+			    intent.putExtra("orp_value", value);
+			}
 		    startActivity(intent);
 		 	break;
 		case R.id.ph:
@@ -549,6 +633,12 @@ public class AddRecordActivity extends Activity  {
 			{intent.putExtra("create_date", create_date);}
 			intent.putExtra("location", location_id);
 			intent.putExtra("id", 10);
+			TextView ph_value = (TextView)findViewById(R.id.ph_value);
+			if(ph_value.getText().length() > 0)
+			{
+				 value = Float.parseFloat(ph_value.getText().toString());
+			    intent.putExtra("ph_value", value);
+			}
 			startActivity(intent);
 		 	break;
 		}

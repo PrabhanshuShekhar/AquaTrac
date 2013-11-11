@@ -9,13 +9,13 @@
                  android:layout_width="fill_parent"
                  android:layout_height="120dp"
         >
-      <TextView  android:text="Aqua Trac"
-                 android:textSize="35dp"
-                 android:textColor="#00BFFF"
+      <TextView  android:text="AquaTrac"
+                 android:textSize="40dp"
+                 android:textColor="#000066"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_marginLeft="40dp"
-                 android:layout_marginTop="30dp"
+                 android:layout_marginLeft="45dp"
+                 android:layout_marginTop="20dp"
                  />
       <ImageView android:id="@+id/logo_fish"
                  android:layout_width="80dp"

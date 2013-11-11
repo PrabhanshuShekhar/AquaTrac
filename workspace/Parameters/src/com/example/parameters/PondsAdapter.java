@@ -27,7 +27,7 @@ public class PondsAdapter extends BaseAdapter {
 	
 	private Context context;
 	public static ArrayList<String> location_ids;
-	private ArrayList<String> location_names;
+	public static ArrayList<String> location_names;
 	
 //	 Parse.initialize(this, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3", "xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 	public PondsAdapter(Context c)
@@ -76,9 +76,6 @@ public class PondsAdapter extends BaseAdapter {
 		return 0;
 	}
 	
-
-	
-	
 	public View getView(int position,View view, ViewGroup parent)
 	{
 		RelativeLayout rl;
@@ -86,37 +83,30 @@ public class PondsAdapter extends BaseAdapter {
 		Log.d("odd_number", "==========position:" +position);
 		if(view == null)
 		{
-//			rl = new RelativeLayout(context);
-//
-//					rl.setLayoutParams(new GridView.LayoutParams(250, 250));
-//					rl.setBackgroundColor(Color.parseColor("#00BFFF"));
-//					textview = new TextView(context);
-//					textview.setTextSize(20);
-//					textview.setPadding(25,90, 10,10);
-//					textview.setTextColor(Color.parseColor("#F2F2F2"));
-//					textview.setText(location_names.get(position));
-//					rl.addView(textview);
+
 			rl = new RelativeLayout(context);
 			RelativeLayout rl1 = new RelativeLayout(context);
-			rl1.setLayoutParams(new GridView.LayoutParams(250,250));
+			rl1.setLayoutParams(new GridView.LayoutParams(330,250));
 			if(location_ids.size()%2!= 0 && position == location_ids.size() - 1){
-				
-						rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+						rl.setLayoutParams(new GridView.LayoutParams(330, 280));
 			}else if(location_ids.size()%2 == 0 && position == location_ids.size() -2 || position == location_ids.size() - 1)
 			{
-				rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+				rl.setLayoutParams(new GridView.LayoutParams(330, 280));
 			}
 			else
 			{
-				rl.setLayoutParams(new GridView.LayoutParams(250, 250));
+				rl.setLayoutParams(new GridView.LayoutParams(330, 250));
 			}
 			
 			
-			
-			rl1.setBackgroundColor(Color.parseColor("#00BFFF"));
+			rl1.setPadding(10, 10, 10, 10); // new line
+			rl1.setBackgroundColor(Color.parseColor("#000066"));
+			rl1.setBackgroundResource(R.drawable.rounded);
+			RelativeLayout.LayoutParams lp=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+			lp.addRule(RelativeLayout.CENTER_IN_PARENT);
 			textview = new TextView(context);
+			textview.setLayoutParams(lp);
 			textview.setTextSize(20);
-			textview.setPadding(25,90, 10,10);
 			textview.setTextColor(Color.parseColor("#F2F2F2"));
 			textview.setText(location_names.get(position));
 			rl1.addView(textview);
@@ -124,33 +114,28 @@ public class PondsAdapter extends BaseAdapter {
 		}
 		else
 		{
-//			rl = (RelativeLayout) view;
-//			rl.removeAllViews();
-//			textview = new TextView(context);
-//			textview.setTextSize(20);
-//			textview.setPadding(25,90, 10,10);
-//			textview.setTextColor(Color.parseColor("#F2F2F2"));
-//			textview.setText(location_names.get(position)); 
-//			rl.addView(textview);
+
 			rl = (RelativeLayout) view;
 			rl.removeAllViews();
 			if(location_ids.size()%2!= 0 && position == location_ids.size() - 1){
-				
-				rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+				rl.setLayoutParams(new GridView.LayoutParams(320, 280));
 	}else if(location_ids.size()%2 == 0 && position == location_ids.size() -2 || position == location_ids.size() - 1)
 	{
-		rl.setLayoutParams(new GridView.LayoutParams(250, 280));
+		rl.setLayoutParams(new GridView.LayoutParams(330, 280));
 	}
 	else
 	{
-		rl.setLayoutParams(new GridView.LayoutParams(250, 250));
+		rl.setLayoutParams(new GridView.LayoutParams(330, 250));
 	}
 			RelativeLayout rl1 = new RelativeLayout(context);
-			rl1.setLayoutParams(new GridView.LayoutParams(250,250));
-			rl1.setBackgroundColor(Color.parseColor("#00BFFF"));
+			rl1.setLayoutParams(new GridView.LayoutParams(330,250));
+			rl1.setBackgroundColor(Color.parseColor("#000066"));
+			rl1.setBackgroundResource(R.drawable.rounded);
+			RelativeLayout.LayoutParams lp=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+			lp.addRule(RelativeLayout.CENTER_IN_PARENT);
 			textview = new TextView(context);
+			textview.setLayoutParams(lp);
 			textview.setTextSize(20);
-			textview.setPadding(25,90, 10,10);
 			textview.setTextColor(Color.parseColor("#F2F2F2"));
 			textview.setText(location_names.get(position)); 
 			rl1.addView(textview);
@@ -159,4 +144,7 @@ public class PondsAdapter extends BaseAdapter {
 		
 		return rl;
 	}
+	
+	
+	
 }

@@ -74,6 +74,7 @@ public class AddActivity extends Activity {
 				String action_name = getIntent().getStringExtra("action_name");
 				intent = new Intent(AddActivity.this,AddRecordActivity.class);
 				intent.putExtra("location", PondsAdapter.location_ids.get(position) );
+				intent.putExtra("location_name", PondsAdapter.location_names.get(position));
 				intent.putExtra("action_name", action_name);
 			    startActivity(intent);
 //				switch(position)

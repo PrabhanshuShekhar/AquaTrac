@@ -5,27 +5,64 @@
     android:orientation="vertical">
 	 <LinearLayout
 	     android:layout_width="fill_parent"
-	     android:layout_height="35dp"
+	     android:layout_height="50dp"
 	     android:orientation="horizontal"
-	     android:background="@color/lightblue" >
+	     android:background="#163C7A" >
 	     <TextView 
+             android:text="AquaTrac"
+             android:textSize="30dp"
+             android:textColor="#F2F2F2" 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:fastScrollEnabled="true"
+             android:layout_gravity="center_horizontal"
+             android:layout_marginLeft="120dp"
+             android:layout_marginTop="7dp"
+            />
+	 </LinearLayout>
+	  <LinearLayout
+	     android:layout_width="fill_parent"
+	     android:layout_height="35dp"
+	     android:orientation="horizontal" > 
+	     <LinearLayout
+	     android:layout_width="200dp"
+	     android:layout_height="35dp"
+	     android:orientation="horizontal" >
+	     <TextView 
+	         android:id="@+id/pond_text"
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:layout_marginLeft="10dp"
+	         android:layout_marginTop="5dp"
+	         android:textColor="#163C7A"
+	         android:textSize="25dp"
+	         android:text="Location2"
+	         />
+	     </LinearLayout>
+	     <LinearLayout
+	         android:layout_width="200dp"
+	         android:layout_height="35dp"
+	         android:orientation="horizontal" >
+	 <TextView 
 	         android:id="@+id/date_text"
 	         android:layout_width="wrap_content"
 	         android:layout_height="wrap_content"
-	         android:layout_marginLeft="5dp"
-	         android:textColor="#ffffff"
+	         android:layout_marginLeft="1dp"
+	         android:layout_marginTop="5dp"
+	         android:textColor="#163C7A"
 	         android:textSize="25dp"
 	         />
 	     <ImageView 
 	         android:layout_width="wrap_content"
 	         android:layout_height="30dp"
-	         android:layout_marginLeft="200dp"
+	         android:layout_marginLeft="0dp"
+	         android:layout_marginTop="5dp"
 	         android:layout_gravity="center"
 	         android:src="@drawable/android_calender"
 	         android:onClick="calendar"
 	         />
-	     
-	 </LinearLayout>
+	     </LinearLayout>
+	  </LinearLayout>
 <ScrollView 
 android:id="@+id/ScrollView01" android:layout_width="fill_parent"
 android:layout_height="fill_parent" >
@@ -36,23 +73,23 @@ android:layout_height="fill_parent" >
    
     
        <RelativeLayout android:id="@+id/ammonia"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
           android:layout_marginLeft="12.5dp"
-          android:layout_marginTop="25dp"
+          android:layout_marginTop="20dp"
           android:onClick="clicker"
            >
 	      <ImageView android:id="@+id/ammonia_image"
 	                 android:layout_width="75dp"
-	                 android:layout_height="125dp"
+	                 android:layout_height="70dp"
 	                 android:layout_marginLeft="10dp"
 	                 android:layout_marginTop="0dp"
 	                 android:src="@drawable/image_2"
 	                    />  
 	      <TextView android:id="@+id/ammonia_value"
 	                android:layout_toRightOf="@id/ammonia_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="10dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -66,30 +103,31 @@ android:layout_height="fill_parent" >
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:layout_below="@id/ammonia_image"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"	
+	                android:layout_marginTop="25dp"          
 	          />
 	      
  </RelativeLayout>
        
     <RelativeLayout android:id="@+id/biochemical"
           android:layout_toRightOf="@id/ammonia"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue"
-          android:layout_marginLeft="10dp"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
+          android:layout_marginLeft="17.5dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
-          android:layout_marginTop="25dp" >
+          android:layout_marginTop="20dp" >
          <ImageView android:id="@+id/biochemical_image"
 	                 android:layout_width="75dp"
-	                 android:layout_height="125dp"
+	                 android:layout_height="70dp"
 	                 android:layout_marginLeft="10dp"
 	                 android:layout_marginTop="0dp"
 	                 android:src="@drawable/image_3"
 	                    /> 
 	    <TextView android:id="@+id/biochemical_value"
 	                android:layout_toRightOf="@id/biochemical_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="10dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -103,30 +141,31 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/biochemical_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"	
+	                android:layout_marginTop="25dp"          
 	          />                
         
 </RelativeLayout>
     
  <RelativeLayout android:id="@+id/chloride"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
           android:layout_marginLeft="12.5dp"
-          android:layout_marginTop="10dp"
+          android:layout_marginTop="17.5dp"
           android:onClick="clicker"
           android:layout_below="@id/ammonia" >
          
         <ImageView android:id="@+id/chloride_image"
 	                 android:layout_width="75dp"
-	                 android:layout_height="125dp"
+	                 android:layout_height="70dp"
 	                 android:layout_marginLeft="10dp"
 	                 android:layout_marginTop="0dp"
 	                 android:src="@drawable/image_4"
 	                    /> 
 	    <TextView android:id="@+id/chloride_value"
 	                android:layout_toRightOf="@id/chloride_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="10dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -140,7 +179,8 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/chloride_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	
+	                android:layout_marginLeft="10dp"
+	                android:layout_marginTop="25dp"	
 	          />  
         
 	</RelativeLayout>
@@ -148,17 +188,17 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/colorimeter"
           android:layout_toRightOf="@id/chloride"
           android:layout_below="@id/biochemical"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue" 
-          android:layout_marginLeft="10dp"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded" 
+          android:layout_marginLeft="17.5dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
-          android:layout_marginTop="10dp" >
+          android:layout_marginTop="17.5dp" >
         
 		        <ImageView android:id="@+id/colorimeter_image"
 			                 android:layout_width="75dp"
-			                 android:layout_height="125dp"
+			                 android:layout_height="70dp"
 			                 android:layout_marginLeft="10dp"
 			                 android:layout_marginTop="0dp"
 			                 android:src="@drawable/image_5"
@@ -166,7 +206,7 @@ android:layout_height="fill_parent" >
 			                    
 		        <TextView android:id="@+id/colorimeter_value"
 	                android:layout_toRightOf="@id/colorimeter_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="10dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -180,30 +220,31 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/colorimeter_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"	
+	                android:layout_marginTop="25dp"          
 	          /> 
       </RelativeLayout>
       
     
     <RelativeLayout android:id="@+id/conductivity"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
           android:layout_marginLeft="12.5dp"
-          android:layout_marginTop="10dp"
+          android:layout_marginTop="17.5dp"
           android:onClick="clicker"
           android:layout_below="@id/chloride" >
 		        
 		        <ImageView android:id="@+id/conductivity_image"
 			                 android:layout_width="75dp"
-			                 android:layout_height="125dp"
+			                 android:layout_height="70dp"
 			                 android:layout_marginLeft="10dp"
 			                 android:layout_marginTop="0dp"
 			                 android:src="@drawable/image_6"
 			                    />  
                 <TextView android:id="@+id/conductivity_value"
 	                android:layout_toRightOf="@id/conductivity_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="10dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -217,7 +258,8 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/conductivity_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"
+	                android:layout_marginTop="25dp"	          
 	          /> 
         
     </RelativeLayout>
@@ -225,23 +267,23 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/dissolved_oxygen"
           android:layout_toRightOf="@id/conductivity"
           android:layout_below="@id/colorimeter"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue" 
-          android:layout_marginLeft="10dp"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded" 
+          android:layout_marginLeft="17.5dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
-          android:layout_marginTop="10dp" >
+          android:layout_marginTop="17.5dp" >
 				<ImageView android:id="@+id/dissolved_oxygen_image"
 			                 android:layout_width="75dp"
-			                 android:layout_height="125dp"
+			                 android:layout_height="70dp"
 			                 android:layout_marginLeft="10dp"
 			                 android:layout_marginTop="0dp"
 			                 android:src="@drawable/image_7"
 			                    />          
                 <TextView android:id="@+id/dissolved_oxygen_value"
 	                android:layout_toRightOf="@id/dissolved_oxygen_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="10dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -255,21 +297,22 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/dissolved_oxygen_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"
+	                android:layout_marginTop="25dp"	          
 	          /> 
         
     </RelativeLayout>
     <RelativeLayout android:id="@+id/free_chlorine"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
           android:layout_marginLeft="12.5dp"
-          android:layout_marginTop="10dp"
+          android:layout_marginTop="17.5dp"
           android:onClick="clicker"
           android:layout_below="@id/conductivity" >
 				<ImageView android:id="@+id/free_chlorine_image"
 	                 android:layout_width="75dp"
-	                 android:layout_height="125dp"
+	                 android:layout_height="70dp"
 	                 android:layout_marginLeft="10dp"
 	                 android:layout_marginTop="0dp"
 	                 android:src="@drawable/image_8"
@@ -277,7 +320,7 @@ android:layout_height="fill_parent" >
 	            
 				<TextView android:id="@+id/free_chlorine_value"
 	                android:layout_toRightOf="@id/free_chlorine_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="20dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -291,7 +334,8 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/free_chlorine_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"	
+	                android:layout_marginTop="25dp"          
 	          /> 
 				
     </RelativeLayout>
@@ -300,17 +344,17 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/nitrate"
           android:layout_toRightOf="@id/free_chlorine"
           android:layout_below="@id/dissolved_oxygen"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue" 
-          android:layout_marginLeft="10dp"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
+          android:layout_marginLeft="17.5dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
-          android:layout_marginTop="10dp" >
+          android:layout_marginTop="17.5dp" >
 		 		
 		        <ImageView android:id="@+id/nitrate_image"
 			                 android:layout_width="75dp"
-			                 android:layout_height="125dp"
+			                 android:layout_height="70dp"
 			                 android:layout_marginLeft="10dp"
 			                 android:layout_marginTop="0dp"
 			                 android:src="@drawable/image_9"
@@ -318,7 +362,7 @@ android:layout_height="fill_parent" >
 			                    
 		        <TextView android:id="@+id/nitrate_value"
 	                android:layout_toRightOf="@id/nitrate_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="20dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -332,23 +376,24 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/nitrate_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"	
+	                android:layout_marginTop="25dp"          
 	          /> 
      </RelativeLayout>
     
     
     <RelativeLayout android:id="@+id/orp"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded"
           android:layout_marginLeft="12.5dp"
-          android:layout_marginTop="10dp"
+          android:layout_marginTop="17.5dp"
           android:onClick="clicker"
           android:layout_below="@id/free_chlorine" >
 		     
 		           <ImageView android:id="@+id/orp_image"
 			                 android:layout_width="75dp"
-			                 android:layout_height="125dp"
+			                 android:layout_height="70dp"
 			                 android:layout_marginLeft="10dp"
 			                 android:layout_marginTop="0dp"
 			                 android:src="@drawable/image_10"
@@ -356,7 +401,7 @@ android:layout_height="fill_parent" >
 			                    
 		           <TextView android:id="@+id/orp_value"
 	                android:layout_toRightOf="@id/orp_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="20dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -370,7 +415,8 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/orp_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"
+	                android:layout_marginTop="25dp"	          
 	          /> 
     </RelativeLayout>
     
@@ -378,23 +424,23 @@ android:layout_height="fill_parent" >
     <RelativeLayout android:id="@+id/ph"
           android:layout_toRightOf="@id/orp"
           android:layout_below="@id/nitrate"
-          android:layout_width="175dp"
-          android:layout_height="150dp"
-          android:background="@color/lightblue" 
-          android:layout_marginLeft="10dp"
+          android:layout_width="170dp"
+          android:layout_height="125dp"
+          android:background="@drawable/rounded" 
+          android:layout_marginLeft="17.5dp"
           android:layout_marginRight="10dp"
           android:onClick="clicker"
-          android:layout_marginTop="10dp" >
+          android:layout_marginTop="17.5dp" >
 		          <ImageView android:id="@+id/ph_image"
 			                 android:layout_width="75dp"
-			                 android:layout_height="125dp"
+			                 android:layout_height="70dp"
 			                 android:layout_marginLeft="10dp"
 			                 android:layout_marginTop="0dp"
 			                 android:src="@drawable/image_11"
 			                    />  
 			        <TextView android:id="@+id/ph_value"
 	                android:layout_toRightOf="@id/ph_image"
-	                android:layout_marginLeft="40dp"
+	                android:layout_marginLeft="20dp"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:textColor="#ffffff"
@@ -408,7 +454,8 @@ android:layout_height="fill_parent" >
 	                android:layout_below="@id/ph_image"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_marginLeft="10dp"	          
+	                android:layout_marginLeft="10dp"	
+	                android:layout_marginTop="25dp"          
 	          /> 
      </RelativeLayout>
     

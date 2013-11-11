@@ -1,8 +1,11 @@
 package com.example.parameters;
 
+import com.example.parameters.R.drawable;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,16 +49,19 @@ public class ImageAdapter extends BaseAdapter {
 			linear_layout = new LinearLayout(context);
 			linear_layout.setOrientation(LinearLayout.VERTICAL);
 			imageview = new ImageView(context);
-			imageview.setLayoutParams(new GridView.LayoutParams(200,200));
+			imageview.setLayoutParams(new GridView.LayoutParams(250,250));
 			imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
 //			imageview.setPadding(30, 30, 10, 10);
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(imageview.getLayoutParams());
-			lp.setMargins(75, 100,0, 0);
+//			lp.setMargins(60, 100,0, 0);
+//			lp.setMargins(left, top, right, bottom);
+			lp.setMargins(50, 40, 5, 5);
 			imageview.setLayoutParams(lp);
 			imageview.setImageResource(thumbIds[position]);
+//			imageview.setBackgroundResource(R.drawable.rounded);
 			textview = new  TextView(context);
 			textview.setText(text[position]);
-			textview.setTextColor(Color.parseColor("#228B22"));
+			textview.setTextColor(Color.parseColor("#000066"));
 			textview.setTextSize(25);
 			Typeface tf = Typeface.createFromAsset(context.getAssets(), "fonts/Helvetica-Condensed.otf");
 			textview.setTypeface(tf);
@@ -75,11 +81,11 @@ public class ImageAdapter extends BaseAdapter {
 	}
 	
 	private Integer [] thumbIds  = {
-			R.drawable.add_blue,
-			R.drawable.view_blue,
-			R.drawable.settings_blue,
-			R.drawable.report
+			R.drawable.add_blue_rounded,
+			R.drawable.view_blue_rounded,
+			R.drawable.settings_blue_rounded,
+			R.drawable.users_blue_rounded
 	};
-	private String [] text = {"Record" , "View" , "Settings", "Report"};
+	private String [] text = {"Add" , "View" , "Settings", "Report"};
 
 }

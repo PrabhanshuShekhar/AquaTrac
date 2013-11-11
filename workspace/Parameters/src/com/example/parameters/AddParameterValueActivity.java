@@ -28,6 +28,7 @@ import com.parse.ParseException;
 public class AddParameterValueActivity extends Activity {
 	TextView slider,slider_value,instruction;
 	SeekBar seekbar;
+	TextView min_value,max_value;
 	String table_id,create_date;
 	
 	@Override
@@ -39,6 +40,138 @@ public class AddParameterValueActivity extends Activity {
 //		 slider = (TextView) findViewById(R.id.slider);
 		 instruction = (TextView)findViewById(R.id.instruction);
 		 instruction.setText("Set Value for "+getIntent().getStringExtra("param_name"));
+		 int id = getIntent().getIntExtra("id", 0);
+		 float value;
+		 int prev_value;
+		 switch(id)
+		    {
+		    case 1:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("ammonia_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(2000);
+		    	seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("200.0");
+		    	break;
+		    case 2:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("biochemical_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)(Math.abs((-25 - value))*10);
+		    	 seekbar.setMax(800);
+		    	seekbar.setProgress(prev_value);
+		    	 min_value = (TextView)findViewById(R.id.min_value);
+			    	min_value.setText("-25.0");
+			    	 max_value = (TextView)findViewById(R.id.max_value);
+			    	max_value.setText("55.0");
+		    	 break;
+		    case 3:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("chloride_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(6000);
+		    	seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("600.0");
+		    	  break;
+		    case 4:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("colorimeter_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(200);
+		    	seekbar.setProgress(prev_value*10);
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("20.0");
+		    	  break;
+		    case 5:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("conductivity_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	seekbar.setMax(1070);
+		    	if(prev_value!=0)
+		    	{
+		    	seekbar.setProgress(Math.abs(-7-prev_value)*10);
+		    	}
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("-7.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("100.0");
+		    	  break;
+		    case 6:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("disolved_oxygen_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(200);
+		    	seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("20.0");
+		    	  break;
+		    case 7:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("free_chlorine_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(200);
+		    	seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("20.0");
+		    	  break;
+		    	  
+		    case 8:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("nitrate_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(200);
+		    	 seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("20.0");
+		    	  break;
+		    case 9:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("orp_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(200);
+		    	seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("20.0");
+		    	   break;
+		    case 10:
+		    	seekbar = (SeekBar) findViewById(R.id.seekbar);
+		    	 value = getIntent().getFloatExtra("ph_value", 0);
+		    	 slider_value.setText(""+value);
+		    	 prev_value = (int)value;
+		    	 seekbar.setMax(140);
+		    	seekbar.setProgress((prev_value*10));
+		    	min_value = (TextView)findViewById(R.id.min_value);
+		    	min_value.setText("0.0");
+		    	 max_value = (TextView)findViewById(R.id.max_value);
+		    	max_value.setText("14.0");
+		    	   break;
+		    case 0:
+		    	 break;
+		    }
 //		slider.setText(getIntent().getStringExtra("param_name"));
 		table_id = getIntent().getStringExtra("location");
 		create_date = getIntent().getStringExtra("create_date");
@@ -52,53 +185,63 @@ public class AddParameterValueActivity extends Activity {
 			    {
 			    case 1:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(2000);
+//			    	seekbar.setMax(2000);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	break;
 			    case 2:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(800);
+//			    	seekbar.setMax(800);
 			    	slider_value.setText(""+Float.toString((float)(progress-250)/10));
+			    	
 			    	 break;
 			    case 3:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(6000);
+//			    	seekbar.setMax(6000);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	  break;
 			    case 5:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(1070);
-			    	slider_value.setText(""+Float.toString((float)(progress-70)/10));			    	
+//			    	seekbar.setMax(1070);
+			    	slider_value.setText(""+Float.toString((float)(progress-70)/10));	
+			    	
 			    	 break;
 			    case 4:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(200);
+//			    	seekbar.setMax(200);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	 break;
 			    case 6:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(200);
+//			    	seekbar.setMax(200);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	 break;
 			    case 7:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(200);
+//			    	seekbar.setMax(200);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	 break;
 			    case 8:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(200);
+//			    	seekbar.setMax(200);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	  break;
 			    case 9:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(200);
+//			    	seekbar.setMax(200);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	  break;
 			    case 10:
 			    	seekbar = (SeekBar) findViewById(R.id.seekbar);
-			    	seekbar.setMax(140);
+//			    	seekbar.setMax(140);
 			    	slider_value.setText(""+Float.toString((float)(progress)/10));
+			    	
 			    	 break;
 			    case 0:
 			    	 break;

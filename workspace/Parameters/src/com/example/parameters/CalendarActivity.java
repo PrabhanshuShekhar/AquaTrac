@@ -441,6 +441,8 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			Intent intent = new Intent(CalendarActivity.this,AddRecordActivity.class);
 			intent.putExtra("action_name", action_name);
 			intent.putExtra("location", location_name);
+			int in = PondsAdapter.location_ids.indexOf(location_name);
+			intent.putExtra("location_name",PondsAdapter.location_names.get(in));
 			intent.putExtra("create_date", date[0]+"/"+month+"/"+date[2]);
 			startActivity(intent);
 		}
