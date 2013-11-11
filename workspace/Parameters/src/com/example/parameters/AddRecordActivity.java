@@ -457,6 +457,10 @@ public class AddRecordActivity extends Activity  {
     		}
     		else
     		{
+    		  if(dialog!=null)
+    		  {
+    			  dialog.dismiss();
+    		  }
     			Toast.makeText(AddRecordActivity.this, "Record Not found", Toast.LENGTH_SHORT).show();
     		}
 				 
