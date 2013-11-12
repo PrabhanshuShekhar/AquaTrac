@@ -488,6 +488,7 @@ public class AddRecordActivity extends Activity  {
 		intent.putExtra("location", location_id);
 		intent.putExtra("action_name", action_name);
 		startActivity(intent);
+		finish();
 	}
 	
 	public void clicker(View v)
@@ -510,6 +511,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("ammonia_value", value);
 			}
 			startActivity(intent);
+			finish();
 			break;
 			
 		case R.id.biochemical:
@@ -526,6 +528,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("biochemical_value", value);
 			}
 			startActivity(intent);
+			finish();
 			 	break;
 		case R.id.chloride:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -541,6 +544,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("chloride_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;	
 		case R.id.colorimeter:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -556,6 +560,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("colorimeter_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;
 		case R.id.conductivity:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -571,6 +576,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("conductivity_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;
 		case R.id.dissolved_oxygen:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -586,6 +592,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("disolved_oxygen_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;
 		case R.id.free_chlorine:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -601,6 +608,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("free_chlorine_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;
 		case R.id.nitrate:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -616,6 +624,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("nitrate_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;
 		case R.id.orp:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -631,6 +640,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("orp_value", value);
 			}
 		    startActivity(intent);
+		    finish();
 		 	break;
 		case R.id.ph:
 			intent = new Intent(this, AddParameterValueActivity.class);
@@ -646,6 +656,7 @@ public class AddRecordActivity extends Activity  {
 			    intent.putExtra("ph_value", value);
 			}
 			startActivity(intent);
+			finish();
 		 	break;
 		}
 		

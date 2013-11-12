@@ -445,6 +445,7 @@ public class CalendarActivity extends Activity implements OnClickListener {
 			intent.putExtra("location_name",PondsAdapter.location_names.get(in));
 			intent.putExtra("create_date", date[0]+"/"+month+"/"+date[2]);
 			startActivity(intent);
+			finish();
 		}
 
 		public int getCurrentDayOfMonth() {
