@@ -412,7 +412,7 @@ public class AddParameterValueActivity extends Activity {
 				intent1.putExtra("create_date", date);
 				intent1.putExtra("location", getIntent().getStringExtra("location"));
 			    intent1.putExtra("action_name", "Record");
-				Toast.makeText(AddParameterValueActivity.this, date, Toast.LENGTH_SHORT).show();
+				Toast.makeText(AddParameterValueActivity.this, "Future date does not allowed", Toast.LENGTH_SHORT).show();
 				startActivity(intent1);
 				finish();
 				return;
