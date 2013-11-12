@@ -105,6 +105,7 @@ public class AddRecordActivity extends Activity  {
         				 }
         				 else
         				 {
+//        					 getIntent().removeExtra("create_date");
 		        			 Toast.makeText(AddRecordActivity.this, "Future date does not allowed", Toast.LENGTH_SHORT).show();
 		        			 return;
         				 }
@@ -127,6 +128,7 @@ public class AddRecordActivity extends Activity  {
         	}
         	else
         	{
+//        		getIntent().removeExtra("create_date");
         		Toast.makeText(AddRecordActivity.this, "Future date does not allowed", Toast.LENGTH_SHORT).show();
         		return;
         	}

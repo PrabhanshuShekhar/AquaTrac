@@ -342,7 +342,13 @@ public class AddParameterValueActivity extends Activity {
 		create_date = getIntent().getStringExtra("create_date");
 		if(create_date != null)
 		{
-			try{
+			Date check_date = new Date();
+			int dd1 = Integer.parseInt(create_date.split("/")[0]);
+			int mm1 = Integer.parseInt(create_date.split("/")[1]);
+			int yy1 = Integer.parseInt(create_date.split("/")[2]);
+			if((dd1 <= check_date.getDate() && mm1 <= check_date.getMonth()+1 && yy1 <= Calendar.getInstance().get(Calendar.YEAR))||(dd1>check_date.getDate()&&mm1<check_date.getMonth()+1&&yy1<=Calendar.getInstance().get(Calendar.YEAR))||(mm1>check_date.getMonth()+1 && yy1 <Calendar.getInstance().get(Calendar.YEAR)))
+			{
+				try{
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 				ParseQuery<ParseObject> query = ParseQuery.getQuery("ParameterValue");
 				query.whereEqualTo("location_objectid", table_id);
@@ -397,6 +403,20 @@ public class AddParameterValueActivity extends Activity {
 					}
 				}); // end findInbackground
 			}catch(Exception parse){}
+			}
+			else
+			{
+				Intent intent1 = new Intent(AddParameterValueActivity.this,AddRecordActivity.class);
+				String date = check_date.getDate()+"/"+(check_date.getMonth()+1)+"/"+Calendar.getInstance().get(Calendar.YEAR);
+				
+				intent1.putExtra("create_date", date);
+				intent1.putExtra("location", getIntent().getStringExtra("location"));
+			    intent1.putExtra("action_name", "Record");
+				Toast.makeText(AddParameterValueActivity.this, date, Toast.LENGTH_SHORT).show();
+				startActivity(intent1);
+				finish();
+				return;
+			}
 		}else // create_date != null means if  date is null  operate on current date
 		{
 			try{
