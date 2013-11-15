@@ -69,7 +69,7 @@ public class ParameterAdapter extends BaseAdapter {
 					.setVisibility(View.INVISIBLE);
 
 		}
-		if (position == SelectParameterActivity.temp) {
+		if (position == SelectParameterActivity.staticListIndex) {
 			((RadioButton) convertView.findViewById(R.id.parameter_radioButton))
 					.setChecked(true);
 		}

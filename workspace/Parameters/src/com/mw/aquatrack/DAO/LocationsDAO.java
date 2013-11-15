@@ -1,7 +1,9 @@
 package com.mw.aquatrack.DAO;
 
 import java.util.List;
+
 import android.content.Context;
+
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -9,13 +11,17 @@ import com.parse.ParseQuery;
 
 public class LocationsDAO {
 	ParseQuery<ParseObject> query;
-
+	ParseQuery<ParseObject> query2;
+Context context;
+ValuesDAO valuesDAO;
 	// Constructor
 	public LocationsDAO(Context context) {
 		super();
+		this.context = context;
 		Parse.initialize(context, "hjYMRHgjBNK6fzcltOMtnmglaDYIQIU3PJfdCMF3",
 				"xgBSMsHThQK5kzLvqSwDznSrpH9Gq8bW7ZYl6YoA");
 		query = ParseQuery.getQuery("Location");
+		query2 = ParseQuery.getQuery("ParameterValue");
 	}
 
 	// get
@@ -25,9 +31,10 @@ public class LocationsDAO {
 		try {
 			locationList = query.find();
 		} catch (ParseException e) {
+			System.out.println("cant find locations");
 			e.printStackTrace();
 		}
-		System.out.println("locations size is: " + locationList.size());
+//		System.out.println("locations size is: " + locationList.size());
 		return locationList;
 	}
 
@@ -44,6 +51,7 @@ public class LocationsDAO {
 	// get
 	public ParseObject getLastAddedLocation() {
 		query.orderByDescending("createdAt");
+		
 		try {
 			return query.getFirst();
 		} catch (ParseException e) {
@@ -68,10 +76,14 @@ public class LocationsDAO {
 	}
 
 	public ParseObject deleteLocation(String objectId) {
-		ParseObject object = getLocationById(objectId);
+		ParseObject locationToBeDeleted = getLocationById(objectId);
 		try {
-			object.delete();
-			return object;
+			if(locationToBeDeleted!=null){
+			valuesDAO = new ValuesDAO(context);
+			valuesDAO.deleteByID(locationToBeDeleted.getObjectId());
+			locationToBeDeleted.delete();
+			}
+			return locationToBeDeleted;
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;
@@ -81,15 +93,16 @@ public class LocationsDAO {
 	public ParseObject updateLocation(String objectId, String name,
 			String description) {
 		System.out.println("updating location");
-		ParseObject object = getLocationById(objectId);
-		object.put("location_name", name);
-		object.put("description", description);
+		ParseObject locationToBeUpdated = getLocationById(objectId);
+		if(locationToBeUpdated != null)
+			{locationToBeUpdated.put("location_name", name);
+		locationToBeUpdated.put("description", description);
 		try {
-			object.save();
+			locationToBeUpdated.save();
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		return object;
+		}}
+		return locationToBeUpdated;
 	}
 
 }

@@ -25,7 +25,7 @@ public class ValuesDAO {
 //		Object o=null;
 		System.out.println(locationObjectId);
 		query.whereEqualTo("location_objectid", locationObjectId);
-		query.whereGreaterThan("createdAt", date);
+		query.whereGreaterThan("date", date);
 		query.orderByAscending("date");
 		try {
 			System.out.println("try");
@@ -36,5 +36,35 @@ public class ValuesDAO {
 			return null;
 		}
 	}
+	
+	public List<ParseObject> getDataByID(String locationObjectId)
+	{
+		query.whereEqualTo("location_objectid", locationObjectId);
+		
+		try {
+			return query.find();
+		} catch (ParseException e) {
+			System.out.println("exception ValueDAO getDataByID");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void deleteByID(String locationObjectId)
+	{
+		List<ParseObject> valuesToBeDeleted = (List<ParseObject>)getDataByID(locationObjectId);
+		if(valuesToBeDeleted!= null)
+		for(int i=0;i<valuesToBeDeleted.size();i++)
+		{
+			try{
+			valuesToBeDeleted.get(i).delete();
+			System.out.println("deleted  " + i);
+			}catch (ParseException e) {
+				e.printStackTrace();
+				}
+		}
+		
+	}
+	
 	
 }

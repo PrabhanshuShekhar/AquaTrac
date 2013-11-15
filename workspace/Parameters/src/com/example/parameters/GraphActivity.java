@@ -8,7 +8,9 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +25,8 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 import com.jjoe64.graphview.LineGraphView;
 import com.mw.aquatrack.DAO.ValuesDAO;
+import com.mw.aquatrack.services.CreateDialog;
+import com.mw.aquatrack.services.MyApplication;
 import com.parse.ParseObject;
 
 @SuppressLint("SimpleDateFormat")
@@ -35,10 +39,14 @@ public class GraphActivity extends Activity {
 	double criticalStartRange;
 	double criticalEndRange;
 	ParseProxyObject selectedParameter;
-	Date date;
+	Date dateAfterMinus;
 	Handler handler;
+	MyApplication application;
+	AlertDialog.Builder alertDialogBuilder;
+	CreateDialog createDialog;
+
 	Intent intent;
-	ProgressDialog dialog;
+	ProgressDialog progressDialog;
 	GraphView graphView;
 	GraphViewSeriesStyle[] graphViewSeriesStyles = new GraphViewSeriesStyle[] {
 			new GraphViewSeriesStyle(Color.rgb(127, 255, 0), 4),
@@ -112,7 +120,7 @@ public class GraphActivity extends Activity {
 		SimpleDateFormat ft = new SimpleDateFormat("dd/MM");
 		String[] horizontalLabels = new String[days + 1];
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
+		cal.setTime(dateAfterMinus);
 		if (days == 7)
 			for (int i = 0; i < horizontalLabels.length; i++) {
 				cal.add(Calendar.DAY_OF_MONTH, 1);
@@ -149,10 +157,14 @@ public class GraphActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.graph);
 		handler = new Handler();
+		application = (MyApplication) getApplication();
+		createDialog = new CreateDialog(this);
 
-		dialog = ProgressDialog.show(this, "Loading",
-				"Please wait for a while.");
-		Thread thread = new Thread() {
+		progressDialog = createDialog.createProgressDialog("Loading",
+				"Please wait for a while.", true,
+				getResources().getDrawable(R.anim.progress_dialog_animation));
+		progressDialog.show();
+		final Thread thread = new Thread() {
 			public void run() {
 				intent = getIntent();
 				locationIdArray = intent.getStringArrayExtra("locationId");
@@ -169,18 +181,19 @@ public class GraphActivity extends Activity {
 				else
 					DAYS = 30;
 
-				date = getDate(DAYS);
-				System.out.println("date is : " + date);
+				dateAfterMinus = getDate(DAYS);
+				System.out.println("date is : " + dateAfterMinus);
 				setGraphViewStyle(DAYS);
 				setEndRangeValuesOnGraph(1);
 				for (int i = 0; i < locationIdArray.length; i++) {
 					int previousValueHolder = -1;
 					Calendar cal = Calendar.getInstance();
-					cal.setTime(date);
+					cal.setTime(dateAfterMinus);
 					SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
 					List<ParseObject> values = new ValuesDAO(GraphActivity.this)
-							.getDataForReports(locationIdArray[i], date);
-					System.out.println("number  :  " + values.size());
+							.getDataForReports(locationIdArray[i],
+									dateAfterMinus);
+					System.out.println("records fetched  :  " + values.size());
 					int size = values.size();
 					int counter = 0;
 					GraphViewData[] dataBox = new GraphViewData[DAYS];
@@ -192,10 +205,13 @@ public class GraphActivity extends Activity {
 										.get(counter).getDate("date")));
 								Date currentDate = ft.parse(ft.format(cal
 										.getTime()));
-								System.out.println("date comparison  :  "
+								System.out.println("database date  : "
+										+ databaseDate + " currentDate  "
+										+ currentDate);
+								System.out.println(" comparison  :"
 										+ databaseDate.compareTo(currentDate));
 								if (databaseDate.compareTo(currentDate) == 0) {
-									// System.out.println("j is :  " + j);
+									System.out.println("j is : == " + j);
 									dataBox[j] = new GraphViewData(j, values
 											.get(counter).getInt(
 													parameterDescription));
@@ -205,13 +221,15 @@ public class GraphActivity extends Activity {
 									}
 								} else {
 									if (previousValueHolder != -1) {
-										// System.out.println("j is :  " + j);
+										System.out.println("j is !=  !=-1:  "
+												+ j);
 										dataBox[j] = new GraphViewData(
 												j,
 												values.get(previousValueHolder)
 														.getInt(parameterDescription));
 									} else {
-										// System.out.println("j is :  " + j);
+										System.out.println("j is :  !=  ==-1"
+												+ j);
 										dataBox[j] = new GraphViewData(j, 0);
 									}
 								}
@@ -236,13 +254,85 @@ public class GraphActivity extends Activity {
 					public void run() {
 						((LinearLayout) findViewById(R.id.graphLinearLayout))
 								.addView(graphView);
-						dialog.dismiss();
+						progressDialog.dismiss();
 
 					}
 				});// post
 			}
 		};// thread
 		thread.start();
+
+		Thread thread2 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				int j = 0;
+				while (j == 0) {
+					try {
+						Thread.currentThread();
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if (thread.getState() != Thread.State.TERMINATED)
+						if (!internetAlert())
+							j = 1;
+				}
+			}
+		});
+		thread2.start();
+
 	} // end of onCreate
 
+	public boolean internetAlert() {
+		int internetScore = application.combinedInternetTest();
+		if (internetScore != 0) {
+			System.out.println("problem");
+			if (internetScore == 1) {
+				alertDialogBuilder = createDialog.createAlertDialog(
+						"CONNECTION ERROR", "Connect to WiFi or Data Service.",
+						false);
+				singleOKButton(alertDialogBuilder);
+				return false;
+			}
+			if (internetScore == 2) {
+				alertDialogBuilder = createDialog.createAlertDialog(
+						"CONNECTION ERROR", "Internet services required.",
+						false);
+				singleOKButton(alertDialogBuilder);
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void singleOKButton(final AlertDialog.Builder alertDialogBuilder) {
+		alertDialogBuilder.setPositiveButton("OK",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.dismiss();
+						finish();
+					}
+				});
+
+		handler.post(new Runnable() {
+			@Override
+			public void run() {
+				dismissPreviousProgressBar();
+				AlertDialog dialog = alertDialogBuilder.create();
+				dialog.show();
+
+			}
+		});
+	}
+
+	public void dismissPreviousProgressBar() {
+		handler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				progressDialog.dismiss();
+			}
+		});
+	}
 }

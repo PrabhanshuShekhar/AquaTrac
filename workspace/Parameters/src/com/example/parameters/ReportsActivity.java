@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.mw.aquatrack.services.MyApplication;
-
 public class ReportsActivity extends Activity {
 	private static int SELECT_PARAMETER = 1;
 	private static int SELECT_POND = 10;
@@ -23,15 +21,13 @@ public class ReportsActivity extends Activity {
 	ImageView imageView2;
 	double criticalStartRange;
 	double criticalEndRange;
-	MyApplication application;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.reports_activity);
-	application = (MyApplication)getApplication();
-		SelectParameterActivity.temp = -1;
+		SelectParameterActivity.staticListIndex = -1;
 		imageView1 = (ImageView) findViewById(R.id.tick_parameter_imageView1);
 		imageView1.setVisibility(View.INVISIBLE);
 		imageView2 = (ImageView) findViewById(R.id.tick_parameter_imageView2);
@@ -39,59 +35,15 @@ public class ReportsActivity extends Activity {
 	}
 
 	public void onSelectParameter(View view) {
-			if (!application.haveNetworkConnection()) {
-			System.out.println("no network");
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					this);
-			alertDialogBuilder.setTitle("CONNECTION ERROR");
-
-			alertDialogBuilder
-					.setMessage("Internet services required.")
-					.setCancelable(false)
-					.setPositiveButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									dialog.dismiss();
-								}
-							});
-			AlertDialog dialog = alertDialogBuilder.create();
-
-			dialog.show();
-		} else {
-			Intent intent = new Intent(this, SelectParameterActivity.class);
+		System.out.println("start");
+			Intent intent = new Intent(ReportsActivity.this,
+					SelectParameterActivity.class);
 			startActivityForResult(intent, SELECT_PARAMETER);
-		}
 	}
 
 	public void onSelectPond(View view) {
-		if (!application.haveNetworkConnection()) {
-			System.out.println("no network");
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					this);
-			alertDialogBuilder.setTitle("CONNECTION ERROR");
-
-			// set dialog message
-			alertDialogBuilder
-					.setMessage("Internet services required.")
-					.setCancelable(false)
-					.setPositiveButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									dialog.dismiss();
-								}
-							});
-			AlertDialog dialog = alertDialogBuilder.create();
-
-			// show it
-			dialog.show();
-
-			// finish();
-		} else {
 			Intent intent = new Intent(this, SelectLocationActivity.class);
 			startActivityForResult(intent, SELECT_POND);
-		}
 	}
 
 	public void onGenerateReports(View view) {
@@ -168,5 +120,41 @@ public class ReportsActivity extends Activity {
 				super.onActivityResult(requestCode, resultCode, intent);
 			}
 	} // end of function
+
+//	public boolean func2() {
+//		int temp = application.combinedInternetTest();
+//		if (temp != 0) {
+//			System.out.println("problem");
+//			if (temp == 1) {
+//				alertDialogBuilder = createDialog.createAlertDialog(
+//						"CONNECTION ERROR", "Connect to WiFi or Data Service.",
+//						false);
+//				alertDialogBuilder.setPositiveButton("OK",
+//						new DialogInterface.OnClickListener() {
+//							public void onClick(DialogInterface dialog, int id) {
+//								dialog.dismiss();
+//							}
+//						});
+//				AlertDialog dialog = alertDialogBuilder.create();
+//				dialog.show();
+//				return false;
+//			}
+//			if (temp == 2) {
+//				alertDialogBuilder = createDialog.createAlertDialog(
+//						"CONNECTION ERROR", "Internet services required.",
+//						false);
+//				alertDialogBuilder.setPositiveButton("OK",
+//						new DialogInterface.OnClickListener() {
+//							public void onClick(DialogInterface dialog, int id) {
+//								dialog.dismiss();
+//							}
+//						});
+//				AlertDialog dialog = alertDialogBuilder.create();
+//				dialog.show();
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 
 }

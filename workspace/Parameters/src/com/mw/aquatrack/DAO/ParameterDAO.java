@@ -22,12 +22,13 @@ public class ParameterDAO {
 	public List<ParseObject> getAllParameters() {
 		List<ParseObject> parameterList = null;
 		try {
-			// find can be replaced ny findInBackground
+			// find can be replaced by findInBackground
 			parameterList = query.find();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		System.out.println("parameters size is: " + parameterList.size());
+		
+//		System.out.println("parameters size is: " + parameterList.size());
 		return parameterList;
 	}
 
@@ -43,14 +44,16 @@ public class ParameterDAO {
 	public ParseObject updateParameter(String objectId, double criticalStartRange,
 			double criticalEndRange) {
 		System.out.println("updating parameter");
-		ParseObject object = getParameterById(objectId);
-		object.put("criticalStartRange", criticalStartRange);
-		object.put("criticalEndRange", criticalEndRange);
-		object.saveInBackground();
+		ParseObject parameterToBeUpdated = getParameterById(objectId);
+		if(parameterToBeUpdated!=null)
+		{
+		parameterToBeUpdated.put("criticalStartRange", criticalStartRange);
+		parameterToBeUpdated.put("criticalEndRange", criticalEndRange);
+		parameterToBeUpdated.saveInBackground();
 		System.out.println("complete updation of parameter");
-
+		}
 		// return is wrong if unable to save in DB
-		return object;
+		return parameterToBeUpdated;
 		// System.out.println("check " + object.getNumber("criticalEndRange"));
 	}
 

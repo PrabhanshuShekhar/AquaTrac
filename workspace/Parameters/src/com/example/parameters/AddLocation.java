@@ -113,6 +113,7 @@ public class AddLocation extends Activity {
 
 	public void onCancel(View view) {
 		finish();
+		overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
 	}
 
 	public void onClearScreen(View view) {
@@ -133,6 +134,7 @@ public class AddLocation extends Activity {
 			switch (which) {
 			case DialogInterface.BUTTON_POSITIVE:
 				finish();
+				overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
 				break;
 			case DialogInterface.BUTTON_NEGATIVE:
 				actuallySave();
@@ -149,6 +151,7 @@ public class AddLocation extends Activity {
 		intent.putExtra("description", editText2.getText().toString());
 		this.setResult(RESULT_OK, intent);
 		finish();
+		overridePendingTransition(R.anim.slide_left, 0);
 	}
 	
 	@Override
@@ -159,7 +162,9 @@ public class AddLocation extends Activity {
 					.setPositiveButton("Discard", backDialogClickListener)
 					.setNegativeButton("Save", backDialogClickListener).show();}
 		else
-			super.onBackPressed();
+//			super.onBackPressed();
+		{	finish();
+		overridePendingTransition(R.anim.slide_left, 0);}
 	}
 
 	
