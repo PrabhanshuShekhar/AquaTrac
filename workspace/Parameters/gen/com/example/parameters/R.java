@@ -110,16 +110,16 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView01=0x7f0a0038;
-        public static final int action_delete=0x7f0a006e;
-        public static final int action_edit=0x7f0a006d;
-        public static final int action_settings=0x7f0a006c;
+        public static final int action_delete=0x7f0a0072;
+        public static final int action_edit=0x7f0a0071;
+        public static final int action_settings=0x7f0a0070;
         public static final int add_location_main_layout=0x7f0a0012;
         public static final int ammonia=0x7f0a003a;
-        public static final int ammonia_arrow=0x7f0a0062;
+        public static final int ammonia_arrow=0x7f0a0066;
         public static final int ammonia_image=0x7f0a003b;
         public static final int ammonia_value=0x7f0a003c;
         public static final int biochemical=0x7f0a003d;
-        public static final int biochemical_arrow=0x7f0a0063;
+        public static final int biochemical_arrow=0x7f0a0067;
         public static final int biochemical_image=0x7f0a003e;
         public static final int biochemical_value=0x7f0a003f;
         public static final int blank1=0x7f0a0058;
@@ -131,7 +131,7 @@ public final class R {
         public static final int calendar_day_gridcell=0x7f0a0060;
         public static final int calendarheader=0x7f0a000b;
         public static final int chloride=0x7f0a0040;
-        public static final int chloride_arrow=0x7f0a0064;
+        public static final int chloride_arrow=0x7f0a0068;
         public static final int chloride_image=0x7f0a0041;
         public static final int chloride_value=0x7f0a0042;
         public static final int clear_end_critic_value=0x7f0a0029;
@@ -139,24 +139,25 @@ public final class R {
         public static final int clear_location_name_imageButton=0x7f0a001a;
         public static final int clear_start_critic_value=0x7f0a0026;
         public static final int colorimeter=0x7f0a0043;
-        public static final int colorimeter_arrow=0x7f0a0065;
+        public static final int colorimeter_arrow=0x7f0a0069;
         public static final int colorimeter_image=0x7f0a0044;
         public static final int colorimeter_value=0x7f0a0045;
         public static final int conductivity=0x7f0a0046;
-        public static final int conductivity_arrow=0x7f0a0066;
+        public static final int conductivity_arrow=0x7f0a006a;
         public static final int conductivity_image=0x7f0a0047;
         public static final int conductivity_value=0x7f0a0048;
         public static final int currentMonth=0x7f0a0009;
         public static final int date_text=0x7f0a0037;
         public static final int delete_location=0x7f0a0016;
         public static final int dissolved_oxygen=0x7f0a0049;
-        public static final int dissolved_oxygen_arrow=0x7f0a0067;
+        public static final int dissolved_oxygen_arrow=0x7f0a006b;
         public static final int dissolved_oxygen_image=0x7f0a004a;
         public static final int dissolved_oxygen_value=0x7f0a004b;
+        public static final int done=0x7f0a0065;
         public static final int edit_location=0x7f0a0014;
         public static final int edit_parameter_main_layout=0x7f0a0022;
         public static final int free_chlorine=0x7f0a004c;
-        public static final int free_chlorine_arrow=0x7f0a0068;
+        public static final int free_chlorine_arrow=0x7f0a006c;
         public static final int free_chlorine_image=0x7f0a004d;
         public static final int free_chlorine_value=0x7f0a004e;
         public static final int graphLinearLayout=0x7f0a002a;
@@ -177,7 +178,9 @@ public final class R {
         public static final int location_heading_textView=0x7f0a0015;
         public static final int location_name_editText=0x7f0a0019;
         public static final int location_name_textView=0x7f0a0018;
+        public static final int location_radiogroup=0x7f0a0064;
         public static final int location_save=0x7f0a0020;
+        public static final int location_scroll=0x7f0a0063;
         public static final int location_textView=0x7f0a002f;
         public static final int locations_list=0x7f0a002c;
         public static final int logo_fish=0x7f0a000d;
@@ -187,12 +190,12 @@ public final class R {
         public static final int min_value=0x7f0a0004;
         public static final int nextMonth=0x7f0a000a;
         public static final int nitrate=0x7f0a004f;
-        public static final int nitrate_arrow=0x7f0a0069;
+        public static final int nitrate_arrow=0x7f0a006d;
         public static final int nitrate_image=0x7f0a0050;
         public static final int nitrate_value=0x7f0a0051;
         public static final int num_events_per_day=0x7f0a0061;
         public static final int orp=0x7f0a0052;
-        public static final int orp_arrow=0x7f0a006a;
+        public static final int orp_arrow=0x7f0a006e;
         public static final int orp_image=0x7f0a0053;
         public static final int orp_value=0x7f0a0054;
         public static final int parameter=0x7f0a0039;
@@ -208,7 +211,7 @@ public final class R {
         public static final int parameter_textView=0x7f0a0033;
         public static final int parameters_list=0x7f0a0030;
         public static final int ph=0x7f0a0055;
-        public static final int ph_arrow=0x7f0a006b;
+        public static final int ph_arrow=0x7f0a006f;
         public static final int ph_image=0x7f0a0056;
         public static final int ph_value=0x7f0a0057;
         public static final int pond_text=0x7f0a0036;
@@ -220,6 +223,7 @@ public final class R {
         public static final int slider_value=0x7f0a0002;
         public static final int tick_parameter_imageView1=0x7f0a0059;
         public static final int tick_parameter_imageView2=0x7f0a005c;
+        public static final int title_bar=0x7f0a0062;
     }
     public static final class layout {
         public static final int activity_add=0x7f030000;
@@ -238,7 +242,8 @@ public final class R {
         public static final int record_add=0x7f03000d;
         public static final int reports_activity=0x7f03000e;
         public static final int screen_gridcell=0x7f03000f;
-        public static final int view_record=0x7f030010;
+        public static final int selectlocation=0x7f030010;
+        public static final int view_record=0x7f030011;
     }
     public static final class menu {
         public static final int add=0x7f090000;
