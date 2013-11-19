@@ -76,6 +76,9 @@
         <activity android:name="com.example.parameters.EditLocation" 
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name="com.example.parameters.MailSenderActivity" 
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

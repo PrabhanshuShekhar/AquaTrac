@@ -56,6 +56,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="55dp"
-        android:text="Button" />
+        android:text="Button"
+         android:onClick="onEmail"/>
 
 </RelativeLayout>
