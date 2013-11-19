@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
+import com.mw.aquatrack.services.CreateDialog;
 
 public class AddActivity extends Activity {
 
@@ -21,6 +22,7 @@ public class AddActivity extends Activity {
 	ProgressDialog dialog;
 	PondsAdapter adapter;
 	GridView ponds_gridview;
+	CreateDialog create_dialog = new CreateDialog(this);
 	final Handler mhandler = new Handler();
 	final Runnable runnable = new Runnable(){
 		public void run()
@@ -57,12 +59,23 @@ public class AddActivity extends Activity {
 			 }
 		 };
 		 th.start();
-		 dialog = new ProgressDialog(AddActivity.this);
-		 dialog.setTitle("Loading...");
-		 dialog.setMessage("Please wait for a while");
-		 dialog.setCancelable(false);
-		 dialog.setIndeterminate(true);
+		 
+		 dialog = create_dialog.createProgressDialog("Loading",
+				"Please wait for a while.", true,
+				getResources().getDrawable(R.anim.progress_dialog_animation));
+		 
 		 dialog.show();
+		 
+		 
+		 
+		 
+		 
+//		 dialog = new ProgressDialog(AddActivity.this);
+//		 dialog.setTitle("Loading...");
+//		 dialog.setMessage("Please wait for a while");
+//		 dialog.setCancelable(false);
+//		 dialog.setIndeterminate(true);
+//		 dialog.show();
 //		ponds_gridview.setAdapter(adapter);
 		// listener for ponds_gridview
 		

@@ -31,12 +31,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.mw.aquatrack.services.CreateDialog;
+
 
 public class AddRecordActivity extends Activity  {
   Intent intent;
   String param_name,location_id,param_value,action_name,create_date,location_name;
   static final int GET_PARAMETER_VALUE = 0;
   ProgressDialog dialog;
+  CreateDialog createDialog = new CreateDialog(this);;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -143,12 +146,18 @@ public class AddRecordActivity extends Activity  {
         	query.whereGreaterThanOrEqualTo("date", formatter.parse(formatter.format(date1)));
         }
         
-		 dialog = new ProgressDialog(AddRecordActivity.this);
-		 dialog.setTitle("Loading...");
-		 dialog.setMessage("Please wait for a while");
-		 dialog.setCancelable(false);
-		 dialog.setIndeterminate(true);
-		 dialog.show();
+        dialog  = createDialog.createProgressDialog("Loading",
+				"Please wait for a while.", true,
+				getResources().getDrawable(R.anim.progress_dialog_animation));
+        
+        dialog.show();
+        
+//		 dialog = new ProgressDialog(AddRecordActivity.this);
+//		 dialog.setTitle("Loading...");
+//		 dialog.setMessage("Please wait for a while");
+//		 dialog.setCancelable(false);
+//		 dialog.setIndeterminate(true);
+//		 dialog.show();
         
         
         // thread end
